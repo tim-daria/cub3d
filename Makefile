@@ -26,6 +26,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SRC_DIR = src/
 OBJ_DIR = obj/
 SRC_FILES =\
+		main.c
 
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
@@ -34,6 +35,11 @@ OBJS = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRCS))
 OBJ_FLAG = .cache_exists
 
 all: $(NAME)
+
+$(MLX_DIR):
+	@echo "Cloning minilibX..."
+	@mkdir -p libs
+	@git clone https://github.com/42paris/minilibx-linux.git $(MLX_DIR)
 
 $(MLX_LIB): $(MLX_DIR)
 	@echo "Building minilibX..."
@@ -58,7 +64,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_FLAG)
 $(NAME): $(MLX_LIB) $(LIBFT) $(OBJ_DIR) $(OBJS)
 	@echo "Compiling..."
 	@$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -L$(LIBFT_DIR) -lft -o $(NAME)
-	@echo "FdF ready"
+	@echo "CUB3D ready"
 
 clean:
 	@rm -rf $(OBJ_DIR)
@@ -74,6 +80,7 @@ fclean: clean
 		rm -f $(MLX_DIR)/%.a $(MLX_DIR)/%.o 2>/dev/null || true; \
 	fi
 	@make -C $(LIBFT_DIR) fclean
+	@rm -rf $(MLX_DIR)
 
 re: fclean all
 
