@@ -6,7 +6,7 @@
 /*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:43:13 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/06 16:20:10 by dtimofee         ###   ########.fr       */
+/*   Updated: 2025/10/06 18:00:59 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_mlx_data {
 	//int			count_movements;
 }	t_mlx_data;
 
-void	draw_map(t_mlx_data *data);
+//void	draw_map(t_mlx_data *data);
 //int		handle_movements(int keysym, t_mlx_data *data);
 int		count_player(t_map map);
 int		map_height(int fd);

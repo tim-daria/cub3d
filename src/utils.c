@@ -6,7 +6,7 @@
 /*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:58:54 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/06 16:18:50 by dtimofee         ###   ########.fr       */
+/*   Updated: 2025/10/06 18:03:53 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 // 	}
 // }
 
+// Counts the number of player characters (N, S, E, W) in the map
 int	count_player(t_map map)
 {
 	int	i;
@@ -40,7 +41,7 @@ int	count_player(t_map map)
 		j = 0;
 		while (j < map.block_width)
 		{
-			if (ft_strchr("NSEW", map->map[i][j]))
+			if (ft_strchr("NSEW", map.map[i][j]))
 				count_player++;
 			j++;
 		}
@@ -49,6 +50,7 @@ int	count_player(t_map map)
 	return (count_player);
 }
 
+// Calculates the height of the map by counting lines in the file
 int	map_height(int fd)
 {
 	int		height;
@@ -66,12 +68,13 @@ int	map_height(int fd)
 	return (height - 1);
 }
 
+// Initializes all data structure fields to default values
 void	init_data(t_mlx_data *data)
 {
 	// data->textures.collectable.count = 0;
 	// data->textures.player.count = 0;
-	data->textures.player.x = 0;
-	data->textures.player.y = 0;
+	// data->textures.player.x = 0;
+	// data->textures.player.y = 0;
 	// data->textures.exit.count = 0;
 	// data->textures.exit.x = 0;
 	// data->textures.exit.y = 0;
@@ -86,6 +89,7 @@ void	init_data(t_mlx_data *data)
 	//data->count_movements = 0;
 }
 
+// Frees allocated memory for the map array
 void	free_map(char **map, int row)
 {
 	int	i;

@@ -6,12 +6,13 @@
 /*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:48:23 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/06 16:19:12 by dtimofee         ###   ########.fr       */
+/*   Updated: 2025/10/06 17:59:10 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/cub3d.h"
 
+// Checks if the map filename ends with ".cub" extension
 int	check_mapfilename(char *filename)
 {
 	char	*map_file;
@@ -27,6 +28,7 @@ int	check_mapfilename(char *filename)
 	return (1);
 }
 
+// Checks for any unknown characters in the map (only allows '0', '1', 'N', 'S', 'E', 'W')
 static int	unknown_character(t_map *map)
 {
 	int	i;
@@ -50,6 +52,7 @@ static int	unknown_character(t_map *map)
 	}
 	return (1);
 }
+// Checks if there is exactly one player and no unknown characters in the map
 int	check_characters(t_map *map)
 {
 	int	player_count;
@@ -69,6 +72,7 @@ int	check_characters(t_map *map)
 	return (1);
 }
 
+// Checks if the map is completely surrounded by walls ('1')
 int	check_walls(t_map *map)
 {
 	int	i;
