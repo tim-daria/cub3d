@@ -3,14 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:48:23 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/06 17:59:10 by dtimofee         ###   ########.fr       */
+/*   Updated: 2025/10/06 22:38:37 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/cub3d.h"
+#include "cub3d.h"
+
+// valid file:
+
+// NO ./textures/north.xpm
+// SO ./textures/south.xpm
+
+// WE ./textures/west.xpm
+// EA ./textures/east.xpm
+
+// F 220,100,0
+// C 225,30,0
+
+// 111111
+// 100001
+// 101N01
+// 100001
+// 111111
+
+// .cub?
+
+// are NO, SO, WE, EA present?
+// valid file links?
+// F, C present?
+// color codes present? valid? (convert)
+
+// map -> separate file:
+// 0, 1, N/S/W/E/?
+// closed walls?
+// one player?
+
 
 // Checks if the map filename ends with ".cub" extension
 int	check_mapfilename(char *filename)

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:39:58 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/06 18:02:38 by dtimofee         ###   ########.fr       */
+/*   Updated: 2025/10/06 22:42:02 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/cub3d.h"
+#include "cub3d.h"
 
 // Cleans up resources and terminates the program properly
 int	end_program(t_mlx_data *data)
