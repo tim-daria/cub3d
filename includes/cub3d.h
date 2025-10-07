@@ -3,6 +3,13 @@
 
 # include "cub3d_env.h"
 
+// check_cub.c:
+bool	is_valid_cub_file(char *filename);
+// check_cub_utils.c:
+bool	has_map_last(char *filename);
+// error_handlers.c:
+void	print_error(char *msg);
+
 //void	draw_map(t_mlx_data *data);
 //int		handle_movements(int keysym, t_mlx_data *data);
 int		count_player(t_map map);

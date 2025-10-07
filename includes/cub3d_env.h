@@ -2,6 +2,7 @@
 # define CUB3D_ENV_H
 
 # include <stdlib.h>
+# include <stdbool.h>
 # include <math.h>
 # include <X11/X.h>
 # include <X11/keysym.h>

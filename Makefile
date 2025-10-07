@@ -26,7 +26,10 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SRC_DIR = src/
 OBJ_DIR = obj/
 SRC_FILES =\
-		main.c
+		main.c \
+		check_cub.c \
+		check_cub_utils.c \
+		error_handlers.c \
 
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
@@ -80,7 +83,7 @@ fclean: clean
 		rm -f $(MLX_DIR)/%.a $(MLX_DIR)/%.o 2>/dev/null || true; \
 	fi
 	@make -C $(LIBFT_DIR) fclean
-	@rm -rf $(MLX_DIR)
+# 	@rm -rf $(MLX_DIR)
 
 re: fclean all
 

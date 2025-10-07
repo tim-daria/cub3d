@@ -1,62 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/06 15:48:23 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/06 22:38:37 by tsemenov         ###   ########.fr       */
+/*   Created: 2025/10/07 17:44:11 by tsemenov          #+#    #+#             */
+/*   Updated: 2025/10/07 17:44:39 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// valid file:
-
-// NO ./textures/north.xpm
-// SO ./textures/south.xpm
-
-// WE ./textures/west.xpm
-// EA ./textures/east.xpm
-
-// F 220,100,0
-// C 225,30,0
-
-// 111111
-// 100001
-// 101N01
-// 100001
-// 111111
-
-// .cub?
-
-// are NO, SO, WE, EA present?
-// valid file links?
-// F, C present?
-// color codes present? valid? (convert)
-
-// map -> separate file:
-// 0, 1, N/S/W/E/?
-// closed walls?
-// one player?
-
-
-// Checks if the map filename ends with ".cub" extension
-int	check_mapfilename(char *filename)
-{
-	char	*map_file;
-
-	map_file = ft_substr(filename, ft_strlen(filename) - 4, 4);
-	if (ft_strncmp(map_file, ".cub", 4) != 0)
-	{
-		ft_printf("Error\nWrong name of the map file\n");
-		free(map_file);
-		return (-1);
-	}
-	free(map_file);
-	return (1);
-}
 
 // Checks for any unknown characters in the map (only allows '0', '1', 'N', 'S', 'E', 'W')
 static int	unknown_character(t_map *map)
@@ -131,4 +86,3 @@ int	check_walls(t_map *map)
 	}
 	return (1);
 }
-

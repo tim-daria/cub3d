@@ -85,3 +85,6 @@ core.*
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# minilibX directory:
+minilibx-linux/
