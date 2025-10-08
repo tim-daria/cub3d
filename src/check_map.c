@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:44:11 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/07 22:25:20 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/08 15:17:20 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	unknown_character(t_map *map)
 		{
 			if (ft_strchr("01NSEW", map->map[i][j]) == NULL)
 			{
-				ft_printf("Error\nUnknown character\n");
+				print_error("Unknown character\n");
 				free_map(map->map, map->block_height);
 				return (-1);
 			}

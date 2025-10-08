@@ -9,11 +9,11 @@ MLX_LIB = $(MLX_DIR)/libmlx.a
 # got minilibx from here: https://github.com/42paris/minilibx-linux/tree/master
 
 ifeq ($(UNAME_S), Linux)
-# 	MLX_LIB = $(MLX_DIR)/libmlx.a
+	MLX_LIB = $(MLX_DIR)/libmlx.a
 	MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 	INCLUDES = -I./includes -I$(MLX_DIR) -I$(LIBFT_DIR)
 else ifeq ($(UNAME_S), Darwin)
-# 	MLX_LIB = $(MLX_DIR)/libmlx.a
+	MLX_LIB = $(MLX_DIR)/libmlx_Darwin.a
 	MLX_FLAGS = -L$(MLX_DIR) -L/opt/X11/lib -L/usr/X11/include/../lib -lmlx -lXext -lX11 -lm -framework OpenGL -framework AppKit
 	INCLUDES = -I./includes -I$(MLX_DIR) -I$(LIBFT_DIR) -I/opt/X11/include -I/usr/X11/include
 else
@@ -47,12 +47,13 @@ $(MLX_DIR):
 
 $(MLX_LIB): $(MLX_DIR)
 	@echo "Building minilibX..."
-	@cd $(MLX_DIR) && ./configure && make
+	@cd $(MLX_DIR) && ./configure >/dev/null 2>&1 && make >/dev/null 2>&1
+	@echo "minilibX ready"
 
 
 $(LIBFT): $(LIBFT_DIR)
 	@echo "Building libft..."
-	@make -C$(LIBFT_DIR)
+	@make -C$(LIBFT_DIR) >/dev/null 2>&1
 	@echo "Libft ready"
 
 $(OBJ_DIR):
@@ -73,24 +74,26 @@ $(NAME): $(MLX_LIB) $(LIBFT) $(OBJ_DIR) $(OBJS)
 clean:
 	@rm -rf $(OBJ_DIR)
 	@rm -f $(OBJ_FLAG)
-	@if [ -f $(MLX_DIR)/Makefile ]; then make -C $(MLX_DIR) clean 2>/dev/null || true; fi
-	@make -C $(LIBFT_DIR) clean
+	@echo "minilibX: in progress..."
+	@if [ -f $(MLX_DIR)/Makefile ]; then make -C $(MLX_DIR) clean >/dev/null 2>&1 || true; fi
+	@echo "libft: in progress..."
+	@make -C $(LIBFT_DIR) clean >/dev/null 2>&1
+	@echo "clean done"
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "minilibX: in progress..."
 	@if [ -f $(MLX_DIR)/Makefile ]; then \
-		make -C $(MLX_DIR) fclean 2>/dev/null || \
-		make -C $(MLX_DIR) clean 2>/dev/null || \
-		rm -f $(MLX_DIR)/%.a $(MLX_DIR)/%.o 2>/dev/null || true; \
+		make -C $(MLX_DIR) fclean >/dev/null 2>&1|| \
+		make -C $(MLX_DIR) clean >/dev/null 2>&1 || \
+		rm -f $(MLX_DIR)/%.a $(MLX_DIR)/%.o >/dev/null 2>&1|| true; \
 	fi
-	@make -C $(LIBFT_DIR) fclean
+	@echo "libft: in progress..."
+	@make -C $(LIBFT_DIR) fclean >/dev/null 2>&1
+	@echo "fclean done"
+
 # 	@rm -rf $(MLX_DIR)
 
 re: fclean all
 
-debug:
-	@echo "Detected OS: $(UNAME_S)"
-	@echo "Detected Architecture: $(UNAME_M)"
-	@echo "Using MinilibX directory: $(MLX_DIR)"
-
-.PHONY: all clean fclean re debug
+.PHONY: all clean fclean re

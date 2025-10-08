@@ -6,13 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 21:25:58 by tsemenov          #+#    #+#             */
-<<<<<<< ours
-/*   Updated: 2025/10/08 14:43:06 by tsemenov         ###   ########.fr       */
-||||||| ancestor
-/*   Updated: 2025/10/08 13:57:48 by tsemenov         ###   ########.fr       */
-=======
-/*   Updated: 2025/10/08 14:35:51 by tsemenov         ###   ########.fr       */
->>>>>>> theirs
+/*   Updated: 2025/10/08 15:04:49 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +85,8 @@ bool	has_map_last(char *filename)
 	char	*line;
 
 	fd = try_open(filename);
+	if (fd < 0)
+		return (false);
 	result = check_map_order(fd, &line);
 	close(fd);
 	if (line)

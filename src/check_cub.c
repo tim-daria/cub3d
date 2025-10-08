@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:48:23 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/08 14:35:45 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/08 15:04:31 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	try_open(char *filename)
 	if (fd < 0)
 	{
 		print_error("Cannot open file");
-		exit(1);
+		return (false);
 	}
 	return (fd);
 }
@@ -73,6 +73,8 @@ bool	is_valid_cub_file(char *filename)
 	if (!is_cub_file(filename))
 		return (false);
 	fd = try_open(filename);
+	if (fd < 0)
+		return (false);
 	if (is_empty(fd))
 	{
 		close(fd);
