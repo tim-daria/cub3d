@@ -91,7 +91,7 @@ fclean: clean
 	@echo "libft: in progress..."
 	@make -C $(LIBFT_DIR) fclean >/dev/null 2>&1
 	@echo "fclean done"
-# 	@rm -rf $(MLX_DIR)
+	@rm -rf $(MLX_DIR)
 
 re: fclean all
 
