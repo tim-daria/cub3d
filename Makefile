@@ -43,7 +43,7 @@ all: $(NAME)
 $(MLX_DIR):
 	@echo "Cloning minilibX..."
 	@mkdir -p libs
-	@git clone https://github.com/42paris/minilibx-linux.git $(MLX_DIR)
+	@git clone https://github.com/42paris/minilibx-linux.git $(MLX_DIR) >/dev/null 2>&1
 
 $(MLX_LIB): $(MLX_DIR)
 	@echo "Building minilibX..."
@@ -91,7 +91,6 @@ fclean: clean
 	@echo "libft: in progress..."
 	@make -C $(LIBFT_DIR) fclean >/dev/null 2>&1
 	@echo "fclean done"
-
 # 	@rm -rf $(MLX_DIR)
 
 re: fclean all
