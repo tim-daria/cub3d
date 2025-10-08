@@ -5,8 +5,11 @@
 
 // check_cub.c:
 bool	is_valid_cub_file(char *filename);
+int		try_open(char *filename);
 // check_cub_utils.c:
 bool	has_map_last(char *filename);
+// check_cub_utils2.c:
+bool	has_all_sides(char *filename);
 // error_handlers.c:
 void	print_error(char *msg);
 

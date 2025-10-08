@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:48:23 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/07 21:38:36 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/08 14:35:45 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,19 @@ static bool	is_cub_file(char *filename)
 	return (true);
 }
 
+int	try_open(char *filename)
+{
+	int	fd;
+
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+	{
+		print_error("Cannot open file");
+		exit(1);
+	}
+	return (fd);
+}
+
 // Checks if the file is empty
 static bool	is_empty(int fd)
 {
@@ -59,12 +72,7 @@ bool	is_valid_cub_file(char *filename)
 
 	if (!is_cub_file(filename))
 		return (false);
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-	{
-		print_error("Cannot open file");
-		return (false);
-	}
+	fd = try_open(filename);
 	if (is_empty(fd))
 	{
 		close(fd);
@@ -72,6 +80,8 @@ bool	is_valid_cub_file(char *filename)
 	}
 	close(fd);
 	if (!has_map_last(filename))
+		return (false);
+	if (!has_all_sides(filename))
 		return (false);
 	return (true);
 }

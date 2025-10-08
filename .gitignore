@@ -33,6 +33,7 @@
 *.pdb
 
 # CMake
+.cache_exists
 CMakeCache.txt
 CMakeFiles/
 CMakeScripts/

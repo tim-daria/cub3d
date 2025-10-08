@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 21:25:58 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/08 13:57:48 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/08 14:35:51 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static bool	is_map_line(char *line)
 	return (has_content);
 }
 
+// helper function that does the actual map order check
 static bool	check_map_order(int fd, char **line)
 {
 	int		map_found;
@@ -83,12 +84,7 @@ bool	has_map_last(char *filename)
 	bool	result;
 	char	*line;
 
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-	{
-		print_error("Cannot open file");
-		return (false);
-	}
+	fd = try_open(filename);
 	result = check_map_order(fd, &line);
 	close(fd);
 	if (line)

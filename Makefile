@@ -29,6 +29,7 @@ SRC_FILES =\
 		main.c \
 		check_cub.c \
 		check_cub_utils.c \
+		check_cub_utils2.c \
 		error_handlers.c \
 
 
