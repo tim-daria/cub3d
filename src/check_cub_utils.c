@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 21:25:58 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/07 22:07:20 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/08 13:57:48 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,41 @@ static bool	is_map_line(char *line)
 	return (has_content);
 }
 
+static bool	check_map_order(int fd, char **line)
+{
+	int		map_found;
+
+	map_found = 0;
+	*line = get_next_line(fd);
+	while (*line != NULL)
+	{
+		// printf("DEBUG: reading line: %s", line);
+		if ((*line)[0] <= 32)
+		{
+			free(*line);
+			*line = get_next_line(fd); 
+			continue;
+		}
+		if (is_map_line(*line))
+			map_found = 1;
+		else if (map_found && is_config_line(*line))
+		{
+			free(*line);
+			*line = NULL;
+			return (false);
+		}
+		free(*line);
+		*line = get_next_line(fd);
+	}
+	return (true);
+}
+
 // checks if the map is in the end of the file
 bool	has_map_last(char *filename)
 {
 	int		fd;
-	int		map_found;
-	int		map_not_last;
+	bool	result;
 	char	*line;
-	int	len;
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
@@ -62,43 +89,11 @@ bool	has_map_last(char *filename)
 		print_error("Cannot open file");
 		return (false);
 	}
-	map_found = 0;
-	map_not_last = 0;
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		printf("DEBUG: reading line: %s", line);
-		if (line[0] == '\0' || line[0] == '\n')
-		{
-			free(line);
-			line = get_next_line(fd); 
-			continue;
-		}
-		len = ft_strlen(line);
-		if (len > 0 && line[len - 1] == '\n')
-			line[len - 1] = '\0';
-		if (line[0] == '\0')
-		{
-			free(line);
-			line = get_next_line(fd); 
-			continue;
-		}
-		if (is_map_line(line))
-			map_found = 1;
-		else if (map_found && is_config_line(line))
-		{
-			map_not_last = 1;
-			free(line);
-			line = NULL;
-			break ;
-		}
-		free(line);
-		line = get_next_line(fd);
-	}
+	result = check_map_order(fd, &line);
+	close(fd);
 	if (line)
 		free(line);
-	close(fd);
-	if (map_not_last)
+	if (!result)
 	{
 		print_error("Map must be at the end of the file");
 		return (false);

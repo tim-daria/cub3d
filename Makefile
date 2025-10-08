@@ -9,11 +9,11 @@ MLX_LIB = $(MLX_DIR)/libmlx.a
 # got minilibx from here: https://github.com/42paris/minilibx-linux/tree/master
 
 ifeq ($(UNAME_S), Linux)
-	MLX_LIB = $(MLX_DIR)/libmlx.a
+# 	MLX_LIB = $(MLX_DIR)/libmlx.a
 	MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 	INCLUDES = -I./includes -I$(MLX_DIR) -I$(LIBFT_DIR)
 else ifeq ($(UNAME_S), Darwin)
-	MLX_LIB = $(MLX_DIR)/libmlx_Darwin.a
+# 	MLX_LIB = $(MLX_DIR)/libmlx.a
 	MLX_FLAGS = -L$(MLX_DIR) -L/opt/X11/lib -L/usr/X11/include/../lib -lmlx -lXext -lX11 -lm -framework OpenGL -framework AppKit
 	INCLUDES = -I./includes -I$(MLX_DIR) -I$(LIBFT_DIR) -I/opt/X11/include -I/usr/X11/include
 else

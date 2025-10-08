@@ -7,9 +7,6 @@ int main(int argc, char **argv)
 	
 	// printf("Cub3D starting...\n");
 	if (!is_valid_cub_file(argv[1]))
-	{
-		printf("Invalid file\n");
 		return (1);
-	}
 	return (0);
 }
