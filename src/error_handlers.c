@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 18:49:34 by dtimofee          #+#    #+#             */
-/*   Updated: 2024/11/18 11:58:32 by dtimofee         ###   ########.fr       */
+/*   Created: 2025/10/07 20:05:06 by tsemenov          #+#    #+#             */
+/*   Updated: 2025/10/07 20:09:29 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-int	ft_isdigit(int c)
+// Prints "Error" by default folleewd by an optional message (can be changed to print to STDERR)
+void	print_error(char *msg)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+	printf("Error\n");
+	if (msg)
+		printf("%s\n", msg);
 }

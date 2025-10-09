@@ -33,6 +33,7 @@
 *.pdb
 
 # CMake
+.cache_exists
 CMakeCache.txt
 CMakeFiles/
 CMakeScripts/
@@ -85,3 +86,7 @@ core.*
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# minilibX directory:
+libs/
+libs/minilibx-linux/

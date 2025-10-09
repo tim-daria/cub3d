@@ -1,32 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/06 15:48:23 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/06 17:59:10 by dtimofee         ###   ########.fr       */
+/*   Created: 2025/10/07 17:44:11 by tsemenov          #+#    #+#             */
+/*   Updated: 2025/10/08 15:17:20 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/cub3d.h"
+#include "cub3d.h"
 
-// Checks if the map filename ends with ".cub" extension
-int	check_mapfilename(char *filename)
-{
-	char	*map_file;
-
-	map_file = ft_substr(filename, ft_strlen(filename) - 4, 4);
-	if (ft_strncmp(map_file, ".cub", 4) != 0)
-	{
-		ft_printf("Error\nWrong name of the map file\n");
-		free(map_file);
-		return (-1);
-	}
-	free(map_file);
-	return (1);
-}
 
 // Checks for any unknown characters in the map (only allows '0', '1', 'N', 'S', 'E', 'W')
 static int	unknown_character(t_map *map)
@@ -42,7 +27,7 @@ static int	unknown_character(t_map *map)
 		{
 			if (ft_strchr("01NSEW", map->map[i][j]) == NULL)
 			{
-				ft_printf("Error\nUnknown character\n");
+				print_error("Unknown character\n");
 				free_map(map->map, map->block_height);
 				return (-1);
 			}
@@ -101,4 +86,3 @@ int	check_walls(t_map *map)
 	}
 	return (1);
 }
-

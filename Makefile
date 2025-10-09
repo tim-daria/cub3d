@@ -26,7 +26,11 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SRC_DIR = src/
 OBJ_DIR = obj/
 SRC_FILES =\
-		main.c
+		main.c \
+		check_cub.c \
+		check_cub_utils.c \
+		check_cub_utils2.c \
+		error_handlers.c \
 
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
@@ -39,16 +43,17 @@ all: $(NAME)
 $(MLX_DIR):
 	@echo "Cloning minilibX..."
 	@mkdir -p libs
-	@git clone https://github.com/42paris/minilibx-linux.git $(MLX_DIR)
+	@git clone https://github.com/42paris/minilibx-linux.git $(MLX_DIR) >/dev/null 2>&1
 
 $(MLX_LIB): $(MLX_DIR)
 	@echo "Building minilibX..."
-	@cd $(MLX_DIR) && ./configure && make
+	@cd $(MLX_DIR) && ./configure >/dev/null 2>&1 && make >/dev/null 2>&1
+	@echo "minilibX ready"
 
 
 $(LIBFT): $(LIBFT_DIR)
 	@echo "Building libft..."
-	@make -C$(LIBFT_DIR)
+	@make -C$(LIBFT_DIR) >/dev/null 2>&1
 	@echo "Libft ready"
 
 $(OBJ_DIR):
@@ -69,24 +74,25 @@ $(NAME): $(MLX_LIB) $(LIBFT) $(OBJ_DIR) $(OBJS)
 clean:
 	@rm -rf $(OBJ_DIR)
 	@rm -f $(OBJ_FLAG)
-	@if [ -f $(MLX_DIR)/Makefile ]; then make -C $(MLX_DIR) clean 2>/dev/null || true; fi
-	@make -C $(LIBFT_DIR) clean
+	@echo "minilibX: in progress..."
+	@if [ -f $(MLX_DIR)/Makefile ]; then make -C $(MLX_DIR) clean >/dev/null 2>&1 || true; fi
+	@echo "libft: in progress..."
+	@make -C $(LIBFT_DIR) clean >/dev/null 2>&1
+	@echo "clean done"
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "minilibX: in progress..."
 	@if [ -f $(MLX_DIR)/Makefile ]; then \
-		make -C $(MLX_DIR) fclean 2>/dev/null || \
-		make -C $(MLX_DIR) clean 2>/dev/null || \
-		rm -f $(MLX_DIR)/%.a $(MLX_DIR)/%.o 2>/dev/null || true; \
+		make -C $(MLX_DIR) fclean >/dev/null 2>&1|| \
+		make -C $(MLX_DIR) clean >/dev/null 2>&1 || \
+		rm -f $(MLX_DIR)/%.a $(MLX_DIR)/%.o >/dev/null 2>&1|| true; \
 	fi
-	@make -C $(LIBFT_DIR) fclean
+	@echo "libft: in progress..."
+	@make -C $(LIBFT_DIR) fclean >/dev/null 2>&1
+	@echo "fclean done"
 	@rm -rf $(MLX_DIR)
 
 re: fclean all
 
-debug:
-	@echo "Detected OS: $(UNAME_S)"
-	@echo "Detected Architecture: $(UNAME_M)"
-	@echo "Using MinilibX directory: $(MLX_DIR)"
-
-.PHONY: all clean fclean re debug
+.PHONY: all clean fclean re
