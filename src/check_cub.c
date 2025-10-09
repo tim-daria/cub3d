@@ -6,13 +6,14 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:48:23 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/08 15:04:31 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/09 11:01:23 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 // Checks if the map filename ends with ".cub" extension
+// Daria's function
 static bool	is_cub_file(char *filename)
 {
 	char	*map_file;

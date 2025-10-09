@@ -87,4 +87,5 @@ typedef struct s_env
 	char		*ea_texture_path;
 	t_map		map;
 	t_texture	textures[4];
+	char		direction;
 } t_env;
