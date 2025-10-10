@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d_env.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dtimofee <dtimofee@student.42berlin.de>    #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-10-09 10:26:02 by dtimofee          #+#    #+#             */
+/*   Updated: 2025-10-09 10:26:02 by dtimofee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_ENV_H
 # define CUB3D_ENV_H
 
@@ -18,11 +30,19 @@
 # define HEIGHT 768
 # define BLOCK_SIZE 64
 
-typedef struct s_map {
+typedef struct s_map
+{
 	char	**map;
-	int		block_height;
-	int		block_width;
+	int		height;
+	int		width;
 }	t_map;
+
+typedef struct s_player
+{
+	char	view;
+	int		y;
+	int		x;
+}	t_player;
 
 // typedef struct s_textures {
 // 	t_position	player;
@@ -30,15 +50,17 @@ typedef struct s_map {
 // 	t_position	collectable;
 // }	t_textures;
 
-typedef struct s_mlx_data {
+typedef struct s_game
+{
 	//t_textures	textures;
 	t_map		map;
+	t_player	p;
 	void		*mlx_connection;
 	void		*mlx_win;
 	void		*img;
-	int			img_width;
-	int			img_height;
+	// int			img_width;
+	// int			img_height;
 	//int			count_movements;
-}	t_mlx_data;
+}	t_game;
 
 #endif

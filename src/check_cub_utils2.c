@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 static int	count_side(char *filename, char *id, int len)
 {
@@ -44,9 +44,9 @@ static bool	check_sides(char *filename)
 		return (false);
 	if (count_side(filename, "EA ", 3) != 1)
 		return (false);
-	if (count_side(filename, "F ", 3) != 1)
+	if (count_side(filename, "F ", 2) != 1)
 		return (false);
-	if (count_side(filename, "C ", 3) != 1)
+	if (count_side(filename, "C ", 2) != 1)
 		return (false);
 	return (true);
 }

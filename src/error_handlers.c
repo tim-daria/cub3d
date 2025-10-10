@@ -10,12 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 // Prints "Error" by default folleewd by an optional message (can be changed to print to STDERR)
-void	print_error(char *msg)
+bool	print_error(char *msg)
 {
 	printf("Error\n");
 	if (msg)
 		printf("%s\n", msg);
+	return (false);
 }

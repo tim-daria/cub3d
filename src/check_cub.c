@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 // Checks if the map filename ends with ".cub" extension
 // Daria's function
@@ -45,8 +45,8 @@ int	try_open(char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
-		print_error("Cannot open file");
-		return (false);
+		print_error("Can not open file");
+		return (-1);
 	}
 	return (fd);
 }
