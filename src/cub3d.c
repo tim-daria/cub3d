@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:39:58 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/06 22:42:02 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/12 13:24:44 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ static int	fill_map(int fd, t_map *map)
 }
 
 // Opens a file and returns the file descriptor
-static int	open_file(char *src)
+int	open_file(char *src)
 {
 	int	fd;
 
 	fd = open(src, O_RDONLY);
 	if (fd == -1)
-		perror("Error\n");
+		perror("Error: ");
 	return (fd);
 }
 

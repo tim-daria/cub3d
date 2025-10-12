@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 14:25:38 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/08 15:06:22 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/12 21:58:26 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static int	count_side(char *filename, char *id, int len)
 	int		fd;
 	int		count;
 
-	fd = try_open(filename);
+	fd = open_file(filename);
 	if (fd < 0)
-		return (false);
+		return (0);
 	count = 0;
 	line = get_next_line(fd);
 	while (line != NULL)
@@ -31,33 +31,35 @@ static int	count_side(char *filename, char *id, int len)
 		line = get_next_line(fd);
 	}
 	close (fd);
+	// if (count != 1)
+	// 	printf("DEBUG: for %s side count is %i\n", id, count);
 	return (count);
 }
 
-static bool	check_sides(char *filename)
+static int	check_sides(char *filename)
 {
 	if (count_side(filename, "NO ", 3) != 1)
-		return (false);
+		return (0);
 	if (count_side(filename, "SO ", 3) != 1)
-		return (false);
+		return (0);
 	if (count_side(filename, "WE ", 3) != 1)
-		return (false);
+		return (0);
 	if (count_side(filename, "EA ", 3) != 1)
-		return (false);
-	if (count_side(filename, "F ", 3) != 1)
-		return (false);
-	if (count_side(filename, "C ", 3) != 1)
-		return (false);
-	return (true);
+		return (0);
+	if (count_side(filename, "F ", 2) != 1)
+		return (0);
+	if (count_side(filename, "C ", 2) != 1)
+		return (0);
+	return (1);
 }
 
 // checks if all side identifiers are present
-bool	has_all_sides(char *filename)
+int	has_all_sides(char *filename)
 {
 	if (!check_sides(filename))
 	{
 		print_error("Wrong config");
-		return (false);
+		return (0);
 	}
-	return (true);
+	return (1);
 }

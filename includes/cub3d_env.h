@@ -2,7 +2,6 @@
 # define CUB3D_ENV_H
 
 # include <stdlib.h>
-# include <stdbool.h>
 # include <math.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
@@ -17,6 +16,25 @@
 # define WIDTH 1024
 # define HEIGHT 768
 # define BLOCK_SIZE 64
+
+// for textures and color parsing:
+
+enum e_direction
+{
+	NORTH = 0,
+	SOUTH = 1,
+	WEST = 2,
+	EAST = 3
+};
+
+typedef struct s_config
+{
+	char	*textures[4];
+	int		floor_color;
+	int		ceiling_color;
+}	t_config;
+
+// end of textures and colors parsing
 
 typedef struct s_map {
 	char	**map;

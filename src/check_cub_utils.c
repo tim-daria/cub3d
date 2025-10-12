@@ -6,13 +6,13 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 21:25:58 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/08 15:04:49 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/12 21:58:26 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static bool	is_config_line(char *line)
+int	is_config_line(char *line)
 {
 	return (ft_strncmp(line, "NO ", 3) == 0
 			|| ft_strncmp(line, "SO ", 3) == 0
@@ -22,13 +22,13 @@ static bool	is_config_line(char *line)
 			|| ft_strncmp(line, "C ", 2) == 0);
 }
 
-static bool	is_map_line(char *line)
+static int	is_map_line(char *line)
 {
 	int		i;
-	bool	has_content;
+	int		has_content;
 
 	i = 0;
-	has_content = false;
+	has_content = 0;
 	while (line[i] && line[i] != '\n')
 	{
 		if (line[i] == ' ')
@@ -38,17 +38,17 @@ static bool	is_map_line(char *line)
 		}
 		if (ft_strchr("01NSEW", line[i]) != NULL)
 		{
-			has_content = true;
+			has_content = 1;
 			i++;
 		}
 		else
-			return (false);
+			return (0);
 	}
 	return (has_content);
 }
 
 // helper function that does the actual map order check
-static bool	check_map_order(int fd, char **line)
+static int	check_map_order(int fd, char **line)
 {
 	int		map_found;
 
@@ -69,24 +69,24 @@ static bool	check_map_order(int fd, char **line)
 		{
 			free(*line);
 			*line = NULL;
-			return (false);
+			return (0);
 		}
 		free(*line);
 		*line = get_next_line(fd);
 	}
-	return (true);
+	return (1);
 }
 
 // checks if the map is in the end of the file
-bool	has_map_last(char *filename)
+int	has_map_last(char *filename)
 {
 	int		fd;
-	bool	result;
+	int		result;
 	char	*line;
 
-	fd = try_open(filename);
+	fd = open_file(filename);
 	if (fd < 0)
-		return (false);
+		return (0);
 	result = check_map_order(fd, &line);
 	close(fd);
 	if (line)
@@ -94,7 +94,7 @@ bool	has_map_last(char *filename)
 	if (!result)
 	{
 		print_error("Map must be at the end of the file");
-		return (false);
+		return (0);
 	}
-	return (true);
+	return (1);
 }
