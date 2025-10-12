@@ -50,10 +50,6 @@ static int	test_config_parsing(char *filename)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		/* Remove newline character */
-		if (line[ft_strlen(line) - 1] == '\n')
-			line[ft_strlen(line) - 1] = '\0';
-			
 		if (is_config_line(line))
 		{
 			if (parse_config_line(line, config))

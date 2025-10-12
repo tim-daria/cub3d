@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:46:52 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/12 21:50:56 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/12 22:09:21 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,16 @@ int	parse_config_line(char *line, t_config *config)
 {
 	char	**split;
 	int		result;
+	int		len;
+
+	len = ft_strlen(line);
+	if (len > 0 && line[len - 1] == '\n')
+		line[len - 1] = '\0';
 
 	split = ft_split(line, ' ');
 	if (!split || !split[0] || !split[1] || split[2])
 	{
-		// printf("DEBUG: failed in parse_config_line\n");
+		printf("DEBUG: failed in parse_config_line\n");
 		if (split)
 			free_2d_arr(split);
 		return (0);
