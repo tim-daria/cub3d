@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_cub_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 21:25:58 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/08 15:04:49 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/13 18:05:00 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static bool	is_config_line(char *line)
+bool	is_config_line(char *line)
 {
 	return (ft_strncmp(line, "NO ", 3) == 0
 			|| ft_strncmp(line, "SO ", 3) == 0
@@ -84,7 +84,7 @@ bool	has_map_last(char *filename)
 	bool	result;
 	char	*line;
 
-	fd = try_open(filename);
+	fd = open_file(filename);
 	if (fd < 0)
 		return (false);
 	result = check_map_order(fd, &line);

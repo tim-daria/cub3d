@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cub_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 14:25:38 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/08 15:06:22 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/13 17:53:46 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static int	count_side(char *filename, char *id, int len)
 	int		fd;
 	int		count;
 
-	fd = try_open(filename);
+	fd = open_file(filename);
 	if (fd < 0)
-		return (false);
+		return (0);
 	count = 0;
 	line = get_next_line(fd);
 	while (line != NULL)
@@ -31,6 +31,8 @@ static int	count_side(char *filename, char *id, int len)
 		line = get_next_line(fd);
 	}
 	close (fd);
+	// if (count != 1)
+	// 	printf("DEBUG: for %s side count is %i\n", id, count);
 	return (count);
 }
 
@@ -44,9 +46,9 @@ static bool	check_sides(char *filename)
 		return (false);
 	if (count_side(filename, "EA ", 3) != 1)
 		return (false);
-	if (count_side(filename, "F ", 3) != 1)
+	if (count_side(filename, "F ", 2) != 1)
 		return (false);
-	if (count_side(filename, "C ", 3) != 1)
+	if (count_side(filename, "C ", 2) != 1)
 		return (false);
 	return (true);
 }

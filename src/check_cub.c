@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:48:23 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/09 11:01:23 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/13 17:55:45 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,14 @@ static bool	is_cub_file(char *filename)
 	return (true);
 }
 
-int	try_open(char *filename)
+// Opens a file and returns the file descriptor
+int	open_file(char *src)
 {
 	int	fd;
 
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-	{
-		print_error("Cannot open file");
-		return (false);
-	}
+	fd = open(src, O_RDONLY);
+	if (fd == -1)
+		perror("Error: ");
 	return (fd);
 }
 
@@ -73,7 +71,7 @@ bool	is_valid_cub_file(char *filename)
 
 	if (!is_cub_file(filename))
 		return (false);
-	fd = try_open(filename);
+	fd = open_file(filename);
 	if (fd < 0)
 		return (false);
 	if (is_empty(fd))

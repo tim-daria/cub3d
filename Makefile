@@ -30,7 +30,12 @@ SRC_FILES =\
 		check_cub.c \
 		check_cub_utils.c \
 		check_cub_utils2.c \
+		cleanups.c \
 		error_handlers.c \
+		init_config.c \
+		parse_colors.c \
+		parse_textures.c \
+		parse_config.c \
 
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
@@ -91,7 +96,7 @@ fclean: clean
 	@echo "libft: in progress..."
 	@make -C $(LIBFT_DIR) fclean >/dev/null 2>&1
 	@echo "fclean done"
-	@rm -rf $(MLX_DIR)
+# 	@rm -rf $(MLX_DIR)
 
 re: fclean all
 
