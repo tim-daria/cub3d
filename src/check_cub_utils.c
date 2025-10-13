@@ -10,19 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 bool	is_config_line(char *line)
 {
 	return (ft_strncmp(line, "NO ", 3) == 0
-			|| ft_strncmp(line, "SO ", 3) == 0
-			|| ft_strncmp(line, "WE ", 3) == 0
-			|| ft_strncmp(line, "EA ", 3) == 0
-			|| ft_strncmp(line, "F ", 2) == 0
-			|| ft_strncmp(line, "C ", 2) == 0);
+		|| ft_strncmp(line, "SO ", 3) == 0
+		|| ft_strncmp(line, "WE ", 3) == 0
+		|| ft_strncmp(line, "EA ", 3) == 0
+		|| ft_strncmp(line, "F ", 2) == 0
+		|| ft_strncmp(line, "C ", 2) == 0);
 }
 
-static bool	is_map_line(char *line)
+bool	is_map_line(char *line)
 {
 	int		i;
 	bool	has_content;
@@ -34,7 +34,7 @@ static bool	is_map_line(char *line)
 		if (line[i] == ' ')
 		{
 			i++;
-			continue;
+			continue ;
 		}
 		if (ft_strchr("01NSEW", line[i]) != NULL)
 		{
@@ -57,20 +57,18 @@ static bool	check_map_order(int fd, char **line)
 	while (*line != NULL)
 	{
 		// printf("DEBUG: reading line: %s", line);
-		if ((*line)[0] <= 32)
+		if (count_len(*line) == 0)
 		{
 			free(*line);
-			*line = get_next_line(fd); 
-			continue;
+			*line = get_next_line(fd);
+			continue ;
 		}
 		if (is_map_line(*line))
 			map_found = 1;
+		else if (map_found && count_len(*line) == 0)
+			return (print_error("Empty line in the map"));
 		else if (map_found && is_config_line(*line))
-		{
-			free(*line);
-			*line = NULL;
-			return (false);
-		}
+			return (print_error("Map must be at the end of the file"));
 		free(*line);
 		*line = get_next_line(fd);
 	}
@@ -92,9 +90,6 @@ bool	has_map_last(char *filename)
 	if (line)
 		free(line);
 	if (!result)
-	{
-		print_error("Map must be at the end of the file");
 		return (false);
-	}
 	return (true);
 }

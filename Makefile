@@ -26,11 +26,15 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SRC_DIR = src/
 OBJ_DIR = obj/
 SRC_FILES =\
-		main.c \
+		cub3d.c \
 		check_cub.c \
 		check_cub_utils.c \
 		check_cub_utils2.c \
 		cleanups.c \
+		check_characters.c \
+		parse_map.c \
+		parse_map_utils.c \
+		check_walls.c \
 		error_handlers.c \
 		init_config.c \
 		parse_colors.c \
@@ -68,7 +72,7 @@ $(OBJ_FLAG):
 	@touch $(OBJ_FLAG)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_FLAG)
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@ 
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 
 $(NAME): $(MLX_LIB) $(LIBFT) $(OBJ_DIR) $(OBJS)

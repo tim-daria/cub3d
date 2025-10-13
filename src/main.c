@@ -1,4 +1,4 @@
-#include "cub3d.h"
+// #include "cub3d.h"
 
 static void	print_config(t_config *config)
 {
@@ -66,14 +66,13 @@ static int	test_config_parsing(char *filename)
 	return (1);
 }
 
-int main(int argc, char **argv)
-{
-	(void)argc;
-	// (void)argv;
-	
-	// printf("Cub3D starting...\n");
-	if (!is_valid_cub_file(argv[1]))
-		return (1);
-	test_config_parsing(argv[1]);
-	return (0);
-}
+// int main(int argc, char **argv)
+// {
+// 	(void)argc;
+// 	// (void)argv;
+
+// 	// printf("Cub3D starting...\n");
+// 	if (!is_valid_cub_file(argv[1]))
+// 		return (1);
+// 	return (0);
+// }

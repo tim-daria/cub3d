@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_cub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:48:23 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/13 17:55:45 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/13 19:54:15 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 // Checks if the map filename ends with ".cub" extension
 // Daria's function
@@ -64,7 +64,8 @@ static bool	is_empty(int fd)
 	return (false);
 }
 
-// checks if we can open the file and calls all other functions for primary check
+// checks if we can open the file and calls all other functions
+//for primary check
 bool	is_valid_cub_file(char *filename)
 {
 	int	fd;

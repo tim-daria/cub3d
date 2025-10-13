@@ -5,12 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/12 20:23:10 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/12 20:23:25 by tsemenov         ###   ########.fr       */
+/*   Created: 2025/10/07 17:46:52 by tsemenov          #+#    #+#             */
+/*   Updated: 2025/10/13 19:54:42 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+//#include "cub3d.h"
+
+// path present?
+// file opens?
 
 void	free_2d_arr(char **arr)
 {
