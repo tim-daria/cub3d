@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtimofee <dtimofee@student.42berlin.de>    #+#  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-10-09 11:46:16 by dtimofee          #+#    #+#             */
-/*   Updated: 2025-10-09 11:46:16 by dtimofee         ###   ########.fr       */
+/*   Created: 2025/10/09 11:46:16 by dtimofee          #+#    #+#             */
+/*   Updated: 2025/10/13 20:00:57 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
 //Copies a map line and pads it with spaces till the max width in the map.
 static char	*copy_line(char *read_line, int width)
@@ -80,11 +80,11 @@ static bool	read_map_file(char *src, t_map *map)
 {
 	int	fd;
 
-	fd = try_open(src);
+	fd = open_file(src);
 	if (fd < 0)
 		return (false);
 	map_height_width(fd, map);
-	fd = try_open(src);
+	fd = open_file(src);
 	if (fd < 0)
 		return (false);
 	map->map = malloc(map->height * sizeof(char *));

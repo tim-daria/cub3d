@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   check_characters.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:44:11 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/08 15:17:20 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/13 20:00:57 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
 // Checks for any unknown characters in the map (only allows ' ', '0', '1', 'N', 'S', 'E', 'W')
 static bool	unknown_character(t_map *map)

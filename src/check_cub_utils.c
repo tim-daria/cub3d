@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_cub_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 21:25:58 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/13 18:05:00 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/13 20:00:57 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
 bool	is_config_line(char *line)
 {

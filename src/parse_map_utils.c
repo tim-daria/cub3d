@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   parse_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:58:54 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/06 22:42:16 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/13 20:01:08 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
 //Searches the map for the player's starting position and
 //returns the character representing their view direction (N, S, E, or W).

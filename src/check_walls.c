@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_walls_correct.c                              :+:      :+:    :+:   */
+/*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtimofee <dtimofee@student.42berlin.de>    #+#  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-10-13 10:38:57 by dtimofee          #+#    #+#             */
-/*   Updated: 2025-10-13 10:38:57 by dtimofee         ###   ########.fr       */
+/*   Created: 2025/10/13 10:38:57 by dtimofee          #+#    #+#             */
+/*   Updated: 2025/10/13 20:00:57 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
 //This function recursively checks if a given cell (x, y) in the map is enclosed
 //by walls. It returns true if the cell is enclosed, and false otherwise.

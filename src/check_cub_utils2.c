@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_cub_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 14:25:38 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/13 17:53:46 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/13 20:00:57 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
 static int	count_side(char *filename, char *id, int len)
 {

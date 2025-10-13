@@ -6,11 +6,11 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:46:52 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/13 19:54:42 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/13 20:01:03 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "cub3d.h"
+#include "cub3d.h"
 
 // path present?
 // file opens?
