@@ -1,43 +1,82 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_utils.c                                  :+:      :+:    :+:   */
+/*   check_walls_correct.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dtimofee <dtimofee@student.42berlin.de>    #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-10-10 14:12:19 by dtimofee          #+#    #+#             */
-/*   Updated: 2025-10-10 14:12:19 by dtimofee         ###   ########.fr       */
+/*   Created: 2025-10-13 10:38:57 by dtimofee          #+#    #+#             */
+/*   Updated: 2025-10-13 10:38:57 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
-// // Checks if the map is completely surrounded by walls ('1')
-// int	check_walls(t_map *map)
-// {
-// 	int	i;
+static bool	is_enclosed(char **visited, t_map map, int x, int y)
+{
+	if (x < 0 || x >= map.width || y < 0 || y >= map.height)
+		return (false);
+	if (map.map[y][x] == ' ')
+		return (false);
+	if (map.map[y][x] == '1' || visited[y][x] == 'V')
+		return (true);
+	visited[y][x] = 'V';
+	if (!is_enclosed(visited, map, x + 1, y))
+		return (false);
+	if (!is_enclosed(visited, map, x - 1, y))
+		return (false);
+	if (!is_enclosed(visited, map, x, y + 1))
+		return (false);
+	if (!is_enclosed(visited, map, x, y - 1))
+		return (false);
+	return (true);
+}
 
-// 	i = 0;
-// 	while (i < map->block_width)
-// 	{
-// 		if (map->map[0][i] != '1' || map->map[map->block_height - 1][i] != '1')
-// 		{
-// 			ft_printf("Error\nThe map is not surrounded by walls\n");
-// 			free_map(map->map, map->block_height);
-// 			return (-1);
-// 		}
-// 		i++;
-// 	}
-// 	i = 0;
-// 	while (i < map->block_height)
-// 	{
-// 		if (map->map[i][0] != '1' || map->map[i][map->block_width - 1] != '1')
-// 		{
-// 			ft_printf("Error\nThe map is not surrounded by walls\n");
-// 			return (free_map(map->map, map->height));
-// 			return (-1);
-// 		}
-// 		i++;
-// 	}
-// 	return (1);
-// }
+static char	**create_grid(int height, int width)
+{
+	char	**visited;
+	int		i;
+
+	visited = malloc(height * sizeof(char *));
+	if (!visited)
+		return (NULL);
+	i = 0;
+	while (i < height)
+	{
+		visited[i] = ft_calloc((size_t)width, sizeof(char));
+		if (!visited[i])
+		{
+			free_map(visited, i);
+			return (NULL);
+		}
+		i++;
+	}
+	return (visited);
+}
+
+bool	surrounded_by_walls(t_map map, t_player p)
+{
+	char	**visited;
+	int		y;
+	int		x;
+
+	visited = create_grid(map.height, map.width);
+	if (!visited)
+		return (print_error("Malloc failed"));
+	y = 0;
+	while (y < map.height)
+	{
+		x = 0;
+		while (x < map.width)
+		{
+			if (map.map[y][x] == '0' || map.map[y][x] == p.view)
+			{
+				if (!is_enclosed(visited, map, x, y))
+					return (print_error("The map is not surrounded by walls"));
+			}
+			x++;
+		}
+		y++;
+	}
+	return (true);
+}

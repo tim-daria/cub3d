@@ -60,8 +60,6 @@ static bool	fill_map(int fd, t_map *map)
 	while (read_line != NULL)
 	{
 		map->map[i] = copy_line(read_line, map->width);
-		printf("%s - line %d\n", map->map[i], i);
-		fflush(0);
 		if (map->map[i] == NULL)
 		{
 			print_error("Malloc failed");
@@ -111,6 +109,7 @@ bool	parse_map(char *filename, t_game *game)
 	if (!check_characters(&game->map))
 		return (false);
 	find_player_pos(game->map, &game->p);
-	//surrounded_by_walls
+	if (!surrounded_by_walls(game->map, game->p))
+		return (free_map(game->map.map, game->map.height));
 	return (true);
 }

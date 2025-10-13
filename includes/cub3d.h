@@ -27,7 +27,8 @@ bool	is_map_line(char *line);
 bool	print_error(char *msg);
 //check_characters.c:
 bool	check_characters(t_map *map);
-//int		check_walls(t_map *map);
+//check_walls.c:
+bool	surrounded_by_walls(t_map map, t_player p);
 //parse_map.c:
 bool	parse_map(char *filename, t_game *game);
 //parse_map_utils.c:

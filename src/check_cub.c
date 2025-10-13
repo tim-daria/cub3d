@@ -66,7 +66,8 @@ static bool	is_empty(int fd)
 	return (false);
 }
 
-// checks if we can open the file and calls all other functions for primary check
+// checks if we can open the file and calls all other functions
+//for primary check
 bool	is_valid_cub_file(char *filename)
 {
 	int	fd;
