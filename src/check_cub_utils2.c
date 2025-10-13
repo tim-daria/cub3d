@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cub_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 14:25:38 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/12 21:58:26 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/13 17:53:46 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,30 @@ static int	count_side(char *filename, char *id, int len)
 	return (count);
 }
 
-static int	check_sides(char *filename)
+static bool	check_sides(char *filename)
 {
 	if (count_side(filename, "NO ", 3) != 1)
-		return (0);
+		return (false);
 	if (count_side(filename, "SO ", 3) != 1)
-		return (0);
+		return (false);
 	if (count_side(filename, "WE ", 3) != 1)
-		return (0);
+		return (false);
 	if (count_side(filename, "EA ", 3) != 1)
-		return (0);
+		return (false);
 	if (count_side(filename, "F ", 2) != 1)
-		return (0);
+		return (false);
 	if (count_side(filename, "C ", 2) != 1)
-		return (0);
-	return (1);
+		return (false);
+	return (true);
 }
 
 // checks if all side identifiers are present
-int	has_all_sides(char *filename)
+bool	has_all_sides(char *filename)
 {
 	if (!check_sides(filename))
 	{
 		print_error("Wrong config");
-		return (0);
+		return (false);
 	}
-	return (1);
+	return (true);
 }

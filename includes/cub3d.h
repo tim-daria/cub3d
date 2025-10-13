@@ -4,14 +4,14 @@
 # include "cub3d_env.h"
 
 // check_cub.c:
-int			is_valid_cub_file(char *filename);
+bool		is_valid_cub_file(char *filename);
 // int		try_open(char *filename);
 int			open_file(char *src);
 // check_cub_utils.c:
-int			has_map_last(char *filename);
-int			is_config_line(char *line);
+bool		has_map_last(char *filename);
+bool		is_config_line(char *line);
 // check_cub_utils2.c:
-int			has_all_sides(char *filename);
+bool		has_all_sides(char *filename);
 // cleanups.c:
 void		free_2d_arr(char **arr);
 int			ft_strcmp(char *s1, char *s2);
@@ -21,21 +21,19 @@ void		print_error(char *msg);
 t_config	*init_config(void);
 void		free_config(t_config *config);
 // parse_colors.c:
-int			check_and_copy_color(char *id, char *arg, t_config *config);
+bool		check_and_copy_color(char *id, char *arg, t_config *config);
 // parse_config.c:
-int			parse_config_line(char *line, t_config *config);
-// parse_config_utils.c;
-int			is_config_line(char *line);
+bool		parse_config_line(char *line, t_config *config);
 // parse_textures.c:
-int			copy_texture(char *id, char *arg, t_config *config);
+bool		copy_texture(char *id, char *arg, t_config *config);
 int			ft_strcmp(char *s1, char *s2);
 
 //void	draw_map(t_mlx_data *data);
 //int		handle_movements(int keysym, t_mlx_data *data);
 int		count_player(t_map map);
 int		map_height(int fd);
-int		end_program(t_mlx_data *data);
-void	init_data(t_mlx_data *data);
+// int		end_program(t_mlx_data *data);
+// void	init_data(t_mlx_data *data);
 void	free_map(char **map, int row);
 int		check_characters(t_map *map);
 int		check_mapfilename(char *filename);

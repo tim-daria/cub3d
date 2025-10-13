@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:48:23 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/12 21:58:26 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/13 17:55:45 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // Checks if the map filename ends with ".cub" extension
 // Daria's function
-static int	is_cub_file(char *filename)
+static bool	is_cub_file(char *filename)
 {
 	char	*map_file;
 	int		len;
@@ -22,20 +22,20 @@ static int	is_cub_file(char *filename)
 	if (filename == NULL)
 	{
 		print_error("No filename");
-		return (0);
+		return (false);
 	}
 	len = ft_strlen(filename);
 	if (len < 4)
-		return (0);
+		return (false);
 	map_file = ft_substr(filename, ft_strlen(filename) - 4, 4);
 	if (ft_strncmp(map_file, ".cub", 4) != 0)
 	{
 		print_error("Wrong file format");
 		free(map_file);
-		return (0);
+		return (false);
 	}
 	free(map_file);
-	return (1);
+	return (true);
 }
 
 // Opens a file and returns the file descriptor
@@ -49,21 +49,8 @@ int	open_file(char *src)
 	return (fd);
 }
 
-// int	try_open(char *filename)
-// {
-// 	int	fd;
-
-// 	fd = open(filename, O_RDONLY);
-// 	if (fd < 0)
-// 	{
-// 		print_error("Cannot open file");
-// 		return (false);
-// 	}
-// 	return (fd);
-// }
-
 // Checks if the file is empty
-static int	is_empty(int fd)
+static bool	is_empty(int fd)
 {
 	char	buffer[1];
 	ssize_t	bytes_read;
@@ -72,30 +59,30 @@ static int	is_empty(int fd)
 	if (bytes_read <= 0)
 	{
 		print_error("File is empty");
-		return (1);
+		return (true);
 	}
-	return (0);
+	return (false);
 }
 
 // checks if we can open the file and calls all other functions for primary check
-int	is_valid_cub_file(char *filename)
+bool	is_valid_cub_file(char *filename)
 {
 	int	fd;
 
 	if (!is_cub_file(filename))
-		return (0);
+		return (false);
 	fd = open_file(filename);
 	if (fd < 0)
-		return (0);
+		return (false);
 	if (is_empty(fd))
 	{
 		close(fd);
-		return (0);
+		return (false);
 	}
 	close(fd);
 	if (!has_map_last(filename))
-		return (0);
+		return (false);
 	if (!has_all_sides(filename))
-		return (0);
-	return (1);
+		return (false);
+	return (true);
 }
