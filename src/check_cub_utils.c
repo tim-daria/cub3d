@@ -57,12 +57,12 @@ static bool	check_map_order(int fd, char **line)
 	while (*line != NULL)
 	{
 		// printf("DEBUG: reading line: %s", line);
-		// if ((*line)[0] <= 32)
-		// {
-		// 	free(*line);
-		// 	*line = get_next_line(fd);
-		// 	continue ;
-		// }
+		if (count_len(*line) == 0)
+		{
+			free(*line);
+			*line = get_next_line(fd);
+			continue ;
+		}
 		if (is_map_line(*line))
 			map_found = 1;
 		else if (map_found && count_len(*line) == 0)
