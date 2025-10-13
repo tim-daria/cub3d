@@ -12,6 +12,10 @@
 
 #include "../includes/cub3d.h"
 
+//This function recursively checks if a given cell (x, y) in the map is enclosed
+//by walls. It returns true if the cell is enclosed, and false otherwise.
+//The function checks for out-of-bounds conditions, spaces (which indicate a leak),
+//walls, and already visited cells to avoid infinite recursion.
 static bool	is_enclosed(char **visited, t_map map, int x, int y)
 {
 	if (x < 0 || x >= map.width || y < 0 || y >= map.height)
@@ -32,6 +36,9 @@ static bool	is_enclosed(char **visited, t_map map, int x, int y)
 	return (true);
 }
 
+//This function allocates a 2D grid of characters with the given
+//height and width. It's used to keep track of visited cells
+//during the is_enclosed check.
 static char	**create_grid(int height, int width)
 {
 	char	**visited;
@@ -54,6 +61,10 @@ static char	**create_grid(int height, int width)
 	return (visited);
 }
 
+//This function checks if the entire map is surrounded by walls.
+//It iterates through each cell in the map, and if a cell is a floor ('0')
+//or the player's starting position, it calls is_enclosed to check if that
+//cell is enclosed by walls.
 bool	surrounded_by_walls(t_map map, t_player p)
 {
 	char	**visited;
