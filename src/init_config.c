@@ -6,13 +6,13 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 13:37:50 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/12 21:50:37 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/15 22:13:09 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_config	*init_config(void)
+static t_config	*init_config()
 {
 	t_config	*new;
 	int			i;
@@ -31,18 +31,48 @@ t_config	*init_config(void)
 	return (new);
 }
 
-void	free_config(t_config *config)
+static bool	extract_config(char **line, t_config **config, int *fd)
 {
-	int	i;
-
-	if (!config)
-		return ;
-	i = NORTH;
-	while (i <= EAST)
+	if (is_config_line(*line))
 	{
-		if (config->textures[i])
-			free(config->textures[i]);
-		i++;
+		if (!parse_config_line(*line, *config))
+		{
+			print_error("Failed to parse config line");
+			free(*line);
+			if (config)
+				free_config(*config);
+			*config = NULL;
+			close(*fd);
+			return (false);
+		}
 	}
-	free(config);
+	return (true);
+}
+
+bool	parse_config(char *filename, t_game *game)
+{
+	t_config	*config;
+	int			fd;
+	char		*line;
+
+	config = init_config();
+	if (!config)
+		return (false);
+	fd = open_file(filename);
+	if (fd < 0)
+	{
+		free_config(config);
+		return (false);
+	}
+	line = get_next_line(fd);
+	while (line)
+	{
+		if (!extract_config(&line, &config, &fd))
+			return (false);
+		free(line);
+		line = get_next_line(fd);
+	}
+	game->config = config;
+	close(fd);
+	return (true);
 }

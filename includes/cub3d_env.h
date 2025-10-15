@@ -18,6 +18,14 @@
 # define HEIGHT 768
 # define BLOCK_SIZE 64
 
+# define ESC_KEY	65307
+# define W_KEY		119
+# define A_KEY		97
+# define S_KEY		115
+# define D_KEY		100
+# define LEFT_KEY	65361 // for rotation
+# define RIGHT_KEY	65363 // for rotation
+
 enum e_direction
 {
 	NORTH = 0,

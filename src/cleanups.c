@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:46:52 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/13 20:01:03 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/15 22:38:18 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,49 @@ void	free_2d_arr(char **arr)
 		i++;
 	}
 	free(arr);
+}
+
+void	free_config(t_config *config)
+{
+	int	i;
+
+	if (!config)
+		return ;
+	i = NORTH;
+	while (i <= EAST)
+	{
+		if (config->textures[i])
+			free(config->textures[i]);
+		i++;
+	}
+	free(config);
+}
+
+// Cleans up resources and terminates the program properly
+void	clean_data(t_game *game)
+{
+	if (game->mlx_win)
+		mlx_destroy_window(game->mlx_connection, game->mlx_win);
+	if (game->mlx_connection)
+	{
+		mlx_destroy_display(game->mlx_connection);
+		free(game->mlx_connection);
+	}
+	if (game->config)
+	{
+		free_config(game->config);
+		game->config = NULL;
+	}
+	if (game->map.map)
+	{
+		free_2d_arr(game->map.map);
+		game->map.map = NULL;
+	}
+	free(game);
+}
+
+int	end_program(t_game *game)
+{
+	clean_data(game);
+	return (0);
 }

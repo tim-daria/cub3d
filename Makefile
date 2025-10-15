@@ -40,6 +40,8 @@ SRC_FILES =\
 		parse_colors.c \
 		parse_textures.c \
 		parse_config.c \
+		init_data.c \
+		test_parsing.c \
 
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
