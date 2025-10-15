@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:39:58 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/15 22:37:32 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/15 23:06:05 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,4 @@ int	main(int argc, char **argv)
 	printf("🎮 Game ready - MLX integration can be added next.\n\n");
 	end_program(game);
 	return (0);
-		// data.mlx_connection = mlx_init();
-		// data.mlx_win = mlx_new_window(data.mlx_connection,
-		// 		BLOCK_SIZE * data.map.block_width,
-		// 		BLOCK_SIZE * data.map.block_height, "cub3d");
-		// if (data.mlx_win == NULL)
-		// 	perror("Error");
-		//draw_map(&data);
-		//mlx_hook(data.mlx_win, 2, 1L << 0, handle_movements, &data);
-		// mlx_hook(data.mlx_win, DestroyNotify, NoEventMask, end_program, &data);
-		// mlx_loop(data.mlx_connection);
 }

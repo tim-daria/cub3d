@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:46:52 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/15 22:38:18 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/15 23:04:58 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	clean_data(t_game *game)
 	free(game);
 }
 
+// function that will be used on ESC
 int	end_program(t_game *game)
 {
 	clean_data(game);

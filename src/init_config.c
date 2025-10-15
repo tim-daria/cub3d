@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 13:37:50 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/15 22:13:09 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/15 23:02:29 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static t_config	*init_config()
 	return (new);
 }
 
+// helper function for parsing/cleanup on fail for every line in the loop
 static bool	extract_config(char **line, t_config **config, int *fd)
 {
 	if (is_config_line(*line))
@@ -49,6 +50,7 @@ static bool	extract_config(char **line, t_config **config, int *fd)
 	return (true);
 }
 
+// creates config and saves all parsed data
 bool	parse_config(char *filename, t_game *game)
 {
 	t_config	*config;

@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 21:02:15 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/15 22:24:16 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/15 23:00:08 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ static bool	setup_mlx(t_game *game)
 	return (true);
 }
 
+// inits game, parses map & config, starts mlx window
+// on fail, cleans up
 bool	start_game(t_game **game, char *arg)
 {
 	if (!is_valid_cub_file(arg))

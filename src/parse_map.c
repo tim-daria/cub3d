@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 11:46:16 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/15 22:36:53 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/15 23:04:09 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,8 @@ static bool	read_map_file(char *src, t_map *map)
 		close(fd);
 		return (false);
 	}
-	/* Initialize all pointers to NULL */
+	/* Initialize all pointers to NULL - to avoid
+	garbage data AND to NULL-terminate the array */
 	int k = 0;
 	while (k <= map->height)
 	{
