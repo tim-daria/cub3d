@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 10:26:09 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/13 19:50:55 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/15 22:39:22 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,17 @@ bool		has_all_sides(char *filename);
 bool		is_map_line(char *line);
 // cleanups.c:
 void		free_2d_arr(char **arr);
-int			ft_strcmp(char *s1, char *s2);
+void		free_config(t_config *config);
+void		clean_data(t_game *game);
+int			end_program(t_game *game);
 // error_handlers.c:
 bool		print_error(char *msg);
 // init_config.c:
-t_config	*init_config(void);
+bool		parse_config(char *filename, t_game *game);
 void		free_config(t_config *config);
+// init_data.c:
+bool	init_data(t_game **game);
+bool		start_game(t_game **game, char *arg);
 // parse_colors.c:
 bool		check_and_copy_color(char *id, char *arg, t_config *config);
 // parse_config.c:
@@ -40,20 +45,18 @@ bool		parse_config_line(char *line, t_config *config);
 bool		copy_texture(char *id, char *arg, t_config *config);
 int			ft_strcmp(char *s1, char *s2);
 //check_characters.c:
-bool	check_characters(t_map *map);
+bool		check_characters(t_map *map);
 //check_walls.c:
-bool	surrounded_by_walls(t_map map, t_player p);
+bool		surrounded_by_walls(t_map map, t_player p);
 //parse_map.c:
-bool	parse_map(char *filename, t_game *game);
+bool		parse_map(char *filename, t_game *game);
 //parse_map_utils.c:
-void	map_height_width(int fd, t_map *map);
-char	*skip_not_map(int fd);
-bool	free_map(char **map, int row);
-void	find_player_pos(t_map map, t_player *p);
-int		count_len(char *line);
+void		map_height_width(int fd, t_map *map);
+char		*skip_not_map(int fd);
+bool		free_map(char **map, int row);
+void		find_player_pos(t_map map, t_player *p);
+int			count_len(char *line);
 
-//int		end_program(t_game *game);
-void	init_data(t_game *game);
-
+bool	test_parsing_complete(t_game *game, char *filename);
 
 #endif
