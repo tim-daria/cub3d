@@ -17,7 +17,7 @@
 # define WIDTH 1024
 # define HEIGHT 768
 # define BLOCK_SIZE 64
-
+# define PI 3.141592653589793
 enum e_direction
 {
 	NORTH = 0,
@@ -36,8 +36,12 @@ typedef struct s_config
 typedef struct s_player
 {
 	char	view;
-	int		y;
-	int		x;
+	double	fov;
+	double	angle;
+	double	pos_y;
+	double	pos_x;
+	double	dir_y;
+	double	dir_x;
 }	t_player;
 
 typedef struct s_map
