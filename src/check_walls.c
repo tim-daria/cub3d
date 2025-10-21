@@ -83,11 +83,15 @@ bool	surrounded_by_walls(t_map map, t_player p)
 			if (map.map[y][x] == '0' || map.map[y][x] == p.view)
 			{
 				if (!is_enclosed(visited, map, x, y))
+				{
+					free_map(visited, map.height);
 					return (print_error("The map is not surrounded by walls"));
+				}
 			}
 			x++;
 		}
 		y++;
 	}
+	free_map(visited, map.height);
 	return (true);
 }

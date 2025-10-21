@@ -88,5 +88,5 @@ ehthumbs.db
 Thumbs.db
 
 # minilibX directory:
-libs/
+# libs/
 libs/minilibx-linux/

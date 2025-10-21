@@ -52,7 +52,10 @@ static bool	setup_mlx(t_game *game)
 bool	start_game(t_game *game, char *arg)
 {
 	if (!is_valid_cub_file(arg))
+	{
+		get_next_line(-1);
 		return (false);
+	}
 	if (!parse_config(arg, game))
 	{
 		clean_data(game);

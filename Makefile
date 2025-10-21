@@ -1,6 +1,6 @@
 NAME = cub3d
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 UNAME_S := $(shell uname -s)
 
@@ -78,7 +78,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_FLAG)
 
 $(NAME): $(MLX_LIB) $(LIBFT) $(OBJ_DIR) $(OBJS)
 	@echo "Compiling..."
-	@$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -L$(LIBFT_DIR) -lft -o $(NAME) -g
+	@$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -L$(LIBFT_DIR) -lft -o $(NAME)
 	@echo "CUB3D ready"
 
 clean:
@@ -108,10 +108,6 @@ re: fclean all
 MAP ?= ./maps/map.cub
 
 valg: $(NAME)
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes \
-		--log-file=valgrind.log ./$(NAME) $(MAP)
-
-valg-term: $(NAME)
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes \
 		./$(NAME) $(MAP)
 

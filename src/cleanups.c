@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:46:52 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/21 17:04:54 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/21 20:47:57 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ void	free_config(t_config *config)
 void	clean_data(t_game *game)
 {
 	// printf("DEBUG: Starting clean_data\n");
+	
+	// Clean up get_next_line static buffer
+	get_next_line(-1);
+	
 	if (game->mlx_win)
 	{
 		// printf("DEBUG: Destroying window\n");

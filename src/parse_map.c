@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 11:46:16 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/21 17:20:43 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/21 20:35:50 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static bool	fill_map(int fd, t_map *map)
 			return (false);
 		}
 		i++;
+		free(read_line);
 		read_line = get_next_line(fd);
 		if (read_line == NULL)
 			break ;
