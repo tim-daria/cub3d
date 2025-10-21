@@ -76,10 +76,9 @@ $(OBJ_FLAG):
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_FLAG)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-
 $(NAME): $(MLX_LIB) $(LIBFT) $(OBJ_DIR) $(OBJS)
 	@echo "Compiling..."
-	@$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -L$(LIBFT_DIR) -lft -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -L$(LIBFT_DIR) -lft -o $(NAME) -g
 	@echo "CUB3D ready"
 
 clean:
@@ -106,4 +105,14 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+MAP ?= ./maps/map.cub
+
+valg: $(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes \
+		--log-file=valgrind.log ./$(NAME) $(MAP)
+
+valg-term: $(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes \
+		./$(NAME) $(MAP)
+
+.PHONY: all clean fclean re valg valg-term
