@@ -80,7 +80,7 @@ $(NAME): $(MLX_LIB) $(LIBFT) $(OBJ_DIR) $(OBJS)
 	@echo "Compiling..."
 	@$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -L$(LIBFT_DIR) -lft -o $(NAME)
 	@echo "CUB3D ready"
-	@echo "To run valgrind do make valg MAP=path_to_map"
+	@echo "To run valgrind do \"make valg MAP=path_to_map\""
 
 clean:
 	@rm -rf $(OBJ_DIR)
