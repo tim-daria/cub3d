@@ -6,38 +6,24 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 21:02:15 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/15 23:00:08 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/21 17:23:50 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 // Initializes all data structure fields to default values
-bool	init_data(t_game **game)
+bool	init_data(t_game *game)
 {
-	*game = malloc(sizeof(t_game));
-	if (!*game)
-		return (false);
-	// data->textures.collectable.count = 0;
-	// data->textures.player.count = 0;
-	// data->textures.player.x = 0;
-	// data->textures.player.y = 0;
-	// data->textures.exit.count = 0;
-	// data->textures.exit.x = 0;
-	// data->textures.exit.y = 0;
-	(*game)->map.map = NULL;
-	(*game)->map.height = 0;
-	(*game)->map.width = 0;
-	(*game)->p.x = -1;
-	(*game)->p.y = -1;
-	(*game)->p.view = '\0';
-	(*game)->config = NULL;
-	(*game)->mlx_connection = NULL;
-	(*game)->mlx_win = NULL;
+	game->map.map = NULL;
+	game->map.height = 0;
+	game->map.width = 0;
+	game->p.x = -1;
+	game->p.y = -1;
+	game->p.view = '\0';
+	game->mlx_connection = NULL;
+	game->mlx_win = NULL;
 	// game->img = NULL;
-	// data->img_height = 0;
-	// data->img_width = 0;
-	//data->count_movements = 0;
 	return (true);
 }
 
@@ -57,29 +43,29 @@ static bool	setup_mlx(t_game *game)
 	}
 	// mlx_hook(game.mlx_win, 2, 1L << 0, handle_keypress, &game);
 	// mlx_hook(game.mlx_win, 17, 0, end_program, &game);
-	mlx_loop(game->mlx_connection);
+	// mlx_loop should be called separately when ready to start game loop
 	return (true);
 }
 
 // inits game, parses map & config, starts mlx window
 // on fail, cleans up
-bool	start_game(t_game **game, char *arg)
+bool	start_game(t_game *game, char *arg)
 {
 	if (!is_valid_cub_file(arg))
 		return (false);
-	if (!parse_map(arg, *game))
+	if (!parse_config(arg, game))
 	{
-		clean_data(*game);
+		clean_data(game);
 		return (false);
 	}
-	if (!parse_config(arg, *game))
+	if (!parse_map(arg, game))
 	{
-		clean_data(*game);
+		clean_data(game);
 		return (false);
 	}
-	if (!setup_mlx(*game))
+	if (!setup_mlx(game))
 	{
-		clean_data(*game);
+		clean_data(game);
 		return (false);
 	}
 	return (true);

@@ -57,7 +57,7 @@ typedef struct s_map
 
 typedef struct s_game
 {
-	t_config	*config;
+	t_config	config;
 	t_map		map;
 	t_player	p;
 	void		*mlx_connection;

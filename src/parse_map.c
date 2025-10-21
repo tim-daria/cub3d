@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 11:46:16 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/15 23:04:09 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/21 17:20:43 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,6 @@ bool	parse_map(char *filename, t_game *game)
 		return (false);
 	find_player_pos(game->map, &game->p);
 	if (!surrounded_by_walls(game->map, game->p))
-		return (free_map(game->map.map, game->map.height));
+		return (false);  /* Let clean_data handle cleanup */
 	return (true);
 }

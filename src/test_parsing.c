@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 22:00:00 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/15 22:06:01 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/21 17:23:33 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	print_config_validation(t_game *game)
 	i = NORTH;
 	while (i <= EAST)
 	{
-		if (!game->config->textures[i])
+		if (!game->config.textures[i])
 		{
 			all_valid = false;
 			break;
@@ -80,7 +80,7 @@ static void	print_config_validation(t_game *game)
 	
 	/* Check colors */
 	printf("Colors:   ");
-	if (game->config->floor_color == -1 || game->config->ceiling_color == -1)
+	if (game->config.floor_color == -1 || game->config.ceiling_color == -1)
 	{
 		all_valid = false;
 		printf("❌ Missing colors\n");
@@ -106,10 +106,8 @@ static void	print_config_validation(t_game *game)
 		printf("❌ Player not found\n");
 	}
 	else
-		printf("✅ Found at (%d,%d) facing '%c'\n", 
-			game->p.x, game->p.y, game->p.view);
-	
-	printf("\nOVERALL: %s\n", all_valid ? "✅ READY TO PLAY" : "❌ CONFIGURATION INCOMPLETE");
+		printf("✅ Found at (%d,%d) facing '%c'\n",
+			game->p.x, game->p.y, game->p.view);	printf("\nOVERALL: %s\n", all_valid ? "✅ READY TO PLAY" : "❌ CONFIGURATION INCOMPLETE");
 }
 
 static void	print_textures(t_game *game)
@@ -123,7 +121,7 @@ static void	print_textures(t_game *game)
 	while (i <= EAST)
 	{
 		printf("%-6s: %s\n", directions[i], 
-			game->config->textures[i] ? game->config->textures[i] : "❌ NOT SET");
+			game->config.textures[i] ? game->config.textures[i] : "❌ NOT SET");
 		i++;
 	}
 	
@@ -131,9 +129,9 @@ static void	print_textures(t_game *game)
 	i = NORTH;
 	while (i <= EAST)
 	{
-		if (game->config->textures[i])
+		if (game->config.textures[i])
 		{
-			int fd = open_file(game->config->textures[i]);
+			int fd = open_file(game->config.textures[i]);
 			if (fd >= 0)
 			{
 				printf("  %s: ✅ File accessible\n", directions[i]);
@@ -150,24 +148,24 @@ static void	print_colors(t_game *game)
 {
 	print_separator("COLOR CONFIGURATION");
 	
-	if (game->config->floor_color != -1)
+	if (game->config.floor_color != -1)
 	{
 		printf("FLOOR:   0x%06X (RGB: %3d, %3d, %3d)\n",
-			game->config->floor_color,
-			(game->config->floor_color >> 16) & 0xFF,
-			(game->config->floor_color >> 8) & 0xFF,
-			game->config->floor_color & 0xFF);
+			game->config.floor_color,
+			(game->config.floor_color >> 16) & 0xFF,
+			(game->config.floor_color >> 8) & 0xFF,
+			game->config.floor_color & 0xFF);
 	}
 	else
 		printf("FLOOR:   ❌ NOT SET\n");
 	
-	if (game->config->ceiling_color != -1)
+	if (game->config.ceiling_color != -1)
 	{
 		printf("CEILING: 0x%06X (RGB: %3d, %3d, %3d)\n",
-			game->config->ceiling_color,
-			(game->config->ceiling_color >> 16) & 0xFF,
-			(game->config->ceiling_color >> 8) & 0xFF,
-			game->config->ceiling_color & 0xFF);
+			game->config.ceiling_color,
+			(game->config.ceiling_color >> 16) & 0xFF,
+			(game->config.ceiling_color >> 8) & 0xFF,
+			game->config.ceiling_color & 0xFF);
 	}
 	else
 		printf("CEILING: ❌ NOT SET\n");
@@ -242,7 +240,7 @@ static void	print_map_visual(t_game *game)
 
 bool	test_parsing_complete(t_game *game, char *filename)
 {
-	if (!game || !game->config)
+	if (!game)
 	{
 		printf("❌ ERROR: No game data to test\n");
 		return (false);

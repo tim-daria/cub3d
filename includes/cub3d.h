@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 10:26:09 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/15 22:39:22 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/21 16:17:13 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ bool		print_error(char *msg);
 bool		parse_config(char *filename, t_game *game);
 void		free_config(t_config *config);
 // init_data.c:
-bool	init_data(t_game **game);
-bool		start_game(t_game **game, char *arg);
+bool	init_data(t_game *game);
+bool		start_game(t_game *game, char *arg);
 // parse_colors.c:
 bool		check_and_copy_color(char *id, char *arg, t_config *config);
 // parse_config.c:
