@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+         #
+#    By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/11 14:31:54 by dtimofee          #+#    #+#              #
-#    Updated: 2025/03/12 12:59:55 by dtimofee         ###   ########.fr        #
+#    Updated: 2025/10/21 20:32:54 by tsemenov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 
 NAME = libft.a

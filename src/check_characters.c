@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:44:11 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/13 20:00:57 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/21 16:11:18 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ static bool	unknown_character(t_map *map)
 			if (ft_strchr(" 01NSEW", map->map[i][j]) == NULL)
 			{
 				print_error("Unknown character");
-				free_map(map->map, map->height);
-				return (true);
+				return (false);  /* Let caller handle cleanup */
 			}
 			j++;
 		}
@@ -69,7 +68,7 @@ bool	check_characters(t_map *map)
 	if (player_count != 1)
 	{
 		print_error("Wrong number of players");
-		return (free_map(map->map, map->height));
+		return (false);  /* Let caller handle cleanup */
 	}
 	if (unknown_character(map))
 		return (false);

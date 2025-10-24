@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:46:52 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/13 20:06:14 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/21 16:08:59 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static bool	save_config(char *id, char *arg, t_config *config)
 	{
 		if (!is_valid_texture_file(arg))
 		{
-			// printf("DEBUG: failed in is_valid_texture_file\n");
+			printf("DEBUG: failed in is_valid_texture_file: arg %s\n", arg);
 			return (false);
 		}
 		if (!copy_texture(id, arg, config))
@@ -84,6 +84,6 @@ static bool	is_valid_texture_file(char *path)
 	fd = open_file(path);
 	if (fd < 0)
 		return (false);
-	close (fd);
+	close(fd);
 	return (true);
 }
