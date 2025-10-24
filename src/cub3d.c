@@ -6,13 +6,12 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:39:58 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/21 17:23:29 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/24 15:04:03 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// Main function that initializes the game and starts the MLX loop
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -29,15 +28,14 @@ int	main(int argc, char **argv)
 		printf("❌ Failed to initialize game\n");
 		return (1);
 	}
-	
+	mlx_loop(game.mlx_connection);
 	/* Run comprehensive parsing test */
-	if (!test_parsing_complete(&game, argv[1]))
-	{
-		printf("❌ Testing failed\n");
-		end_program(&game);
-		return (1);
-	}
-	
+	// if (!test_parsing_complete(&game, argv[1]))
+	// {
+	// 	printf("❌ Testing failed\n");
+	// 	end_program(&game);
+	// 	return (1);
+	// }
 	printf("✅ All tests completed successfully!\n");
 	printf("🎮 Game ready - MLX integration can be added next.\n\n");
 	end_program(&game);

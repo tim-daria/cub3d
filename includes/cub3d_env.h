@@ -63,6 +63,10 @@ typedef struct s_game
 	void		*mlx_connection;
 	void		*mlx_win;
 	void		*img;
+	char		*img_addr;
+	int			bits_pp;
+	int			line_len;
+	int			endian;
 	// int			img_width;
 	// int			img_height;
 	//int			count_movements;
