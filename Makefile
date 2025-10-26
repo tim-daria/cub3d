@@ -42,6 +42,7 @@ SRC_FILES =\
 		parse_config.c \
 		init_data.c \
 		test_parsing.c \
+		draw_screen.c \
 
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))

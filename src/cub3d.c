@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:39:58 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/24 15:04:03 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/26 13:50:19 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@ int	main(int argc, char **argv)
 		printf("❌ Failed to initialize game\n");
 		return (1);
 	}
+	if (!draw_screen(&game))
+	{
+		end_program(&game);
+		printf("❌ Failed to draw floor and ceiling\n");
+		return (1);
+	}
+	// Display the image to the window
+	mlx_put_image_to_window(game.mlx_connection, game.mlx_win,
+		game.img, 0, 0);
 	mlx_loop(game.mlx_connection);
 	/* Run comprehensive parsing test */
 	// if (!test_parsing_complete(&game, argv[1]))
