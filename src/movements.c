@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 12:16:10 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/27 01:45:13 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/27 15:58:20 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static bool	is_valid_pos(t_game *game, double x, double y)
 
 	map_x = (int)x;
 	map_y = (int)y;
-	if (map_x < 0 || map_x >= game->map.width
-		|| map_y < 0 || map_y >= game->map.height)
+	if (map_x < 1 || map_x > game->map.width - 1
+		|| map_y < 1 || map_y > game->map.height - 1)
 		return (false);
 	if (game->map.map[map_y][map_x] == '1')
 		return (false);

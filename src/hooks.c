@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 21:35:17 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/26 22:37:38 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/27 16:59:51 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,36 @@
 
 static int	on_keypress(int keycode, t_game *game)
 {
-	if (keycode == ESC_KEY)
+	if (keycode == XK_Escape)
 		end_program(game);
-	if (keycode == W_KEY)
+	if (keycode == XK_w)
 		game->key_w = true;
-	if (keycode == A_KEY)
+	if (keycode == XK_a)
 		game->key_a = true;
-	if (keycode == S_KEY)
+	if (keycode == XK_s)
 		game->key_s = true;
-	if (keycode == D_KEY)
+	if (keycode == XK_d)
 		game->key_d = true;
-	if (keycode == LEFT_KEY)
+	if (keycode == XK_Left)
 		game->key_left = true;
-	if (keycode == RIGHT_KEY)
+	if (keycode == XK_Right)
 		game->key_right = true;
 	return (0);
 }
 
 static int	on_keyrelease(int keycode, t_game *game)
 {
-	if (keycode == W_KEY)
+	if (keycode == XK_w)
 		game->key_w = false;
-	if (keycode == A_KEY)
+	if (keycode == XK_a)
 		game->key_a = false;
-	if (keycode == S_KEY)
+	if (keycode == XK_s)
 		game->key_s = false;
-	if (keycode == D_KEY)
+	if (keycode == XK_d)
 		game->key_d = false;
-	if (keycode == LEFT_KEY)
+	if (keycode == XK_Left)
 		game->key_left = false;
-	if (keycode == RIGHT_KEY)
+	if (keycode == XK_Right)
 		game->key_right = false;
 	return (0);
 }
@@ -78,8 +78,7 @@ void	setup_hooks(t_game *game)
 {
 	mlx_hook(game->mlx_win, 2, 1L << 0, on_keypress, game);
 	mlx_hook(game->mlx_win, 3, 1L << 1, on_keyrelease, game);
-	mlx_hook(game->mlx_win, 17, 0, end_program, game); // 'x' button
+	mlx_hook(game->mlx_win, DestroyNotify, NoEventMask, end_program, game); // 'x' button
 	mlx_loop_hook(game->mlx_connection, render_loop, game);
 	mlx_loop(game->mlx_connection);
-	// mlx_loop should be called separately when ready to start game loop
 }
