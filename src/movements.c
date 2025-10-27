@@ -3,133 +3,90 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 12:16:10 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/06 16:30:15 by dtimofee         ###   ########.fr       */
+/*   Updated: 2025/10/27 01:45:13 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "so_long.h"
+#include "cub3d.h"
 
-// static void	go_up(t_mlx_data *data)
-// {
-// 	int	x;
-// 	int	y;
+static bool	is_valid_pos(t_game *game, double x, double y)
+{
+	int	map_x;
+	int	map_y;
 
-// 	x = data->textures.player.x;
-// 	y = data->textures.player.y;
-// 	if (y > 0 && data->map.map[y - 1][x] != '1')
-// 	{
-// 		if (data->map.map[y][x] ==
-// 			data->map.map[data->textures.exit.y][data->textures.exit.x])
-// 			data->map.map[y][x] = 'E';
-// 		else
-// 			data->map.map[y][x] = '0';
-// 		if (data->map.map[y - 1][x] == 'C')
-// 			data->textures.collectable.count--;
-// 		y--;
-// 		data->map.map[y][x] = 'P';
-// 		data->textures.player.y = y;
-// 		data->count_movements++;
-// 		ft_printf("Total player actions: %d\n", data->count_movements);
-// 	}
-// }
+	map_x = (int)x;
+	map_y = (int)y;
+	if (map_x < 0 || map_x >= game->map.width
+		|| map_y < 0 || map_y >= game->map.height)
+		return (false);
+	if (game->map.map[map_y][map_x] == '1')
+		return (false);
+	return (true);
+}
 
-// static void	go_down(t_mlx_data *data)
-// {
-// 	int	x;
-// 	int	y;
+void	move_forward(t_game *game)
+{
+	double	new_x;
+	double	new_y;
 
-// 	x = data->textures.player.x;
-// 	y = data->textures.player.y;
-// 	if (y < data->map.block_height - 1 && data->map.map[y + 1][x] != '1')
-// 	{
-// 		if (data->map.map[y][x] ==
-// 			data->map.map[data->textures.exit.y][data->textures.exit.x])
-// 			data->map.map[y][x] = 'E';
-// 		else
-// 			data->map.map[y][x] = '0';
-// 		if (data->map.map[y + 1][x] == 'C')
-// 			data->textures.collectable.count--;
-// 		y++;
-// 		data->map.map[y][x] = 'P';
-// 		data->textures.player.y = y;
-// 		data->count_movements++;
-// 		ft_printf("Total player actions: %d\n", data->count_movements);
-// 	}
-// }
+	new_x = game->p.pos_x + game->p.dir_x * MOVE_SPEED;
+	new_y = game->p.pos_y + game->p.dir_y * MOVE_SPEED;
+	if (is_valid_pos(game, new_x, new_y))
+	{
+		game->p.pos_x = new_x;
+		game->p.pos_y = new_y;
+	}
+	printf("DEBUG: player moved to [%f, %f]\n", game->p.pos_x, game->p.pos_y);
+}
 
-// static void	go_right(t_mlx_data *data)
-// {
-// 	int	x;
-// 	int	y;
+void	move_backward(t_game *game)
+{
+	double	new_x;
+	double	new_y;
 
-// 	x = data->textures.player.x;
-// 	y = data->textures.player.y;
-// 	if (x < data->map.block_width - 1 && data->map.map[y][x + 1] != '1')
-// 	{
-// 		if (data->map.map[y][x]
-// 			== data->map.map[data->textures.exit.y][data->textures.exit.x])
-// 			data->map.map[y][x] = 'E';
-// 		else
-// 			data->map.map[y][x] = '0';
-// 		if (data->map.map[y][x + 1] == 'C')
-// 			data->textures.collectable.count--;
-// 		x++;
-// 		data->map.map[y][x] = 'P';
-// 		data->textures.player.x = x;
-// 		data->count_movements++;
-// 		ft_printf("Total player actions: %d\n", data->count_movements);
-// 	}
-// }
+	new_x = game->p.pos_x - game->p.dir_x * MOVE_SPEED;
+	new_y = game->p.pos_y - game->p.dir_y * MOVE_SPEED;
+	if (is_valid_pos(game, new_x, new_y))
+	{
+		game->p.pos_x = new_x;
+		game->p.pos_y = new_y;
+	}
+	printf("DEBUG: player moved to [%f, %f]\n", game->p.pos_x, game->p.pos_y);
+}
 
-// static void	go_left(t_mlx_data *data)
-// {
-// 	int	x;
-// 	int	y;
+void	move_left(t_game *game)
+{
+	double	new_x;
+	double	new_y;
 
-// 	x = data->textures.player.x;
-// 	y = data->textures.player.y;
-// 	if (x > 0 && data->map.map[y][x - 1] != '1')
-// 	{
-// 		if (data->map.map[y][x]
-// 			== data->map.map[data->textures.exit.y][data->textures.exit.x])
-// 			data->map.map[y][x] = 'E';
-// 		else
-// 			data->map.map[y][x] = '0';
-// 		if (data->map.map[y][x - 1] == 'C')
-// 			data->textures.collectable.count--;
-// 		x--;
-// 		data->map.map[y][x] = 'P';
-// 		data->textures.player.x = x;
-// 		data->count_movements++;
-// 		ft_printf("Total player actions: %d\n", data->count_movements);
-// 	}
-// }
+	new_x = game->p.pos_x + game->p.dir_y * MOVE_SPEED;
+	new_y = game->p.pos_y - game->p.dir_x * MOVE_SPEED;
+	if (is_valid_pos(game, new_x, new_y))
+	{
+		game->p.pos_x = new_x;
+		game->p.pos_y = new_y;
+		// game->p.angle -= ROT_SPEED;
+	}
+	printf("DEBUG: player moved to [%f, %f]\n", game->p.pos_x, game->p.pos_y);
+	// printf("DEBUG: player slightly rotated, the angle is %f\n", game->p.angle);
+}
 
-// int	handle_movements(int keysym, t_mlx_data *data)
-// {
-// 	if (keysym == XK_Escape)
-// 	{
-// 		end_program(data);
-// 		return (0);
-// 	}
-// 	else if (keysym == XK_w || keysym == XK_W)
-// 		go_up(data);
-// 	else if (keysym == XK_s || keysym == XK_S)
-// 		go_down(data);
-// 	else if (keysym == XK_d || keysym == XK_D)
-// 		go_right(data);
-// 	else if (keysym == XK_a || keysym == XK_A)
-// 		go_left(data);
-// 	draw_map(data);
-// 	if ((data->map.map[data->textures.player.y][data->textures.player.x]
-// 		== data->map.map[data->textures.exit.y][data->textures.exit.x])
-// 		&& data->textures.collectable.count == 0)
-// 	{
-// 		ft_printf("Dora the Explorer found all the magnifying glasses!\n");
-// 		end_program(data);
-// 	}
-// 	return (0);
-// }
+void	move_right(t_game *game)
+{
+	double	new_x;
+	double	new_y;
+
+	new_x = game->p.pos_x - game->p.dir_y * MOVE_SPEED;
+	new_y = game->p.pos_y + game->p.dir_x * MOVE_SPEED;
+	if (is_valid_pos(game, new_x, new_y))
+	{
+		game->p.pos_x = new_x;
+		game->p.pos_y = new_y;
+		// game->p.angle += ROT_SPEED;
+	}
+	printf("DEBUG: player moved to [%f, %f]\n", game->p.pos_x, game->p.pos_y);
+	// printf("DEBUG: player slightly rotated, the angle is %f\n", game->p.angle);
+}

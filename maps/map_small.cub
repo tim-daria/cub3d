@@ -3,9 +3,9 @@ SO ./textures/grass.xpm
 WE ./textures/roofs.xpm
 EA ./textures/tile.xpm
 
-F 220,100,0
+F 128,128,128
 
-C 225,30,0
+C 102,204,255
 
 111111
 1000N1

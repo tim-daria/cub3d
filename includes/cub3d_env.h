@@ -17,6 +17,10 @@
 # define WIDTH 1024
 # define HEIGHT 768
 # define BLOCK_SIZE 64
+# define PI 3.141592653589793
+# define FOV 66
+# define MOVE_SPEED 0.05
+# define ROT_SPEED 0.05
 
 # define ESC_KEY	65307
 # define W_KEY		119
@@ -44,8 +48,11 @@ typedef struct s_config
 typedef struct s_player
 {
 	char	view;
-	int		y;
-	int		x;
+	double	angle;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
 }	t_player;
 
 typedef struct s_map
@@ -67,9 +74,38 @@ typedef struct s_game
 	int			bits_pp;
 	int			line_len;
 	int			endian;
+	bool		key_w;
+	bool		key_a;
+	bool		key_s;
+	bool		key_d;
+	bool		key_left;
+	bool		key_right;
 	// int			img_width;
 	// int			img_height;
 	//int			count_movements;
 }	t_game;
+
+typedef struct s_ray
+{
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	plane_x;
+	double	plane_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	double	perp_wall_dist;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+}	t_ray;
 
 #endif

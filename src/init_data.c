@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 21:02:15 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/21 17:23:50 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/26 22:12:31 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@ bool	init_data(t_game *game)
 	game->map.map = NULL;
 	game->map.height = 0;
 	game->map.width = 0;
-	game->p.x = -1;
-	game->p.y = -1;
 	game->p.view = '\0';
+	game->p.angle = 0;
+	game->p.pos_x = 0;
+	game->p.pos_y = 0;
+	game->p.dir_x = 0;
+	game->p.dir_y = 0;
 	game->mlx_connection = NULL;
 	game->mlx_win = NULL;
 	game->img = NULL;
@@ -28,6 +31,12 @@ bool	init_data(t_game *game)
 	game->bits_pp = 0;
 	game->line_len = 0;
 	game->endian = 0;
+	game->key_w = false;
+	game->key_a = false;
+	game->key_s = false;
+	game->key_d = false;
+	game->key_left = false;
+	game->key_right = false;
 	return (true);
 }
 
@@ -45,9 +54,7 @@ static bool	setup_mlx(t_game *game)
 		print_error("Failed to create window");
 		return (false);
 	}
-	// mlx_hook(game.mlx_win, 2, 1L << 0, handle_keypress, &game);
-	// mlx_hook(game.mlx_win, 17, 0, end_program, &game);
-	// mlx_loop should be called separately when ready to start game loop
+	// setup_hooks
 	return (true);
 }
 
@@ -70,6 +77,7 @@ bool	start_game(t_game *game, char *arg)
 		clean_data(game);
 		return (false);
 	}
+	find_player_pos(game->map, &game->p);
 	if (!setup_mlx(game))
 	{
 		clean_data(game);
