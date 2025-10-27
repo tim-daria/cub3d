@@ -12,16 +12,16 @@
 
 #include "cub3d.h"
 
-// Cleans up resources and terminates the program properly
-// int	end_program(t_mlx_data *data)
-// {
-// 	mlx_destroy_window(data->mlx_connection, data->mlx_win);
-// 	mlx_destroy_display(data->mlx_connection);
-// 	free_map(data->map.map, data->map.block_height);
-// 	free(data->mlx_connection);
-// 	exit(0);
-// 	return (0);
-// }
+//Cleans up resources and terminates the program properly
+int	end_program(t_game *game)
+{
+	mlx_destroy_window(game->mlx_connection, game->mlx_win);
+	mlx_destroy_display(game->mlx_connection);
+	free_map(game->map.map, game->map.height);
+	free(game->mlx_connection);
+	exit(0);
+	return (0);
+}
 
 // Initializes all data structure fields to default values
 void	init_data(t_game *game)
@@ -36,11 +36,12 @@ void	init_data(t_game *game)
 	game->map.map = NULL;
 	game->map.height = 0;
 	game->map.width = 0;
+	game->p.view = PI / 3;
 	// game->p.x = -1;
 	// game->p.y = -1;
 	// game->p.view = '\0';
-	// game->mlx_connection = NULL;
-	// game->mlx_win = NULL;
+	game->mlx_connection = NULL;
+	game->mlx_win = NULL;
 	// game->img = NULL;
 	// data->img_height = 0;
 	// data->img_width = 0;
@@ -59,18 +60,26 @@ int	main(int argc, char **argv)
 	init_data(&game);
 	if (!parse_map(argv[1], &game))
 		return (1);
+	printf("I\n");
+	fflush(0);
 	// game->config = init_config();
 	// if (!game->config)
 	// 	return(free_2d_arr(game->map->map));
 	// if ()
-		// data.mlx_connection = mlx_init();
-		// data.mlx_win = mlx_new_window(data.mlx_connection,
-		// 		BLOCK_SIZE * data.map.block_width,
-		// 		BLOCK_SIZE * data.map.block_height, "cub3d");
-		// if (data.mlx_win == NULL)
-		// 	perror("Error\n");
+	game.mlx_connection = mlx_init();
+	if (game.mlx_connection == NULL)
+		return(1);
+	printf("I\n");
+	fflush(0);
+	game.mlx_win = mlx_new_window(game.mlx_connection, WIDTH,
+			HEIGHT, "cub");
+	printf("I\n");
+	fflush(0);
+	if (game.mlx_win == NULL)
+		perror("Error\n");
+	draw_minimap(&game);
 		//draw_map(&data);
-		//mlx_hook(data.mlx_win, 2, 1L << 0, handle_movements, &data);
-		// mlx_hook(data.mlx_win, DestroyNotify, NoEventMask, end_program, &data);
-		// mlx_loop(data.mlx_connection);
+	mlx_hook(game.mlx_win, 2, 1L << 0, handle_movements, &game);
+	mlx_hook(game.mlx_win, DestroyNotify, NoEventMask, end_program, &game);
+	mlx_loop(game.mlx_connection);
 }

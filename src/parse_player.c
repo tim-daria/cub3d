@@ -1,7 +1,7 @@
 #include "cub3d.h"
 
 // Sets the player's angle and direction vector based on their view direction
-static void determine_angle_and_dir_vector(t_player *p)
+static void	determine_angle_and_dir_vector(t_player *p)
 {
 	if (p->view == 'N')
 		p->angle = PI / 2;
@@ -54,8 +54,8 @@ void	find_player_pos(t_map map, t_player *p)
 		{
 			if (map.map[(int)p->pos_y][(int)p->pos_x] == p->view)
 			{
-				p->pos_x += 0.5;
-				p->pos_y += 0.5;
+				// p->pos_x += 0.5;
+				// p->pos_y += 0.5;
 				return ;
 			}
 			p->pos_x++;

@@ -52,8 +52,12 @@ bool	free_map(char **map, int row);
 void	find_player_pos(t_map map, t_player *p);
 int		count_len(char *line);
 
-//int		end_program(t_game *game);
+int		end_program(t_game *game);
 void	init_data(t_game *game);
 
+//minimap.c:
+void	draw_minimap(t_game *game);
 
+//movements.c:
+int		handle_movements(int keysym, t_game *game);
 #endif

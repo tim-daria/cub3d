@@ -16,8 +16,9 @@
 
 # define WIDTH 1024
 # define HEIGHT 768
-# define BLOCK_SIZE 64
+# define TILE_SIZE 7
 # define PI 3.141592653589793
+
 enum e_direction
 {
 	NORTH = 0,
