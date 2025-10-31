@@ -3,14 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 10:38:57 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/13 20:00:57 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/27 14:03:29 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+// static bool	check_corners(t_map map)
+// {
+// 	int		x;
+// 	int		y;
+// 	bool	right_corner;
+// 	bool	left_corner;
+
+// 	y = 0;
+// 	left_corner = false;
+// 	right_corner = false;
+// 	while (y < map.height)
+// 	{
+// 		x = 0;
+// 		while (x < map.width)
+// 		{
+// 			if (map.map[y][x] == '1')
+// 			{
+// 				left_corner = true;
+// 				x++;
+// 			}
+// 			if (map.map[y][x] == '1')
+// 				right_corner = true;
+// 			else if (map.map[])
+// 			if (y == map.height - 1 || x == map.width - 1)
+// 			{
+// 				if (map.map[y][x] != '1' && map.map[y][x] != ' ')
+// 					return (false);
+// 			}
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// 	return (true);
+// }
 
 //This function recursively checks if a given cell (x, y) in the map is enclosed
 //by walls. It returns true if the cell is enclosed, and false otherwise.
@@ -71,6 +106,11 @@ bool	surrounded_by_walls(t_map map, t_player p)
 	int		y;
 	int		x;
 
+	// if (check_corners(map))
+	// {
+	// 	print_error("Map is not enclosed");
+	// 	return (false);
+	// }
 	visited = create_grid(map.height, map.width);
 	if (!visited)
 		return (print_error("Malloc failed"));
@@ -83,11 +123,15 @@ bool	surrounded_by_walls(t_map map, t_player p)
 			if (map.map[y][x] == '0' || map.map[y][x] == p.view)
 			{
 				if (!is_enclosed(visited, map, x, y))
+				{
+					free_map(visited, map.height);
 					return (print_error("The map is not surrounded by walls"));
+				}
 			}
 			x++;
 		}
 		y++;
 	}
+	free_map(visited, map.height);
 	return (true);
 }

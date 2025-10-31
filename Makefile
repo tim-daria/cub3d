@@ -1,6 +1,6 @@
 NAME = cub3d
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 UNAME_S := $(shell uname -s)
 
@@ -40,7 +40,14 @@ SRC_FILES =\
 		parse_colors.c \
 		parse_textures.c \
 		parse_config.c \
+		init_data.c \
+		test_parsing.c \
+		draw_screen.c \
 		parse_player.c \
+		movements.c \
+		rotations.c \
+		hooks.c \
+		raycasting.c \
 
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
@@ -75,11 +82,11 @@ $(OBJ_FLAG):
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_FLAG)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-
 $(NAME): $(MLX_LIB) $(LIBFT) $(OBJ_DIR) $(OBJS)
 	@echo "Compiling..."
 	@$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -L$(LIBFT_DIR) -lft -o $(NAME)
 	@echo "CUB3D ready"
+	@echo "To run valgrind do \"make valg MAP=path_to_map\""
 
 clean:
 	@rm -rf $(OBJ_DIR)
@@ -105,4 +112,10 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+MAP ?= ./maps/map.cub
+
+valg: $(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes \
+		./$(NAME) $(MAP)
+
+.PHONY: all clean fclean re valg valg-term

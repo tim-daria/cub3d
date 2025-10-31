@@ -3,106 +3,90 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtimofee <dtimofee@student.42berlin.de>    #+#  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-10-24 15:25:31 by dtimofee          #+#    #+#             */
-/*   Updated: 2025-10-24 15:25:31 by dtimofee         ###   ########.fr       */
+/*   Created: 2025/03/12 12:16:10 by dtimofee          #+#    #+#             */
+/*   Updated: 2025/10/27 15:58:20 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	go_up(t_game *game)
+static bool	is_valid_pos(t_game *game, double x, double y)
 {
-	double	x;
-	double	y;
+	int	map_x;
+	int	map_y;
 
-	x = game->p.pos_x;
-	y = game->p.pos_y;
-	if (y > 1 && game->map.map[(int)y - 2][(int)x] != ' ')
-	{
-		if (game->map.map[(int)y - 1][(int)x] == '1')
-			y -= 2;
-		else
-			y--;
-		game->p.pos_x = x;
-		game->p.pos_y = y;
-		game->map.map[(int)y][(int)x] = game->p.view;
-	}
+	map_x = (int)x;
+	map_y = (int)y;
+	if (map_x < 1 || map_x > game->map.width - 1
+		|| map_y < 1 || map_y > game->map.height - 1)
+		return (false);
+	if (game->map.map[map_y][map_x] == '1')
+		return (false);
+	return (true);
 }
 
-static void	go_down(t_game *game)
+void	move_forward(t_game *game)
 {
-	double	x;
-	double	y;
+	double	new_x;
+	double	new_y;
 
-	x = game->p.pos_x;
-	y = game->p.pos_y;
-	if (y < game->map.height - 2 && game->map.map[(int)y + 2][(int)x] != ' ')
+	new_x = game->p.pos_x + game->p.dir_x * MOVE_SPEED;
+	new_y = game->p.pos_y + game->p.dir_y * MOVE_SPEED;
+	if (is_valid_pos(game, new_x, new_y))
 	{
-		if (game->map.map[(int)y + 1][(int)x] == '1')
-			y += 2;
-		else
-			y++;
-		game->p.pos_x = x;
-		game->p.pos_y = y;
-		game->map.map[(int)y][(int)x] = game->p.view;
+		game->p.pos_x = new_x;
+		game->p.pos_y = new_y;
 	}
+	printf("DEBUG: player moved to [%f, %f]\n", game->p.pos_x, game->p.pos_y);
 }
 
-static void	go_right(t_game *game)
+void	move_backward(t_game *game)
 {
-	double	x;
-	double	y;
+	double	new_x;
+	double	new_y;
 
-	x = game->p.pos_x;
-	y = game->p.pos_y;
-	if (x < game->map.width - 2 && game->map.map[(int)y][(int)x + 2] != ' ')
+	new_x = game->p.pos_x - game->p.dir_x * MOVE_SPEED;
+	new_y = game->p.pos_y - game->p.dir_y * MOVE_SPEED;
+	if (is_valid_pos(game, new_x, new_y))
 	{
-		if (game->map.map[(int)y][(int)x + 1] == '1')
-			x += 2;
-		else
-			x++;
-		game->p.pos_x = x;
-		game->p.pos_y = y;
-		game->map.map[(int)y][(int)x] = game->p.view;
+		game->p.pos_x = new_x;
+		game->p.pos_y = new_y;
 	}
+	printf("DEBUG: player moved to [%f, %f]\n", game->p.pos_x, game->p.pos_y);
 }
 
-static void	go_left(t_game *game)
+void	move_left(t_game *game)
 {
-	double	x;
-	double	y;
+	double	new_x;
+	double	new_y;
 
-	x = game->p.pos_x;
-	y = game->p.pos_y;
-	if (x > 1 && game->map.map[(int)y][(int)x - 2] != ' ')
+	new_x = game->p.pos_x + game->p.dir_y * MOVE_SPEED;
+	new_y = game->p.pos_y - game->p.dir_x * MOVE_SPEED;
+	if (is_valid_pos(game, new_x, new_y))
 	{
-		if (game->map.map[(int)y][(int)x - 1] == '1')
-			x -= 2;
-		else
-			x--;
-		game->p.pos_x = x;
-		game->p.pos_y = y;
-		game->map.map[(int)y][(int)x] = game->p.view;
+		game->p.pos_x = new_x;
+		game->p.pos_y = new_y;
+		// game->p.angle -= ROT_SPEED;
 	}
+	printf("DEBUG: player moved to [%f, %f]\n", game->p.pos_x, game->p.pos_y);
+	// printf("DEBUG: player slightly rotated, the angle is %f\n", game->p.angle);
 }
 
-int	handle_movements(int keysym, t_game *game)
+void	move_right(t_game *game)
 {
-	if (keysym == XK_Escape)
+	double	new_x;
+	double	new_y;
+
+	new_x = game->p.pos_x - game->p.dir_y * MOVE_SPEED;
+	new_y = game->p.pos_y + game->p.dir_x * MOVE_SPEED;
+	if (is_valid_pos(game, new_x, new_y))
 	{
-		end_program(game);
-		return (0);
+		game->p.pos_x = new_x;
+		game->p.pos_y = new_y;
+		// game->p.angle += ROT_SPEED;
 	}
-	else if (keysym == XK_w || keysym == XK_W)
-		go_up(game);
-	else if (keysym == XK_s || keysym == XK_S)
-		go_down(game);
-	else if (keysym == XK_d || keysym == XK_D)
-		go_right(game);
-	else if (keysym == XK_a || keysym == XK_A)
-		go_left(game);
-	draw_minimap(game);
-	return (0);
+	printf("DEBUG: player moved to [%f, %f]\n", game->p.pos_x, game->p.pos_y);
+	// printf("DEBUG: player slightly rotated, the angle is %f\n", game->p.angle);
 }

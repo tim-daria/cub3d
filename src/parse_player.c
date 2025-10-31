@@ -4,13 +4,13 @@
 static void	determine_angle_and_dir_vector(t_player *p)
 {
 	if (p->view == 'N')
-		p->angle = PI / 2;
-	else if (p->view == 'S')
 		p->angle = 3 * PI / 2;
+	else if (p->view == 'S')
+		p->angle = PI / 2;
 	else if (p->view == 'E')
-		p->angle = PI;
+		p->angle = 0;
 	else if (p->view == 'W')
-		p->angle = 2 * PI;
+		p->angle = PI;
 	p->dir_x = cos(p->angle);
 	p->dir_y = sin(p->angle);
 }
@@ -54,8 +54,8 @@ void	find_player_pos(t_map map, t_player *p)
 		{
 			if (map.map[(int)p->pos_y][(int)p->pos_x] == p->view)
 			{
-				// p->pos_x += 0.5;
-				// p->pos_y += 0.5;
+				p->pos_x += 0.5;
+				p->pos_y += 0.5;
 				return ;
 			}
 			p->pos_x++;
