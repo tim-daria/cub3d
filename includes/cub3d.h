@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 10:26:09 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/24 15:03:08 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/26 13:42:00 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ void		free_2d_arr(char **arr);
 void		free_config(t_config *config);
 void		clean_data(t_game *game);
 int			end_program(t_game *game);
+// draw_map.c:
+void	put_pixel(t_game *game, int x, int y, int color);
+bool	draw_screen(t_game *game);
 // error_handlers.c:
 bool		print_error(char *msg);
 // init_config.c:

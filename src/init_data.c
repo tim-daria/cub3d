@@ -23,7 +23,11 @@ bool	init_data(t_game *game)
 	game->p.view = '\0';
 	game->mlx_connection = NULL;
 	game->mlx_win = NULL;
-	// game->img = NULL;
+	game->img = NULL;
+	game->img_addr = NULL;
+	game->bits_pp = 0;
+	game->line_len = 0;
+	game->endian = 0;
 	return (true);
 }
 
