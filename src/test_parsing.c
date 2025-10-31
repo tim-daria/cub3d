@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 22:00:00 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/21 17:23:33 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/26 22:13:48 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,15 @@ static void	print_config_validation(t_game *game)
 		printf("✅ Map loaded (%dx%d)\n", game->map.width, game->map.height);
 	
 	/* Check player */
-	printf("Player:   ");
-	if (game->p.x == -1 || game->p.y == -1 || game->p.view == '\0')
-	{
-		all_valid = false;
-		printf("❌ Player not found\n");
-	}
-	else
-		printf("✅ Found at (%d,%d) facing '%c'\n",
-			game->p.x, game->p.y, game->p.view);	printf("\nOVERALL: %s\n", all_valid ? "✅ READY TO PLAY" : "❌ CONFIGURATION INCOMPLETE");
+	// printf("Player:   ");
+	// if (game->p.x == -1 || game->p.y == -1 || game->p.view == '\0')
+	// {
+	// 	all_valid = false;
+	// 	printf("❌ Player not found\n");
+	// }
+	// else
+	// 	printf("✅ Found at (%d,%d) facing '%c'\n",
+	// 		game->p.x, game->p.y, game->p.view);	printf("\nOVERALL: %s\n", all_valid ? "✅ READY TO PLAY" : "❌ CONFIGURATION INCOMPLETE");
 }
 
 static void	print_textures(t_game *game)
@@ -187,8 +187,8 @@ static void	print_map_info(t_game *game)
 	}
 	
 	printf("Dimensions: %d x %d\n", game->map.width, game->map.height);
-	printf("Player:     (%d, %d) facing '%c'\n", 
-		game->p.x, game->p.y, game->p.view);
+	// printf("Player:     (%d, %d) facing '%c'\n", 
+	// 	game->p.x, game->p.y, game->p.view);
 	
 	/* Count map elements */
 	wall_count = 0;

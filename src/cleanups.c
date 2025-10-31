@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:46:52 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/21 20:47:57 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/10/26 22:39:05 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,36 +51,35 @@ void	free_config(t_config *config)
 // Cleans up resources and terminates the program properly
 void	clean_data(t_game *game)
 {
-	// printf("DEBUG: Starting clean_data\n");
-	
-	// Clean up get_next_line static buffer
 	get_next_line(-1);
+	if (game->img)
+	{
+		mlx_destroy_image(game->mlx_connection, game->img);
+		game->img = NULL;
+	}
 	
 	if (game->mlx_win)
 	{
-		// printf("DEBUG: Destroying window\n");
 		mlx_destroy_window(game->mlx_connection, game->mlx_win);
+		game->mlx_win = NULL;
 	}
 	if (game->mlx_connection)
 	{
-		// printf("DEBUG: Destroying MLX connection\n");
 		mlx_destroy_display(game->mlx_connection);
 		free(game->mlx_connection);
+		game->mlx_connection = NULL;
 	}
-	// printf("DEBUG: About to free config textures\n");
 	free_config(&game->config);
-	// printf("DEBUG: Config textures freed\n");
 	if (game->map.map)
 	{
-		// printf("DEBUG: About to free map at %p\n", game->map.map);
 		free_map(game->map.map, game->map.height);
 		game->map.map = NULL;
 	}
 }
 
-// function that will be used on ESC
+// function that will be used on ESC and window close
 int	end_program(t_game *game)
 {
 	clean_data(game);
-	return (0);
+	exit(0);
 }

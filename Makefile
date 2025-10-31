@@ -43,6 +43,11 @@ SRC_FILES =\
 		init_data.c \
 		test_parsing.c \
 		draw_screen.c \
+		parse_player.c \
+		movements.c \
+		rotations.c \
+		hooks.c \
+		raycasting.c \
 
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
