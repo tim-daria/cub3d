@@ -35,3 +35,18 @@ void	rotate_right(t_game *game)
 	printf("DEBUG: player rotated to [%f, %f]\n", game->p.dir_x, game->p.dir_y);
 	// printf("DEBUG: the angle is %f\n", game->p.angle);
 }
+
+int	on_mouse_move(int x, int y, t_game *game)
+{
+	static int	last_x;
+	double		delta_x;
+
+	(void)y;
+	delta_x = x - last_x;
+	if (delta_x > 0)
+		rotate_right(game);
+	else if (delta_x < 0)
+		rotate_left(game);
+	last_x = x;
+	return (0);
+}
