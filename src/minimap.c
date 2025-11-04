@@ -23,20 +23,62 @@ static void	draw_square(t_game *game, int x, int y, int color)
 		j = 0;
 		while (j < TILE_SIZE)
 		{
-			mlx_pixel_put(game->mlx_connection, game->mlx_win, x + j, y + i, color);
+			put_pixel(game, x + j, y + i, color);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	draw_minimap(t_game *game)
+static void	draw_rays(t_game *game, double ray_angle)
+{
+	int		x;
+	double	ray_x;
+	double	ray_y;
+	int		i;
+
+	x = 0;
+	while (x < game->map.width)
+	{
+		i = 0;
+		while (i < 300)
+		{
+			ray_x = game->p.pos_x + (i * cos(ray_angle) / TILE_SIZE);
+			ray_y = game->p.pos_y + (i * sin(ray_angle) / TILE_SIZE);
+			if (ray_x < 0 || ray_y < 0 || (int)ray_y >= game->map.height
+				|| (int)ray_x >= game->map.width)
+				break ;
+			if (game->map.map[(int)ray_y][(int)ray_x] == '1')
+				break ;
+			put_pixel(game, (int)(ray_x * TILE_SIZE),
+				(int)(ray_y * TILE_SIZE), LIGHT_GREEN);
+			i++;
+		}
+		ray_angle += (double)FOV * (PI / 180) / game->map.width;
+		x++;
+	}
+}
+
+static void	draw_rays_and_player(t_game *game)
+{
+	int		px;
+	int		py;
+	double	ray_angle;
+	double	player_angle;
+
+	player_angle = atan2(game->p.dir_y, game->p.dir_x);
+	ray_angle = player_angle - ((FOV * PI / 180) / 2);
+	draw_rays(game, ray_angle);
+	px = (int)(game->p.pos_x * TILE_SIZE);
+	py = (int)(game->p.pos_y * TILE_SIZE);
+	put_pixel(game, px, py, GREEN);
+}
+
+void	draw_minimap(t_game *game, char **map)
 {
 	int	color;
 	int	x;
 	int	y;
-	int	px;
-	int	py;
 
 	y = 0;
 	while (y < game->map.height)
@@ -44,10 +86,10 @@ void	draw_minimap(t_game *game)
 		x = 0;
 		while (x < game->map.width)
 		{
-			if (game->map.map[y][x] == '1')
-				color = 0x888888;
-			else if (game->map.map[y][x] == '0')
-				color = 0x000000;
+			if (map[y][x] == '1')
+				color = BLACK;
+			else if (map[y][x] == '0' || map[y][x] == game->p.view)
+				color = GRAY;
 			else
 			{
 				x++;
@@ -58,8 +100,5 @@ void	draw_minimap(t_game *game)
 		}
 		y++;
 	}
-	px = (int)game->p.pos_x * TILE_SIZE;
-	py = (int)game->p.pos_y * TILE_SIZE;
-	//draw_p_dot(game->mlx_connection, game->mlx_win, px, py);
-	mlx_pixel_put(game->mlx_connection, game->mlx_win, px, py, 0x00FF00);
+	draw_rays_and_player(game);
 }
