@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:46:52 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/21 16:08:59 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/08 00:51:42 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ bool	parse_config_line(char *line, t_config *config)
 	split = ft_split(line, ' ');
 	if (!split || !split[0] || !split[1] || split[2])
 	{
-		printf("DEBUG: failed in parse_config_line\n");
+		// printf("DEBUG: failed in parse_config_line\n");
 		if (split)
 			free_2d_arr(split);
 		return (false);
@@ -46,7 +46,7 @@ static bool	save_config(char *id, char *arg, t_config *config)
 	{
 		if (!is_valid_texture_file(arg))
 		{
-			printf("DEBUG: failed in is_valid_texture_file: arg %s\n", arg);
+			// printf("DEBUG: failed in is_valid_texture_file: arg %s\n", arg);
 			return (false);
 		}
 		if (!copy_texture(id, arg, config))

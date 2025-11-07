@@ -117,6 +117,7 @@ MAP ?= ./maps/map.cub
 
 valg: $(NAME)
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes \
+		--suppressions=valgrind.supp \
 		./$(NAME) $(MAP)
 
 .PHONY: all clean fclean re valg valg-term
