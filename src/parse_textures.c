@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 20:22:26 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/07 17:02:21 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:51:44 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static bool	get_xpm_data(t_config *config, t_texture *texture, char *arg)
 	return (true);
 }
 
+// copies path to the texture and calls the function above to save all the data into the struct
 bool	copy_texture(char *id, char *arg, t_config *config)
 {
 	if (ft_strcmp(id, "NO") == 0 && !config->textures[NORTH].texture_path)

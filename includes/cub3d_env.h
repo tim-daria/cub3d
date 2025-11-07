@@ -52,10 +52,9 @@ typedef struct	s_texture
 typedef struct s_config
 {
 	t_texture	textures[4];
-	// char	*textures[4];
-	int		floor_color;
-	int		ceiling_color;
-	t_game	*game;
+	int			floor_color;
+	int			ceiling_color;
+	t_game		*game;
 }	t_config;
 
 typedef struct s_player
@@ -122,5 +121,10 @@ typedef struct s_ray
 	double	tex_step;
 	double	tex_pos;
 }	t_ray;
+
+// typedef struct	s_wall
+// {
+
+// }	t_wall;
 
 #endif
