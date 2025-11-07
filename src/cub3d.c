@@ -6,11 +6,26 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:39:58 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/26 22:38:55 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/07 15:16:15 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	print_config(t_game *game)
+{
+	printf("Config:\nTextures:\n");
+	for (int i = 0; i <= EAST; i++)
+	{
+		printf("Path: %s, img_ptr: %p, data_addr: %p,\nwidth: %i, height: %i, bpp: %i, size_line: %i, endian: %i\n",
+			game->config.textures[i].texture_path, game->config.textures[i].img_ptr,
+			game->config.textures[i].data_addr, game->config.textures[i].width,
+			game->config.textures[i].height, game->config.textures[i].bpp,
+			game->config.textures[i].size_line, game->config.textures[i].endian);
+	}
+	printf("Floor color: %i\n", game->config.floor_color);
+	printf("Ceiling color: %i\n", game->config.ceiling_color);
+}
 
 int	main(int argc, char **argv)
 {
@@ -28,6 +43,7 @@ int	main(int argc, char **argv)
 		printf("❌ Failed to initialize game\n");
 		return (1);
 	}
+	print_config(&game);
 	setup_hooks(&game);
 	end_program(&game);
 	return (0);

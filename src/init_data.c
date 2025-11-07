@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 21:02:15 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/26 22:12:31 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/06 16:46:30 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,11 @@ bool	start_game(t_game *game, char *arg)
 		get_next_line(-1);
 		return (false);
 	}
+	if (!setup_mlx(game))
+	{
+		clean_data(game);
+		return (false);
+	}
 	if (!parse_config(arg, game))
 	{
 		clean_data(game);
@@ -78,10 +83,5 @@ bool	start_game(t_game *game, char *arg)
 		return (false);
 	}
 	find_player_pos(game->map, &game->p);
-	if (!setup_mlx(game))
-	{
-		clean_data(game);
-		return (false);
-	}
 	return (true);
 }

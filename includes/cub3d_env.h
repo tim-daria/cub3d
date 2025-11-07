@@ -35,11 +35,27 @@ enum e_direction
 	EAST = 3
 };
 
+typedef struct s_game	t_game;
+
+typedef struct	s_texture
+{
+	char	*texture_path;
+	void	*img_ptr;
+	char	*data_addr;
+	int		width;
+	int		height;
+	int		bpp;
+	int		size_line;
+	int		endian;
+}	t_texture;
+
 typedef struct s_config
 {
-	char	*textures[4];
+	t_texture	textures[4];
+	// char	*textures[4];
 	int		floor_color;
 	int		ceiling_color;
+	t_game	*game;
 }	t_config;
 
 typedef struct s_player
@@ -100,6 +116,11 @@ typedef struct s_ray
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
+	double	wall_x;
+	int		tex_x;
+	int		tex_y;
+	double	tex_step;
+	double	tex_pos;
 }	t_ray;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 20:34:58 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/27 02:08:27 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/07 17:05:40 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ void	init_ray(t_ray *ray)
 	ray->line_height = 0;
 	ray->draw_start = 0;
 	ray->draw_end = 0;
+	ray->wall_x = 0;
+	ray->tex_x = 0;
+	ray->tex_y = 0;
+	ray->tex_step = 0;
+	ray->tex_pos = 0;
 }
 
 void	raycast_loop(t_game *game)
@@ -158,27 +163,19 @@ static void	calc_wall_height(t_ray *ray)
 
 static void	draw_vertical_line(t_game *game, t_ray *ray, int x)
 {
-	int	y;
-	int	color;
+	int			y;
+	int			color;
+	t_texture	*texture;
 
-	if (ray->side == 0) // Vertical walls (East/West)
-	{
-		if (ray->step_x > 0)
-			color = 0xFF6699; // Pink for WEST walls (ray going right)
-		else
-			color = 0x0099FF; // Blue for EAST walls (ray going left)
-	}
-	else // Horizontal walls (North/South)
-	{
-		if (ray->step_y > 0)
-			color = 0x99FFCC; // Green for SOUTH walls (ray going down)
-		else
-			color = 0xFFFF99; // Yellow for NORTH walls (ray going up)
-	}
-	// Draw the wall line
+	texture = get_wall_texture(game, ray);
+	calc_tex_x(texture, ray);
+	calc_tex_step(texture, ray);
 	y = ray->draw_start;
-	while (y < ray->draw_end)
+	while (y <= ray->draw_end)
 	{
+		ray->tex_y = (int)ray->tex_pos & (texture->height - 1);
+		ray->tex_pos += ray->tex_step;
+		color = get_texture_pixel(texture, ray->tex_x, ray->tex_y);
 		put_pixel(game, x, y, color);
 		y++;
 	}
@@ -188,6 +185,7 @@ static void	dda(t_game *game, t_ray *ray, int x)
 {
 	perform_dda(game, ray);
 	calc_wall_distance(ray);
+	calc_wall_x(game, ray);
 	calc_wall_height(ray);
 	draw_vertical_line(game, ray, x);
 }

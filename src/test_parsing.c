@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 22:00:00 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/26 22:13:48 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/06 16:29:24 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	print_config_validation(t_game *game)
 	i = NORTH;
 	while (i <= EAST)
 	{
-		if (!game->config.textures[i])
+		if (!game->config.textures[i].texture_path)
 		{
 			all_valid = false;
 			break;
@@ -121,7 +121,7 @@ static void	print_textures(t_game *game)
 	while (i <= EAST)
 	{
 		printf("%-6s: %s\n", directions[i], 
-			game->config.textures[i] ? game->config.textures[i] : "❌ NOT SET");
+			game->config.textures[i].texture_path ? game->config.textures[i].texture_path : "❌ NOT SET");
 		i++;
 	}
 	
@@ -129,9 +129,9 @@ static void	print_textures(t_game *game)
 	i = NORTH;
 	while (i <= EAST)
 	{
-		if (game->config.textures[i])
+		if (game->config.textures[i].texture_path)
 		{
-			int fd = open_file(game->config.textures[i]);
+			int fd = open_file(game->config.textures[i].texture_path);
 			if (fd >= 0)
 			{
 				printf("  %s: ✅ File accessible\n", directions[i]);

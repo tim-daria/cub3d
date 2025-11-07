@@ -49,7 +49,7 @@ SRC_FILES =\
 		raycasting_loop.c \
 		raycasting_dda.c \
 		minimap.c \
-
+		textures.c \
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJS = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRCS))

@@ -6,9 +6,10 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 10:26:09 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/27 01:19:36 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/07 17:00:22 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -80,6 +81,12 @@ int			on_mouse_move(int x, int y, t_game *game);
 void		raycast_loop(t_game *game);
 
 bool		test_parsing_complete(t_game *game, char *filename);
+// textures.c:
+void		calc_wall_x(t_game *game, t_ray *ray);
+void		calc_tex_x(t_texture *texture, t_ray *ray);
+void		calc_tex_step(t_texture *texture, t_ray *ray);
+int			get_texture_pixel(t_texture *texture, int x, int y);
+t_texture	*get_wall_texture(t_game *game, t_ray *ray);
 
 
 #endif

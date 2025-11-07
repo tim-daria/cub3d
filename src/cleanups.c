@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:46:52 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/26 22:39:05 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/06 16:29:24 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,15 @@ void	free_config(t_config *config)
 	i = NORTH;
 	while (i <= EAST)
 	{
-		if (config->textures[i])
+		if (config->textures[i].texture_path)
 		{
-			free(config->textures[i]);
-			config->textures[i] = NULL;
+			free(config->textures[i].texture_path);
+			config->textures[i].texture_path = NULL;
+		}
+		if (config->textures[i].img_ptr)
+		{
+			free(config->textures[i].img_ptr);
+			config->textures[i].img_ptr = NULL;
 		}
 		i++;
 	}
