@@ -69,8 +69,9 @@ static int	render_loop(t_game *game)
 	process_movements(game);
 	draw_screen(game); // Draw floor and ceiling
 	raycast_loop(game); // Draw walls with raycasting
-	// draw_minimap(game);
-	mlx_put_image_to_window(game->mlx_connection, game->mlx_win, game->img, 0, 0);
+	draw_minimap(game, game->map.map);
+	mlx_put_image_to_window(game->mlx_connection,
+		game->mlx_win, game->img, 0, 0);
 	return (0);
 }
 
@@ -78,7 +79,8 @@ void	setup_hooks(t_game *game)
 {
 	mlx_hook(game->mlx_win, 2, 1L << 0, on_keypress, game);
 	mlx_hook(game->mlx_win, 3, 1L << 1, on_keyrelease, game);
-	mlx_hook(game->mlx_win, DestroyNotify, NoEventMask, end_program, game); // 'x' button
+	mlx_hook(game->mlx_win, 6, 1L << 6, on_mouse_move, game);
+	mlx_hook(game->mlx_win, DestroyNotify, NoEventMask, end_program, game);
 	mlx_loop_hook(game->mlx_connection, render_loop, game);
 	mlx_loop(game->mlx_connection);
 }

@@ -48,6 +48,7 @@ SRC_FILES =\
 		rotations.c \
 		hooks.c \
 		raycasting.c \
+		minimap.c \
 
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))

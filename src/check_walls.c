@@ -12,41 +12,6 @@
 
 #include "cub3d.h"
 
-// static bool	check_corners(t_map map)
-// {
-// 	int		x;
-// 	int		y;
-// 	bool	right_corner;
-// 	bool	left_corner;
-
-// 	y = 0;
-// 	left_corner = false;
-// 	right_corner = false;
-// 	while (y < map.height)
-// 	{
-// 		x = 0;
-// 		while (x < map.width)
-// 		{
-// 			if (map.map[y][x] == '1')
-// 			{
-// 				left_corner = true;
-// 				x++;
-// 			}
-// 			if (map.map[y][x] == '1')
-// 				right_corner = true;
-// 			else if (map.map[])
-// 			if (y == map.height - 1 || x == map.width - 1)
-// 			{
-// 				if (map.map[y][x] != '1' && map.map[y][x] != ' ')
-// 					return (false);
-// 			}
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// 	return (true);
-// }
-
 //This function recursively checks if a given cell (x, y) in the map is enclosed
 //by walls. It returns true if the cell is enclosed, and false otherwise.
 //The function checks for out-of-bounds conditions, spaces (which indicate a leak),
@@ -62,11 +27,19 @@ static bool	is_enclosed(char **visited, t_map map, int x, int y)
 	visited[y][x] = 'V';
 	if (!is_enclosed(visited, map, x + 1, y))
 		return (false);
+	if (!is_enclosed(visited, map, x + 1, y - 1))
+		return (false);
 	if (!is_enclosed(visited, map, x - 1, y))
+		return (false);
+	if (!is_enclosed(visited, map, x - 1, y + 1))
 		return (false);
 	if (!is_enclosed(visited, map, x, y + 1))
 		return (false);
+	if (!is_enclosed(visited, map, x + 1, y + 1))
+		return (false);
 	if (!is_enclosed(visited, map, x, y - 1))
+		return (false);
+	if (!is_enclosed(visited, map, x - 1, y - 1))
 		return (false);
 	return (true);
 }
@@ -106,11 +79,6 @@ bool	surrounded_by_walls(t_map map, t_player p)
 	int		y;
 	int		x;
 
-	// if (check_corners(map))
-	// {
-	// 	print_error("Map is not enclosed");
-	// 	return (false);
-	// }
 	visited = create_grid(map.height, map.width);
 	if (!visited)
 		return (print_error("Malloc failed"));

@@ -1,32 +1,18 @@
 #include "cub3d.h"
 
 // Sets the player's angle and direction vector based on their view direction
-static void determine_angle_and_dir_vector(t_player *p)
+static void	determine_angle_and_dir_vector(t_player *p)
 {
 	if (p->view == 'N')
-	{
-		p->dir_x = 0;
-		p->dir_y = -1;  // North = toward row 0 (upward)
-		// p->angle = 3 * PI / 2; // 270 deg
-	}
+		p->angle = 3 * PI / 2;
 	else if (p->view == 'S')
-	{
-		p->dir_x = 0;
-		p->dir_y = 1;  // South = toward higher rows (downward)
-		// p->angle = PI / 2; // 90 deg
-	}
+		p->angle = PI / 2;
 	else if (p->view == 'E')
-	{
-		p->dir_x = 1;  // East = toward higher columns (right)
-		p->dir_y = 0;
-		// p->angle = PI;
-	}
+		p->angle = 0;
 	else if (p->view == 'W')
-	{
-		p->dir_x = -1;  // West = toward lower columns (left)
-		p->dir_y = 0;
-		// p->angle = 0;
-	}
+		p->angle = PI;
+	p->dir_x = cos(p->angle);
+	p->dir_y = sin(p->angle);
 }
 
 //Searches the map for the player's starting position and

@@ -21,6 +21,11 @@
 # define FOV 60
 # define MOVE_SPEED 0.05
 # define ROT_SPEED 0.01
+# define TILE_SIZE 7
+# define LIGHT_GREEN 0x003333
+# define GREEN 0x00FF00
+# define BLACK 0x888888
+# define GRAY 0x000000
 
 enum e_direction
 {
@@ -72,9 +77,6 @@ typedef struct s_game
 	bool		key_d;
 	bool		key_left;
 	bool		key_right;
-	// int			img_width;
-	// int			img_height;
-	//int			count_movements;
 }	t_game;
 
 typedef struct s_ray

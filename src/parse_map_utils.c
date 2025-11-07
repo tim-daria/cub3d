@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:58:54 by dtimofee          #+#    #+#             */
 /*   Updated: 2025/10/26 22:11:50 by tsemenov         ###   ########.fr       */
@@ -64,9 +64,7 @@ int	count_len(char *line)
 
 	len = 0;
 	while (line[len] && line[len] != '\n')
-	{
 		len++;
-	}
 	return (len);
 }
 

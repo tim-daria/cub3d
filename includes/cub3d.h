@@ -30,23 +30,23 @@ void		free_config(t_config *config);
 void		clean_data(t_game *game);
 int			end_program(t_game *game);
 // draw_map.c:
-void	put_pixel(t_game *game, int x, int y, int color);
-bool	draw_screen(t_game *game);
+void		put_pixel(t_game *game, int x, int y, int color);
+bool		draw_screen(t_game *game);
 // error_handlers.c:
 bool		print_error(char *msg);
 // hooks.c:
-void	setup_hooks(t_game *game);
+void		setup_hooks(t_game *game);
 // init_config.c:
 bool		parse_config(char *filename, t_game *game);
 void		free_config(t_config *config);
 // init_data.c:
-bool	init_data(t_game *game);
+bool		init_data(t_game *game);
 bool		start_game(t_game *game, char *arg);
 // movements.c:
-void	move_forward(t_game *game);
-void	move_backward(t_game *game);
-void	move_left(t_game *game);
-void	move_right(t_game *game);
+void		move_forward(t_game *game);
+void		move_backward(t_game *game);
+void		move_left(t_game *game);
+void		move_right(t_game *game);
 // parse_colors.c:
 bool		check_and_copy_color(char *id, char *arg, t_config *config);
 // parse_config.c:
@@ -67,13 +67,19 @@ bool		free_map(char **map, int row);
 void		find_player_pos(t_map map, t_player *p);
 int			count_len(char *line);
 // parse_player.c:
-void	find_player_pos(t_map map, t_player *p);
-// rotations.c:
-void	rotate_left(t_game *game);
-void	rotate_right(t_game *game);
-// raycasting.c:
-void	raycast_loop(t_game *game);
+void		find_player_pos(t_map map, t_player *p);
 
-bool	test_parsing_complete(t_game *game, char *filename);
+//minimap.c:
+void		draw_minimap(t_game *game, char **map);
+
+// rotations.c:
+void		rotate_left(t_game *game);
+void		rotate_right(t_game *game);
+int			on_mouse_move(int x, int y, t_game *game);
+// raycasting.c:
+void		raycast_loop(t_game *game);
+
+bool		test_parsing_complete(t_game *game, char *filename);
+
 
 #endif
