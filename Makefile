@@ -41,13 +41,13 @@ SRC_FILES =\
 		parse_textures.c \
 		parse_config.c \
 		init_data.c \
-		test_parsing.c \
 		draw_screen.c \
 		parse_player.c \
 		movements.c \
 		rotations.c \
 		hooks.c \
-		raycasting.c \
+		raycasting_loop.c \
+		raycasting_dda.c \
 		minimap.c \
 
 

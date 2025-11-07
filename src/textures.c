@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:04:59 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/07 16:37:30 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/08 00:06:26 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,11 @@ int	get_texture_pixel(t_texture *texture, int x, int y)
 		return (0);
 	if (x < 0 || x >= texture->width || y < 0 || y >= texture->height)
 		return (0);
-	
-	// More robust pixel access
 	pixel_data = (int *)texture->data_addr;
 	pixel_index = y * (texture->size_line / (int)sizeof(int)) + x;
 	max_index = texture->height * (texture->size_line / (int)sizeof(int));
-	
-	// Sanity check for buffer overflow
 	if (pixel_index < 0 || pixel_index >= max_index)
-		return (0);
-		
+		return (0);	
 	return (pixel_data[pixel_index]);
 }
 
