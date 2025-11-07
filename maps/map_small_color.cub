@@ -1,0 +1,13 @@
+NO ./textures/co_no.xpm
+SO ./textures/co_so.xpm
+WE ./textures/co_we.xpm
+EA ./textures/co_ea.xpm
+
+F 128,128,128
+
+C 102,204,255
+
+   11111 
+   1000N1
+   110011
+   111111

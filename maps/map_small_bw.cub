@@ -1,0 +1,13 @@
+NO ./textures/bw_no.xpm
+SO ./textures/bw_so.xpm
+WE ./textures/bw_we.xpm
+EA ./textures/bw_ea.xpm
+
+F 128,128,128
+
+C 102,204,255
+
+   11111 
+   1000N1
+   110011
+   111111
