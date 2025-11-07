@@ -14,8 +14,6 @@
 # include "../libs/libft/get_next_line.h"
 # include "../libs/libft/ft_printf.h"
 
-# define WIDTH 1024
-# define HEIGHT 768
 # define BLOCK_SIZE 64
 # define PI 3.141592653589793
 # define FOV 60
@@ -59,6 +57,16 @@ typedef struct s_map
 	int		width;
 }	t_map;
 
+typedef struct s_button
+{
+	bool		key_w;
+	bool		key_a;
+	bool		key_s;
+	bool		key_d;
+	bool		key_left;
+	bool		key_right;
+}	t_button;
+
 typedef struct s_game
 {
 	t_config	config;
@@ -68,15 +76,12 @@ typedef struct s_game
 	void		*mlx_win;
 	void		*img;
 	char		*img_addr;
+	int			win_width;
+	int			win_height;
 	int			bits_pp;
 	int			line_len;
 	int			endian;
-	bool		key_w;
-	bool		key_a;
-	bool		key_s;
-	bool		key_d;
-	bool		key_left;
-	bool		key_right;
+	t_button	buttons;
 }	t_game;
 
 typedef struct s_ray

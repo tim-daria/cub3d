@@ -17,7 +17,7 @@ void	put_pixel(t_game *game, int x, int y, int color)
 {
 	int	position;
 
-	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+	if (x < 0 || x >= game->win_width || y < 0 || y >= game->win_height)
 		return ;
 	position = (y * game->line_len) + (x * (game->bits_pp / 8));
 	*(int *)(game->img_addr + position) = color;
@@ -30,12 +30,12 @@ static void	fill_floor_and_ceiling(t_game *game)
 	int	y;
 
 	y = 0;
-	while (y < HEIGHT)
+	while (y < game->win_height)
 	{
 		x = 0;
-		while (x < WIDTH)
+		while (x < game->win_width)
 		{
-			if (y < HEIGHT / 2)
+			if (y < game->win_height / 2)
 				put_pixel(game, x, y, game->config.ceiling_color);
 			else
 				put_pixel(game, x, y, game->config.floor_color);
@@ -50,7 +50,8 @@ bool	draw_screen(t_game *game)
 {
 	if (game->img)
 		mlx_destroy_image(game->mlx_connection, game->img);
-	game->img = mlx_new_image(game->mlx_connection, WIDTH, HEIGHT);
+	game->img = mlx_new_image(game->mlx_connection,
+			game->win_width, game->win_height);
 	if (!game->img)
 	{
 		print_error("Error: Failed to create image");
@@ -64,8 +65,5 @@ bool	draw_screen(t_game *game)
 		return (false);
 	}
 	fill_floor_and_ceiling(game);
-	// draw init view
-	// 	mlx_put_image_to_window(game.mlx_connection, game.mlx_win,
-	// game.img, 0, 0);
 	return (true);
 }

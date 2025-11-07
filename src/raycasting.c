@@ -16,7 +16,7 @@ static void	calc_ray_dir(t_game *game, t_ray *ray, int x);
 static void	calc_side_distances(t_game *game, t_ray *ray);
 static void	perform_dda(t_game *game, t_ray *ray);
 static void	calc_wall_distance(t_ray *ray);
-static void	calc_wall_height(t_ray *ray);
+static void	calc_wall_height(t_ray *ray, int win_height);
 static void	draw_vertical_line(t_game *game, t_ray *ray, int x);
 static void	dda(t_game *game, t_ray *ray, int x);
 
@@ -49,7 +49,7 @@ void	raycast_loop(t_game *game)
 	t_ray	ray;
 
 	x = 0;
-	while (x < WIDTH)
+	while (x < game->win_width)
 	{
 		init_ray(&ray);
 		calc_ray_dir(game, &ray, x);
@@ -62,7 +62,7 @@ void	raycast_loop(t_game *game)
 static void	calc_ray_dir(t_game *game, t_ray *ray, int x)
 {
 	// camera_x goes from -1 (left) to +1 (right)
-	ray->camera_x = 2 * x / (double)WIDTH - 1;
+	ray->camera_x = 2 * x / (double)game->win_width - 1;
 	ray->plane_x = -game->p.dir_y * (FOV / 100.0);
 	ray->plane_y = game->p.dir_x * (FOV / 100.0);
 	// Ray direction = direction + plane * camera_x
@@ -142,18 +142,18 @@ static void	calc_wall_distance(t_ray *ray)
 		ray->perp_wall_dist = ray->side_dist_y - ray->delta_dist_y;
 }
 
-static void	calc_wall_height(t_ray *ray)
+static void	calc_wall_height(t_ray *ray, int win_height)
 {
 	// Calculate height of line to draw on screen
-	ray->line_height = (int)(HEIGHT / ray->perp_wall_dist);
+	ray->line_height = (int)(win_height / ray->perp_wall_dist);
 	// Calculate lowest and highest pixel to fill in the line
 	// centering the line on x-axis
-	ray->draw_start = -ray->line_height / 2 + HEIGHT / 2;
+	ray->draw_start = -ray->line_height / 2 + win_height / 2;
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;
-	ray->draw_end = ray->line_height / 2 + HEIGHT / 2;
-	if (ray->draw_end >= HEIGHT)
-		ray->draw_end = HEIGHT - 1;
+	ray->draw_end = ray->line_height / 2 + win_height / 2;
+	if (ray->draw_end >= win_height)
+		ray->draw_end = win_height - 1;
 }
 
 static void	draw_vertical_line(t_game *game, t_ray *ray, int x)
@@ -188,6 +188,6 @@ static void	dda(t_game *game, t_ray *ray, int x)
 {
 	perform_dda(game, ray);
 	calc_wall_distance(ray);
-	calc_wall_height(ray);
+	calc_wall_height(ray, game->win_height);
 	draw_vertical_line(game, ray, x);
 }

@@ -17,56 +17,56 @@ static int	on_keypress(int keycode, t_game *game)
 	if (keycode == XK_Escape)
 		end_program(game);
 	if (keycode == XK_w)
-		game->key_w = true;
+		game->buttons.key_w = true;
 	if (keycode == XK_a)
-		game->key_a = true;
+		game->buttons.key_a = true;
 	if (keycode == XK_s)
-		game->key_s = true;
+		game->buttons.key_s = true;
 	if (keycode == XK_d)
-		game->key_d = true;
+		game->buttons.key_d = true;
 	if (keycode == XK_Left)
-		game->key_left = true;
+		game->buttons.key_left = true;
 	if (keycode == XK_Right)
-		game->key_right = true;
+		game->buttons.key_right = true;
 	return (0);
 }
 
 static int	on_keyrelease(int keycode, t_game *game)
 {
 	if (keycode == XK_w)
-		game->key_w = false;
+		game->buttons.key_w = false;
 	if (keycode == XK_a)
-		game->key_a = false;
+		game->buttons.key_a = false;
 	if (keycode == XK_s)
-		game->key_s = false;
+		game->buttons.key_s = false;
 	if (keycode == XK_d)
-		game->key_d = false;
+		game->buttons.key_d = false;
 	if (keycode == XK_Left)
-		game->key_left = false;
+		game->buttons.key_left = false;
 	if (keycode == XK_Right)
-		game->key_right = false;
+		game->buttons.key_right = false;
 	return (0);
 }
 
-static void	process_movements(t_game *game)
+static void	process_movements(t_game *game, t_button buttons)
 {
-	if (game->key_w)
+	if (buttons.key_w)
 		move_forward(game);
-	if (game->key_a)
+	if (buttons.key_a)
 		move_left(game);
-	if (game->key_s)
+	if (buttons.key_s)
 		move_backward(game);
-	if (game->key_d)
+	if (buttons.key_d)
 		move_right(game);
-	if (game->key_left)
+	if (buttons.key_left)
 		rotate_left(game);
-	if (game->key_right)
+	if (buttons.key_right)
 		rotate_right(game);
 }
 
 static int	render_loop(t_game *game)
 {
-	process_movements(game);
+	process_movements(game, game->buttons);
 	draw_screen(game); // Draw floor and ceiling
 	raycast_loop(game); // Draw walls with raycasting
 	draw_minimap(game, game->map.map);

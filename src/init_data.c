@@ -24,6 +24,8 @@ bool	init_data(t_game *game)
 	game->p.pos_y = 0;
 	game->p.dir_x = 0;
 	game->p.dir_y = 0;
+	game->win_width = 1024;
+	game->win_height = 768;
 	game->mlx_connection = NULL;
 	game->mlx_win = NULL;
 	game->img = NULL;
@@ -31,12 +33,12 @@ bool	init_data(t_game *game)
 	game->bits_pp = 0;
 	game->line_len = 0;
 	game->endian = 0;
-	game->key_w = false;
-	game->key_a = false;
-	game->key_s = false;
-	game->key_d = false;
-	game->key_left = false;
-	game->key_right = false;
+	game->buttons.key_w = false;
+	game->buttons.key_a = false;
+	game->buttons.key_s = false;
+	game->buttons.key_d = false;
+	game->buttons.key_left = false;
+	game->buttons.key_right = false;
 	return (true);
 }
 
@@ -48,13 +50,13 @@ static bool	setup_mlx(t_game *game)
 		print_error("Failed to initialize MLX");
 		return (false);
 	}
-	game->mlx_win = mlx_new_window(game->mlx_connection, WIDTH, HEIGHT, "Cub3D");
+	game->mlx_win = mlx_new_window(game->mlx_connection,
+			game->win_width, game->win_height, "Cub3D");
 	if (!game->mlx_win)
 	{
 		print_error("Failed to create window");
 		return (false);
 	}
-	// setup_hooks
 	return (true);
 }
 
