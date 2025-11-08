@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:46:52 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/08 00:44:58 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/08 01:13:11 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ void	free_config(t_config *config)
 	i = NORTH;
 	while (i <= EAST)
 	{
+		if (config->textures[i].img_ptr)
+		{
+			mlx_destroy_image(config->game->mlx_connection, config->textures[i].img_ptr);
+			config->textures[i].img_ptr = NULL;
+		}
 		if (config->textures[i].texture_path)
 		{
 			free(config->textures[i].texture_path);
 			config->textures[i].texture_path = NULL;
-		}
-		if (config->textures[i].img_ptr)
-		{
-			free(config->textures[i].img_ptr);
-			config->textures[i].img_ptr = NULL;
 		}
 		i++;
 	}
@@ -57,6 +57,7 @@ void	free_config(t_config *config)
 void	clean_data(t_game *game)
 {
 	get_next_line(-1);
+	free_config(&game->config);
 	if (game->img)
 	{
 		mlx_destroy_image(game->mlx_connection, game->img);
@@ -74,7 +75,6 @@ void	clean_data(t_game *game)
 		free(game->mlx_connection);
 		game->mlx_connection = NULL;
 	}
-	free_config(&game->config);
 	if (game->map.map)
 	{
 		free_map(game->map.map, game->map.height);
