@@ -66,6 +66,14 @@ static void	process_movements(t_game *game, t_button buttons)
 
 static int	render_loop(t_game *game)
 {
+	int	current_width;
+	int	current_height;
+
+	mlx_get_screen_size(game->mlx_win, &current_width, &current_height);
+	printf("%d - height, %d - width\n", current_height, current_width);
+	fflush(0);
+	if (current_height != game->win_height || current_width != game->win_width)
+		recreate_screen(game, current_width, current_height);
 	process_movements(game, game->buttons);
 	draw_screen(game); // Draw floor and ceiling
 	raycast_loop(game); // Draw walls with raycasting

@@ -32,6 +32,7 @@ int			end_program(t_game *game);
 // draw_map.c:
 void		put_pixel(t_game *game, int x, int y, int color);
 bool		draw_screen(t_game *game);
+bool		recreate_screen(t_game *game, int width, int height);
 // error_handlers.c:
 bool		print_error(char *msg);
 // hooks.c:

@@ -67,3 +67,25 @@ bool	draw_screen(t_game *game)
 	fill_floor_and_ceiling(game);
 	return (true);
 }
+
+bool	recreate_screen(t_game *game, int width, int height)
+{
+	mlx_destroy_image(game->mlx_connection, game->img);
+	game->win_width = width;
+	game->win_height = height;
+	game->img = mlx_new_image(game->mlx_connection,
+			game->win_width, game->win_height);
+	if (!game->img)
+	{
+		print_error("Error: Failed to create image");
+		return (false);
+	}
+	game->img_addr = mlx_get_data_addr(game->img, &game->bits_pp,
+			&game->line_len, &game->endian);
+	if (!game->img_addr)
+	{
+		print_error("Error: Failed to get image address");
+		return (false);
+	}
+	return (true);
+}
