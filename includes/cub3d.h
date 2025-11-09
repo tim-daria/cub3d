@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 10:26:09 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/11/08 01:17:25 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/09 20:59:27 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int			open_file(char *src);
 // check_cub_utils.c:
 bool		has_map_last(char *filename);
 bool		is_config_line(char *line);
+char		*skip_spaces(char *str);
 // check_cub_utils2.c:
 bool		has_all_sides(char *filename);
 bool		is_map_line(char *line);
@@ -49,7 +50,8 @@ void		move_backward(t_game *game);
 void		move_left(t_game *game);
 void		move_right(t_game *game);
 // parse_colors.c:
-bool		check_and_copy_color(char *id, char *arg, t_config *config);
+// bool		check_and_copy_color(char *id, char *arg, t_config *config);
+bool	check_and_copy_color(char **split, t_config *config);
 // parse_config.c:
 bool		parse_config_line(char *line, t_config *config);
 // parse_textures.c:

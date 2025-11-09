@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 23:48:51 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/09 14:59:31 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/09 22:20:12 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,24 @@ static void	calc_wall_distance(t_ray *ray)
 
 static void	calc_wall_height(t_ray *ray)
 {
+	int	wall_start;
+	int	wall_end;
+
 	// Calculate height of line to draw on screen
 	ray->line_height = (int)(HEIGHT / ray->perp_wall_dist);
 	// Calculate lowest and highest pixel to fill in the line
-	// centering the line on x-axis
-	ray->draw_start = -ray->line_height / 2 + HEIGHT / 2;
-	if (ray->draw_start < 0)
+	// centering the line on the screen
+	wall_start = (HEIGHT - ray->line_height) / 2;
+	wall_end = wall_start + ray->line_height - 1;
+	// Clamp to screen boundaries
+	if (wall_start < 0)
 		ray->draw_start = 0;
-	ray->draw_end = ray->line_height / 2 + HEIGHT / 2;
-	if (ray->draw_end >= HEIGHT)
+	else
+		ray->draw_start = wall_start;
+	if (wall_end >= HEIGHT)
 		ray->draw_end = HEIGHT - 1;
+	else
+		ray->draw_end = wall_end;
 }
 
 static void	draw_vertical_line(t_game *game, t_ray *ray, int x)
@@ -73,10 +81,12 @@ static void	draw_vertical_line(t_game *game, t_ray *ray, int x)
 	y = ray->draw_start;
 	while (y <= ray->draw_end)
 	{
-		ray->tex_y = (int)ray->tex_pos & (texture->height - 1);
+		ray->tex_y = (int)ray->tex_pos;
+		if (ray->tex_y < 0)
+			ray->tex_y = 0;
+		if (ray->tex_y >= texture->height)
+			ray->tex_y = texture->height - 1;
 		ray->tex_pos += ray->tex_step;
-		// if (ray->tex_pos < 0) ray->tex_pos = 0;
-		// if (ray->tex_pos >= texture->height) ray->tex_pos = texture->height - 1;
 		color = get_texture_pixel(texture, ray->tex_x, ray->tex_y);
 		put_pixel(game, x, y, color);
 		y++;

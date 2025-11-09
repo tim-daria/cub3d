@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 20:32:24 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/13 17:58:31 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/09 20:39:14 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,55 @@
 static bool	get_rgb(char *arg, int	*r, int *g, int *b);
 static bool	is_valid_num(int n);
 static int	rgb_to_hex(int r, int g, int b);
+static char	*join_colors(char **split, int start);
 
-bool	check_and_copy_color(char *id, char *arg, t_config *config)
+bool	check_and_copy_color(char **split, t_config *config)
 {
 	int	hex;
 	int	r;
 	int	g;
 	int	b;
+	char	*color_str;
 
-	if (!get_rgb(arg, &r, &g, &b))
+	color_str = join_colors(split, 1);
+	if (!color_str)
 		return (false);
+	if (!get_rgb(color_str, &r, &g, &b))
+	{
+		free(color_str);
+		return (false);
+	}
 	hex = rgb_to_hex(r, g, b);
-	if (ft_strcmp(id, "F") == 0)
+	if (ft_strcmp(split[0], "F") == 0)
 		config->floor_color = hex;
-	else if (ft_strcmp(id, "C") == 0)
+	else if (ft_strcmp(split[0], "C") == 0)
 		config->ceiling_color = hex;
 	else
 		return (false);
+	free(color_str);
 	return (true);
+}
+
+static char	*join_colors(char **split, int start)
+{
+	char	*result;
+	char	*temp;
+	int		i;
+
+	result = ft_strdup("");
+	if (!result)
+		return (NULL);
+	i = start;
+	while (split[i])
+	{
+		temp = ft_strjoin(result, split[i]);
+		free(result);
+		if (!temp)
+			return (NULL);
+		result = temp;
+		i++;
+	}
+	return (result);
 }
 
 static bool	get_rgb(char *arg, int	*r, int *g, int *b)
@@ -69,3 +100,4 @@ static int	rgb_to_hex(int r, int g, int b)
 {
 	return ( (r << 16) | (g << 8) | b);
 }
+

@@ -16,11 +16,10 @@
 
 # define WIDTH 1024
 # define HEIGHT 768
-# define BLOCK_SIZE 64
 # define PI 3.141592653589793
 # define FOV 60
 # define MOVE_SPEED 0.05
-# define ROT_SPEED 0.01
+# define ROT_SPEED 0.03
 # define TILE_SIZE 7
 # define LIGHT_GREEN 0x003333
 # define GREEN 0x00FF00
@@ -121,10 +120,5 @@ typedef struct s_ray
 	double	tex_step;
 	double	tex_pos;
 }	t_ray;
-
-// typedef struct	s_wall
-// {
-
-// }	t_wall;
 
 #endif
