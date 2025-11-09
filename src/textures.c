@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:04:59 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/08 00:06:26 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/09 15:50:32 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	calc_tex_x(t_texture *texture, t_ray *ray)
 		ray->tex_x = texture->width - 1;
 	if (ray->tex_x < 0)
 		ray->tex_x = 0;
-	// mirror if ray hits x side and goes right or if ray hits y side and goes up
-	if ((ray->side == 0 && ray->ray_dir_x > 0)
-		|| (ray->side == 1 && ray->ray_dir_y < 0))
+	// mirror SOUTH and WEST walls, so they appear correctly (otherwirse, thiy will be flipped on x-axis)
+	if ((ray->side == 0 && ray->ray_dir_x < 0)
+		|| (ray->side == 1 && ray->ray_dir_y > 0))
 		ray->tex_x = texture->width - ray->tex_x - 1;
 }
 
@@ -69,9 +69,9 @@ t_texture	*get_wall_texture(t_game *game, t_ray *ray)
 	if (ray->side == 0) // east or west
 	{
 		if (ray->ray_dir_x > 0) // moving right
-			return (&game->config.textures[WEST]);
-		else
 			return (&game->config.textures[EAST]);
+		else
+			return (&game->config.textures[WEST]);
 	}
 	else // north or south
 	{

@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 23:48:51 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/07 23:53:29 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/09 14:59:31 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ static void	draw_vertical_line(t_game *game, t_ray *ray, int x)
 	{
 		ray->tex_y = (int)ray->tex_pos & (texture->height - 1);
 		ray->tex_pos += ray->tex_step;
+		// if (ray->tex_pos < 0) ray->tex_pos = 0;
+		// if (ray->tex_pos >= texture->height) ray->tex_pos = texture->height - 1;
 		color = get_texture_pixel(texture, ray->tex_x, ray->tex_y);
 		put_pixel(game, x, y, color);
 		y++;

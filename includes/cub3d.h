@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 10:26:09 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/11/07 23:53:10 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/08 01:17:25 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,8 @@ void		find_player_pos(t_map map, t_player *p);
 int			count_len(char *line);
 // parse_player.c:
 void		find_player_pos(t_map map, t_player *p);
-
-//minimap.c:
+// minimap.c:
 void		draw_minimap(t_game *game, char **map);
-
 // rotations.c:
 void		rotate_left(t_game *game);
 void		rotate_right(t_game *game);
