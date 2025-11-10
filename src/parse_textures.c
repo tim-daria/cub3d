@@ -28,13 +28,29 @@ int	ft_strcmp(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
-// saves texture data needed for drawing walls into the config
-static bool	get_xpm_data(t_config *config, t_texture *texture, char *arg)
+// Phase 1: Just save the texture path for validation
+static bool	save_texture_path(t_texture *texture, char *arg)
 {
 	texture->texture_path = ft_strdup(arg);
 	if (!texture->texture_path)
 		return (false);
-	texture->img_ptr = mlx_xpm_file_to_image(config->game->mlx_connection, arg,
+	texture->img_ptr = NULL;
+	texture->data_addr = NULL;
+	texture->width = 0;
+	texture->height = 0;
+	texture->bpp = 0;
+	texture->size_line = 0;
+	texture->endian = 0;
+	return (true);
+}
+
+// Phase 2: Load actual texture data after MLX is initialized
+static bool	load_xpm_data(t_config *config, t_texture *texture)
+{
+	if (!texture->texture_path)
+		return (false);
+	texture->img_ptr = mlx_xpm_file_to_image(config->game->mlx_connection,
+											texture->texture_path,
 											&texture->width, &texture->height);
 	if (texture->img_ptr == NULL)
 		return (false);
@@ -47,28 +63,42 @@ static bool	get_xpm_data(t_config *config, t_texture *texture, char *arg)
 	return (true);
 }
 
-// copies path to the texture and calls the function above to save all the data into the struct
+// copies path to the texture during config parsing
 bool	copy_texture(char *id, char *arg, t_config *config)
 {
 	if (ft_strcmp(id, "NO") == 0 && !config->textures[NORTH].texture_path)
 	{
-		if (!get_xpm_data(config, &config->textures[NORTH], arg))
+		if (!save_texture_path(&config->textures[NORTH], arg))
 			return (false);
 	}
 	if (ft_strcmp(id, "SO") == 0 && !config->textures[SOUTH].texture_path)
 	{
-		if (!get_xpm_data(config, &config->textures[SOUTH], arg))
+		if (!save_texture_path(&config->textures[SOUTH], arg))
 			return (false);
 	}
 	if (ft_strcmp(id, "WE") == 0 && !config->textures[WEST].texture_path)
 	{
-		if (!get_xpm_data(config, &config->textures[WEST], arg))
+		if (!save_texture_path(&config->textures[WEST], arg))
 			return (false);
 	}
 	if (ft_strcmp(id, "EA") == 0 && !config->textures[EAST].texture_path)
 	{
-		if (!get_xpm_data(config, &config->textures[EAST], arg))
+		if (!save_texture_path(&config->textures[EAST], arg))
 			return (false);
 	}
+	return (true);
+}
+
+// Load all textures after MLX is initialized
+bool	load_textures(t_config *config)
+{
+	if (!load_xpm_data(config, &config->textures[NORTH]))
+		return (print_error("Error: Failed to load North texture"));
+	if (!load_xpm_data(config, &config->textures[SOUTH]))
+		return (print_error("Error: Failed to load South texture"));
+	if (!load_xpm_data(config, &config->textures[WEST]))
+		return (print_error("Error: Failed to load West texture"));
+	if (!load_xpm_data(config, &config->textures[EAST]))
+		return (print_error("Error: Failed to load East texture"));
 	return (true);
 }

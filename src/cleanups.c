@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanups.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:46:52 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/08 01:13:11 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 14:58:07 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	free_config(t_config *config)
 }
 
 // Cleans up resources and terminates the program properly
-void	clean_data(t_game *game)
+bool	clean_data(t_game *game)
 {
 	get_next_line(-1);
 	free_config(&game->config);
@@ -80,6 +80,7 @@ void	clean_data(t_game *game)
 		free_map(game->map.map, game->map.height);
 		game->map.map = NULL;
 	}
+	return (false);
 }
 
 // function that will be used on ESC and window close

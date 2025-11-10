@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 10:26:09 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/11/09 20:59:27 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 14:58:16 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool		is_map_line(char *line);
 // cleanups.c:
 void		free_2d_arr(char **arr);
 void		free_config(t_config *config);
-void		clean_data(t_game *game);
+bool		clean_data(t_game *game);
 int			end_program(t_game *game);
 // draw_map.c:
 void		put_pixel(t_game *game, int x, int y, int color);
@@ -56,6 +56,7 @@ bool	check_and_copy_color(char **split, t_config *config);
 bool		parse_config_line(char *line, t_config *config);
 // parse_textures.c:
 bool		copy_texture(char *id, char *arg, t_config *config);
+bool		load_textures(t_config *config);
 int			ft_strcmp(char *s1, char *s2);
 //check_characters.c:
 bool		check_characters(t_map *map);
