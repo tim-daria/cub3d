@@ -6,7 +6,7 @@
 /*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 10:38:57 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/11/10 15:41:27 by dtimofee         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:19:25 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ bool	check_all_cells(char **visited, t_map map, char view)
 			if (map.map[y][x] == '0' || map.map[y][x] == view)
 			{
 				if (!is_enclosed(visited, map, x, y))
-					return (free_map(visited, map.height));
+					return (false);
 			}
 			x++;
 		}

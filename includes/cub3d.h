@@ -6,7 +6,7 @@
 /*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 10:26:09 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/11/10 15:45:10 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:41:20 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ char		*skip_not_map(int fd);
 bool		free_map(char **map, int row);
 void		find_player_pos(t_map map, t_player *p);
 int			count_len(char *line);
+int			rgb_to_hex(int r, int g, int b);
 // parse_player.c:
 void		find_player_pos(t_map map, t_player *p);
 // parse_textures.c:

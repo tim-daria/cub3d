@@ -6,55 +6,11 @@
 /*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:58:54 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/26 22:11:50 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:40:16 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// //Searches the map for the player's starting position and
-// //returns the character representing their view direction (N, S, E, or W).
-// static char	find_player(t_map map)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	y = 0;
-// 	while (y < map.height)
-// 	{
-// 		x = 0;
-// 		while (x < map.width)
-// 		{
-// 			if (map.map[y][x] == 'N' || map.map[y][x] == 'S'
-// 				|| map.map[y][x] == 'E' || map.map[y][x] == 'W')
-// 				break ;
-// 			x++;
-// 		}
-// 		if (x < map.width)
-// 			break ;
-// 		y++;
-// 	}
-// 	return (map.map[y][x]);
-// }
-
-// // Finds the player's position in the map and sets the player's
-// // view, x, and y coordinates in the t_player structure.
-// void	find_player_pos(t_map map, t_player *p)
-// {
-// 	p->view = find_player(map);
-// 	p->y = 0;
-// 	while (p->y < map.height)
-// 	{
-// 		p->x = 0;
-// 		while (p->x < map.width)
-// 		{
-// 			if (map.map[p->y][p->x] == p->view)
-// 				return ;
-// 			p->x++;
-// 		}
-// 		p->y++;
-// 	}
-// }
 
 // Counts the length of a string until a newline character or
 //the end of the string is encountered.
@@ -102,4 +58,9 @@ bool	free_map(char **map, int row)
 		free (map[i++]);
 	free (map);
 	return (false);
+}
+
+int	rgb_to_hex(int r, int g, int b)
+{
+	return ((r << 16) | (g << 8) | b);
 }

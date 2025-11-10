@@ -6,15 +6,15 @@
 /*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 20:32:24 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/10 15:45:16 by dtimofee         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:40:39 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static bool	consists_of_numbers(char *color);
 static bool	get_rgb(char *arg, int	*r, int *g, int *b);
 static bool	is_valid_num(int n);
-static int	rgb_to_hex(int r, int g, int b);
 static char	*join_colors(char **split, int start);
 
 bool	check_and_copy_color(char **split, t_config *config)
@@ -79,6 +79,9 @@ static bool	get_rgb(char *arg, int	*r, int *g, int *b)
 		result = false;
 	else
 	{
+		if (!consists_of_numbers(split[0]) || !consists_of_numbers(split[1])
+			|| !consists_of_numbers(split[2]))
+			result = false;
 		*r = ft_atoi(split[0]);
 		*g = ft_atoi(split[1]);
 		*b = ft_atoi(split[2]);
@@ -96,7 +99,13 @@ static bool	is_valid_num(int n)
 	return (true);
 }
 
-static int	rgb_to_hex(int r, int g, int b)
+static bool	consists_of_numbers(char *color)
 {
-	return ((r << 16) | (g << 8) | b);
+	while (*color)
+	{
+		if (!ft_isdigit(*color))
+			return (false);
+		color++;
+	}
+	return (true);
 }
