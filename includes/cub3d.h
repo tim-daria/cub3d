@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 10:26:09 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/11/10 15:45:10 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 18:12:53 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ bool		check_characters(t_map *map);
 // check_cub.c:
 bool		is_valid_cub_file(char *filename);
 int			open_file(char *src);
+bool		is_correct_file(char *filename, char *extention);
 // check_cub_utils.c:
 bool		has_map_last(char *filename);
 bool		is_config_line(char *line);
@@ -29,6 +30,8 @@ bool		has_all_sides(char *filename);
 bool		is_map_line(char *line);
 //check_walls.c:
 bool		surrounded_by_walls(t_map map, t_player p);
+// check_xpm.c:
+char		*check_and_fix_texture_path(char *path);
 // cleanups.c:
 void		free_2d_arr(char **arr);
 void		free_config(t_config *config);

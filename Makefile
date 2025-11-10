@@ -46,6 +46,7 @@ SRC_FILES =\
 		parse_map.c \
 		parse_map_utils.c \
 		check_walls.c \
+		check_xpm.c \
 		error_handlers.c \
 		init_config.c \
 		parse_colors.c \

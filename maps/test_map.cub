@@ -1,13 +1,13 @@
-NO ./textures/w2.xpm
-SO ./textures/w2.xpm
-WE ./textures/w3.xpm
-EA ./textures/w4.xpm
+NO ./textures/a1
+SO ./textures/a2
+WE ./textures/a3
+EA ./textures/a4
 
 F 128,128,128
 
 C 102,204,255
 
-   11111 
+   111111
    1000N1
    110011
    111111

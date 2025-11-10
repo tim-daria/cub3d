@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:48:23 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/11/10 14:53:59 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 18:19:06 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,21 @@
 
 // Checks if the map filename ends with ".cub" extension
 // Daria's function
-static bool	is_cub_file(char *filename)
+bool	is_correct_file(char *filename, char *extention)
 {
-	char	*map_file;
+	char	*file;
 	int		len;
 
-	if (filename == NULL)
-	{
-		print_error("No filename");
-		return (false);
-	}
 	len = ft_strlen(filename);
 	if (len < 4)
 		return (false);
-	map_file = ft_substr(filename, ft_strlen(filename) - 4, 4);
-	if (ft_strncmp(map_file, ".cub", 4) != 0)
+	file = ft_substr(filename, ft_strlen(filename) - 4, 4);
+	if (ft_strncmp(file, extention, 4) != 0)
 	{
-		print_error("Wrong file format");
-		free(map_file);
+		free(file);
 		return (false);
 	}
-	free(map_file);
+	free(file);
 	return (true);
 }
 
@@ -70,8 +64,10 @@ bool	is_valid_cub_file(char *filename)
 {
 	int	fd;
 
-	if (!is_cub_file(filename))
-		return (false);
+	if (filename == NULL)
+		return (print_error("No filename"));
+	if (!is_correct_file(filename, ".cub"))
+		return (print_error("Wrong file format"));
 	fd = open_file(filename);
 	if (fd < 0)
 		return (false);
