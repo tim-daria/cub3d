@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 20:32:24 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/13 17:58:31 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 13:49:22 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,5 @@ static bool	is_valid_num(int n)
 
 static int	rgb_to_hex(int r, int g, int b)
 {
-	return ( (r << 16) | (g << 8) | b);
+	return ((r << 16) | (g << 8) | b);
 }

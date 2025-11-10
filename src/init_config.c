@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_config.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 13:37:50 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/21 17:23:35 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 13:47:33 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

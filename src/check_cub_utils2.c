@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cub_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 14:25:38 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/13 20:00:57 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 13:33:50 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ static int	count_side(char *filename, char *id, int len)
 		line = get_next_line(fd);
 	}
 	close (fd);
-	// if (count != 1)
-	// 	printf("DEBUG: for %s side count is %i\n", id, count);
 	return (count);
 }
 

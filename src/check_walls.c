@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 10:38:57 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/27 14:03:29 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 13:34:38 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 //This function recursively checks if a given cell (x, y) in the map is enclosed
 //by walls. It returns true if the cell is enclosed, and false otherwise.
-//The function checks for out-of-bounds conditions, spaces (which indicate a leak),
-//walls, and already visited cells to avoid infinite recursion.
+//The function checks for out-of-bounds conditions, spaces
+//(which indicate a leak), walls, and already visited cells
+//to avoid infinite recursion.
 static bool	is_enclosed(char **visited, t_map map, int x, int y)
 {
 	if (x < 0 || x >= map.width || y < 0 || y >= map.height)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 21:35:17 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/27 16:59:51 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 13:47:03 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ static void	process_movements(t_game *game)
 static int	render_loop(t_game *game)
 {
 	process_movements(game);
-	draw_screen(game); // Draw floor and ceiling
-	raycast_loop(game); // Draw walls with raycasting
+	draw_screen(game);
+	raycast_loop(game);
 	draw_minimap(game, game->map.map);
 	mlx_put_image_to_window(game->mlx_connection,
 		game->mlx_win, game->img, 0, 0);

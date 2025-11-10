@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 11:46:16 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/10/21 20:35:50 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 13:52:06 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ static char	*copy_line(char *read_line, int width)
 	return (return_line);
 }
 
-//Reads lines from a file until a line is found that is recognized as a map line.
+//Reads lines from a file until a line is found
+//that is recognized as a map line.
 char	*skip_not_map(int fd)
 {
 	char	*read_line;
@@ -77,9 +78,12 @@ static bool	fill_map(int fd, t_map *map)
 }
 
 // Reads the map file, initializing the map structure
+//Initialize all pointers to NULL - to avoid
+//garbage data AND to NULL-terminate the array
 static bool	read_map_file(char *src, t_map *map)
 {
 	int	fd;
+	int	k;
 
 	fd = open_file(src);
 	if (fd < 0)
@@ -95,9 +99,7 @@ static bool	read_map_file(char *src, t_map *map)
 		close(fd);
 		return (false);
 	}
-	/* Initialize all pointers to NULL - to avoid
-	garbage data AND to NULL-terminate the array */
-	int k = 0;
+	k = 0;
 	while (k <= map->height)
 	{
 		map->map[k] = NULL;
@@ -109,8 +111,9 @@ static bool	read_map_file(char *src, t_map *map)
 	return (true);
 }
 
-// Main parsing function - Controls the flow for parsing the map, including reading the map file,
-// checking characters, walls and finding the player position.
+// Main parsing function - Controls the flow for parsing the map,
+//including reading the map file, checking characters, walls and
+//finding the player position.
 bool	parse_map(char *filename, t_game *game)
 {
 	if (!read_map_file(filename, &game->map))
@@ -119,6 +122,6 @@ bool	parse_map(char *filename, t_game *game)
 		return (false);
 	find_player_pos(game->map, &game->p);
 	if (!surrounded_by_walls(game->map, game->p))
-		return (false);  /* Let clean_data handle cleanup */
+		return (false);
 	return (true);
 }

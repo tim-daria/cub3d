@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_config.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:46:52 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/21 16:08:59 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 13:49:56 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,7 @@ static bool	save_config(char *id, char *arg, t_config *config)
 			return (false);
 		}
 		if (!copy_texture(id, arg, config))
-		{
-			// printf("DEBUG: failed in copy_texture\n");
 			return (false);
-		}
 		return (true);
 	}
 	if (is_color(id))
@@ -80,7 +77,6 @@ static bool	is_valid_texture_file(char *path)
 {
 	int	fd;
 
-	// printf("DEBUG: trying to open: '%s'\n", path);
 	fd = open_file(path);
 	if (fd < 0)
 		return (false);

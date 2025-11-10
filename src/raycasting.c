@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 20:34:58 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/27 02:08:27 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 13:54:34 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,21 +61,17 @@ void	raycast_loop(t_game *game)
 
 static void	calc_ray_dir(t_game *game, t_ray *ray, int x)
 {
-	// camera_x goes from -1 (left) to +1 (right)
 	ray->camera_x = 2 * x / (double)WIDTH - 1;
 	ray->plane_x = -game->p.dir_y * (FOV / 100.0);
 	ray->plane_y = game->p.dir_x * (FOV / 100.0);
-	// Ray direction = direction + plane * camera_x
 	ray->ray_dir_x = game->p.dir_x + ray->plane_x * ray->camera_x;
 	ray->ray_dir_y = game->p.dir_y + ray->plane_y * ray->camera_x;
 }
 
 static void	calc_side_distances(t_game *game, t_ray *ray)
 {
-	// calc start point for the ray (where the player is)
 	ray->map_x = (int)game->p.pos_x;
 	ray->map_y = (int)game->p.pos_y;
-	// calc the cost of moving by 1 full grid
 	if (ray->ray_dir_x == 0)
 		ray->delta_dist_x = INFINITY;
 	else

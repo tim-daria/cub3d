@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   check_characters.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:44:11 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/21 16:11:18 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 13:31:35 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// Checks for any unknown characters in the map (only allows ' ', '0', '1', 'N', 'S', 'E', 'W')
+// Checks for any unknown characters in the map
+//(only allows ' ', '0', '1', 'N', 'S', 'E', 'W')
 static bool	unknown_character(t_map *map)
 {
 	int	i;
@@ -27,7 +28,7 @@ static bool	unknown_character(t_map *map)
 			if (ft_strchr(" 01NSEW", map->map[i][j]) == NULL)
 			{
 				print_error("Unknown character");
-				return (false);  /* Let caller handle cleanup */
+				return (false);
 			}
 			j++;
 		}
@@ -68,7 +69,7 @@ bool	check_characters(t_map *map)
 	if (player_count != 1)
 	{
 		print_error("Wrong number of players");
-		return (false);  /* Let caller handle cleanup */
+		return (false);
 	}
 	if (unknown_character(map))
 		return (false);

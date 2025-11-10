@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanups.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:46:52 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/26 22:39:05 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 13:45:15 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	clean_data(t_game *game)
 		mlx_destroy_image(game->mlx_connection, game->img);
 		game->img = NULL;
 	}
-	
 	if (game->mlx_win)
 	{
 		mlx_destroy_window(game->mlx_connection, game->mlx_win);

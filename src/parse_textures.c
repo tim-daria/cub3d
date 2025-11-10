@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 20:22:26 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/21 17:20:23 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 13:53:00 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
