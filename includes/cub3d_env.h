@@ -14,13 +14,13 @@
 # include "../libs/libft/get_next_line.h"
 # include "../libs/libft/ft_printf.h"
 
-# define WIDTH 1024
-# define HEIGHT 768
+# define WIDTH 1920
+# define HEIGHT 1080
 # define PI 3.141592653589793
 # define FOV 60
 # define MOVE_SPEED 0.05
 # define ROT_SPEED 0.03
-# define TILE_SIZE 7
+# define TILE_SIZE 15
 # define LIGHT_GREEN 0x003333
 # define GREEN 0x00FF00
 # define BLACK 0x888888
