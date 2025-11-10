@@ -6,20 +6,30 @@
 /*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 21:25:58 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/10 13:33:29 by dtimofee         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:24:19 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+char	*skip_spaces(char *str)
+{
+	while (*str == ' ' || *str == '\t')
+		str++;
+	return (str);
+}
+
 bool	is_config_line(char *line)
 {
-	return (ft_strncmp(line, "NO ", 3) == 0
-		|| ft_strncmp(line, "SO ", 3) == 0
-		|| ft_strncmp(line, "WE ", 3) == 0
-		|| ft_strncmp(line, "EA ", 3) == 0
-		|| ft_strncmp(line, "F ", 2) == 0
-		|| ft_strncmp(line, "C ", 2) == 0);
+	char	*trimmed;
+
+	trimmed = skip_spaces(line);
+	return (ft_strncmp(trimmed, "NO ", 3) == 0
+		|| ft_strncmp(trimmed, "SO ", 3) == 0
+		|| ft_strncmp(trimmed, "WE ", 3) == 0
+		|| ft_strncmp(trimmed, "EA ", 3) == 0
+		|| ft_strncmp(trimmed, "F ", 2) == 0
+		|| ft_strncmp(trimmed, "C ", 2) == 0);
 }
 
 bool	is_map_line(char *line)

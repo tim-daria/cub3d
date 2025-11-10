@@ -6,13 +6,13 @@
 /*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:46:52 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/10 13:49:56 by dtimofee         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:26:32 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static bool	save_config(char *id, char *arg, t_config *config);
+static bool	save_config(char **split, t_config *config);
 static bool	is_texture(char *line);
 static bool	is_color(char *line);
 static bool	is_valid_texture_file(char *path);
@@ -28,38 +28,37 @@ bool	parse_config_line(char *line, t_config *config)
 	if (len > 0 && line[len - 1] == '\n')
 		line[len - 1] = '\0';
 	split = ft_split(line, ' ');
-	if (!split || !split[0] || !split[1] || split[2])
+	if (!split || !split[0] || !split[1])
 	{
-		printf("DEBUG: failed in parse_config_line\n");
 		if (split)
 			free_2d_arr(split);
 		return (false);
 	}
-	result = save_config(split[0], split[1], config);
+	if (is_texture(split[0]) && split[2])
+	{
+		free_2d_arr(split);
+		return (false);
+	}
+	result = save_config(split, config);
 	free_2d_arr(split);
 	return (result);
 }
 
-static bool	save_config(char *id, char *arg, t_config *config)
+static bool	save_config(char **split, t_config *config)
 {
-	if (is_texture(id))
+	if (is_texture(split[0]))
 	{
-		if (!is_valid_texture_file(arg))
-		{
-			printf("DEBUG: failed in is_valid_texture_file: arg %s\n", arg);
+		if (!is_valid_texture_file(split[1]))
 			return (false);
-		}
-		if (!copy_texture(id, arg, config))
+		if (!copy_texture(split[0], split[1], config))
 			return (false);
-		return (true);
 	}
-	if (is_color(id))
+	if (is_color(split[0]))
 	{
-		if (!check_and_copy_color(id, arg, config))
+		if (!check_and_copy_color(split, config))
 			return (false);
-		return (true);
 	}
-	return (false);
+	return (true);
 }
 
 static bool	is_texture(char *line)

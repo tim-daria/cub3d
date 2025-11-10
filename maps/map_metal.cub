@@ -1,7 +1,7 @@
-NO ./textures/a1.xpm
-SO ./textures/a2.xpm
-WE ./textures/a3.xpm
-EA ./textures/a4.xpm
+NO ./textures/m1.xpm
+SO ./textures/m2.xpm
+WE ./textures/m3.xpm
+EA ./textures/m4.xpm
 F 0,0,0
 
 C 148,27,27

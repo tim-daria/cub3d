@@ -6,24 +6,38 @@
 /*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 13:37:50 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/10 13:47:33 by dtimofee         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:25:19 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static bool	init_config(t_config *config)
+static bool	init_texture(t_texture *texture)
+{
+	texture->texture_path = NULL;
+	texture->img_ptr = NULL;
+	texture->data_addr = NULL;
+	texture->width = 0;
+	texture->height = 0;
+	texture->bpp = 0;
+	texture->size_line = 0;
+	texture->endian = 0;
+	return (true);
+}
+
+static bool	init_config(t_game *game, t_config *config)
 {
 	int		i;
 
 	i = NORTH;
 	while (i <= EAST)
 	{
-		config->textures[i] = NULL;
+		init_texture(&config->textures[i]);
 		i++;
 	}
 	config->floor_color = -1;
 	config->ceiling_color = -1;
+	config->game = game;
 	return (true);
 }
 
@@ -49,7 +63,7 @@ bool	parse_config(char *filename, t_game *game)
 	int			fd;
 	char		*line;
 
-	init_config(&game->config);
+	init_config(game, &game->config);
 	fd = open_file(filename);
 	if (fd < 0)
 		return (false);

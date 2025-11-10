@@ -6,7 +6,7 @@
 /*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 21:02:15 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/10 13:48:11 by dtimofee         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:25:27 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,20 +68,13 @@ bool	start_game(t_game *game, char *arg)
 		return (false);
 	}
 	if (!parse_config(arg, game))
-	{
-		clean_data(game);
-		return (false);
-	}
+		return (clean_data(game));
 	if (!parse_map(arg, game))
-	{
-		clean_data(game);
-		return (false);
-	}
+		return (clean_data(game));
 	find_player_pos(game->map, &game->p);
 	if (!setup_mlx(game))
-	{
-		clean_data(game);
-		return (false);
-	}
+		return (clean_data(game));
+	if (!load_textures(&game->config))
+		return (clean_data(game));
 	return (true);
 }

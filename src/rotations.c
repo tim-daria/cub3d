@@ -6,7 +6,7 @@
 /*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 22:01:04 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/10 15:09:18 by dtimofee         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:27:55 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ void	rotate_left(t_game *game)
 	double	old_dir_x;
 
 	old_dir_x = game->p.dir_x;
-	game->p.dir_x = game->p.dir_x * cos(-ROT_SPEED)
-		- game->p.dir_y * sin(-ROT_SPEED);
-	game->p.dir_y = old_dir_x * sin(-ROT_SPEED)
-		+ game->p.dir_y * cos(-ROT_SPEED);
+	game->p.dir_x = game->p.dir_x * cos(-ROT_SPEED) - game->p.dir_y * sin(-ROT_SPEED);
+	game->p.dir_y = old_dir_x * sin(-ROT_SPEED) + game->p.dir_y * cos(-ROT_SPEED);
 }
 
 void	rotate_right(t_game *game)

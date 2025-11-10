@@ -6,7 +6,7 @@
 /*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 11:46:16 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/11/10 13:52:06 by dtimofee         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:26:44 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static bool	fill_map(int fd, t_map *map)
 		map->map[i] = copy_line(read_line, map->width);
 		if (map->map[i] == NULL)
 		{
-			perror("Error");
+			print_error("Failed to copy map line");
 			free_map(map->map, i);
 			close(fd);
 			return (false);
@@ -95,7 +95,7 @@ static bool	read_map_file(char *src, t_map *map)
 	map->map = malloc((map->height + 1) * sizeof(char *));
 	if (map->map == NULL)
 	{
-		perror("Error");
+		print_error("Failed to malloc map");
 		close(fd);
 		return (false);
 	}

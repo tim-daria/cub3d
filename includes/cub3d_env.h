@@ -6,7 +6,7 @@
 /*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:29:25 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/11/10 13:29:28 by dtimofee         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:21:29 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,13 @@
 # include "../libs/libft/get_next_line.h"
 # include "../libs/libft/ft_printf.h"
 
-# define WIDTH 1024
-# define HEIGHT 768
-# define BLOCK_SIZE 64
+# define WIDTH 1920
+# define HEIGHT 1080
 # define PI 3.141592653589793
 # define FOV 60
 # define MOVE_SPEED 0.05
-# define ROT_SPEED 0.01
-# define TILE_SIZE 7
+# define ROT_SPEED 0.03
+# define TILE_SIZE 15
 # define RAY_LENGTH 300
 # define LIGHT_GREEN 0x003333
 # define GREEN 0x00FF00
@@ -48,11 +47,26 @@ enum e_direction
 	EAST = 3
 };
 
+typedef struct s_game	t_game;
+
+typedef struct	s_texture
+{
+	char	*texture_path;
+	void	*img_ptr;
+	char	*data_addr;
+	int		width;
+	int		height;
+	int		bpp;
+	int		size_line;
+	int		endian;
+}	t_texture;
+
 typedef struct s_config
 {
-	char	*textures[4];
-	int		floor_color;
-	int		ceiling_color;
+	t_texture	textures[4];
+	int			floor_color;
+	int			ceiling_color;
+	t_game		*game;
 }	t_config;
 
 typedef struct s_player
@@ -113,6 +127,11 @@ typedef struct s_ray
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
+	double	wall_x;
+	int		tex_x;
+	int		tex_y;
+	double	tex_step;
+	double	tex_pos;
 }	t_ray;
 
 #endif
