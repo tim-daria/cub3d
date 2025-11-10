@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_env.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/10 13:29:25 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/11/10 15:21:29 by dtimofee         ###   ########.fr       */
+/*   Created: 2025/11/10 15:46:41 by tsemenov          #+#    #+#             */
+/*   Updated: 2025/11/10 15:47:26 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 # define HEIGHT 1080
 # define PI 3.141592653589793
 # define FOV 60
-# define MOVE_SPEED 0.05
-# define ROT_SPEED 0.03
+# define MOVE_SPEED 0.1
+# define ROT_SPEED 0.01
 # define TILE_SIZE 15
 # define RAY_LENGTH 300
 # define LIGHT_GREEN 0x003333
@@ -49,7 +49,7 @@ enum e_direction
 
 typedef struct s_game	t_game;
 
-typedef struct	s_texture
+typedef struct s_texture
 {
 	char	*texture_path;
 	void	*img_ptr;

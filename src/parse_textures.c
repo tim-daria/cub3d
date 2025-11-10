@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 20:22:26 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/10 15:27:08 by dtimofee         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:39:23 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_strcmp(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
-// Phase 1: Just save the texture path for validation
+// Parsing phase 1: Just save the texture path for validation
 static bool	save_texture_path(t_texture *texture, char *arg)
 {
 	texture->texture_path = ft_strdup(arg);
@@ -44,20 +44,22 @@ static bool	save_texture_path(t_texture *texture, char *arg)
 	return (true);
 }
 
-// Phase 2: Load actual texture data after MLX is initialized
+// Parsing phase 2: Load actual texture data after MLX is initialized
+// mlx_xpm_file_to_image() can't be called befor MLX is init
+// so we end the parsing after the window is created
 static bool	load_xpm_data(t_config *config, t_texture *texture)
 {
 	if (!texture->texture_path)
 		return (false);
 	texture->img_ptr = mlx_xpm_file_to_image(config->game->mlx_connection,
-											texture->texture_path,
-											&texture->width, &texture->height);
+			texture->texture_path,
+			&texture->width, &texture->height);
 	if (texture->img_ptr == NULL)
 		return (false);
 	texture->data_addr = mlx_get_data_addr(texture->img_ptr,
-											&texture->bpp,
-											&texture->size_line,
-											&texture->endian);
+			&texture->bpp,
+			&texture->size_line,
+			&texture->endian);
 	if (texture->data_addr == NULL)
 		return (false);
 	return (true);
