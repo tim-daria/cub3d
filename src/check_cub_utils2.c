@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 14:25:38 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/13 20:00:57 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/09 21:02:29 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static int	count_side(char *filename, char *id, int len)
 {
 	char	*line;
+	char	*trimmed;
 	int		fd;
 	int		count;
 
@@ -25,14 +26,14 @@ static int	count_side(char *filename, char *id, int len)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		if (ft_strncmp(line, id, len) == 0)
+		trimmed = skip_spaces(line);
+		if (ft_strncmp(trimmed, id, len - 1) == 0
+			&& (trimmed[len - 1] == ' ' || trimmed[len - 1] == '\t'))
 			count++;
 		free(line);
 		line = get_next_line(fd);
 	}
 	close (fd);
-	// if (count != 1)
-	// 	printf("DEBUG: for %s side count is %i\n", id, count);
 	return (count);
 }
 
