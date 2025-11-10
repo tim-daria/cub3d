@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:58:54 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/11/10 17:19:42 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 18:30:46 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,9 @@ bool	free_map(char **map, int row)
 		free (map[i++]);
 	free (map);
 	return (false);
+}
+
+int	rgb_to_hex(int r, int g, int b)
+{
+	return ((r << 16) | (g << 8) | b);
 }
