@@ -6,7 +6,7 @@
 /*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 10:38:57 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/11/10 13:34:38 by dtimofee         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:41:27 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,29 @@ static char	**create_grid(int height, int width)
 	return (visited);
 }
 
+bool	check_all_cells(char **visited, t_map map, char view)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (y < map.height)
+	{
+		x = 0;
+		while (x < map.width)
+		{
+			if (map.map[y][x] == '0' || map.map[y][x] == view)
+			{
+				if (!is_enclosed(visited, map, x, y))
+					return (free_map(visited, map.height));
+			}
+			x++;
+		}
+		y++;
+	}
+	return (true);
+}
+
 //This function checks if the entire map is surrounded by walls.
 //It iterates through each cell in the map, and if a cell is a floor ('0')
 //or the player's starting position, it calls is_enclosed to check if that
@@ -77,29 +100,14 @@ static char	**create_grid(int height, int width)
 bool	surrounded_by_walls(t_map map, t_player p)
 {
 	char	**visited;
-	int		y;
-	int		x;
 
 	visited = create_grid(map.height, map.width);
 	if (!visited)
 		return (print_error("Malloc failed"));
-	y = 0;
-	while (y < map.height)
+	if (!check_all_cells(visited, map, p.view))
 	{
-		x = 0;
-		while (x < map.width)
-		{
-			if (map.map[y][x] == '0' || map.map[y][x] == p.view)
-			{
-				if (!is_enclosed(visited, map, x, y))
-				{
-					free_map(visited, map.height);
-					return (print_error("The map is not surrounded by walls"));
-				}
-			}
-			x++;
-		}
-		y++;
+		free_map(visited, map.height);
+		return (print_error("The map is not surrounded by walls"));
 	}
 	free_map(visited, map.height);
 	return (true);

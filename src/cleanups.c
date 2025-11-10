@@ -6,7 +6,7 @@
 /*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:46:52 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/10 15:24:50 by dtimofee         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:43:01 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	free_config(t_config *config)
 	{
 		if (config->textures[i].img_ptr)
 		{
-			mlx_destroy_image(config->game->mlx_connection, config->textures[i].img_ptr);
+			mlx_destroy_image(config->game->mlx_connection,
+				config->textures[i].img_ptr);
 			config->textures[i].img_ptr = NULL;
 		}
 		if (config->textures[i].texture_path)

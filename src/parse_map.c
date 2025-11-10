@@ -6,7 +6,7 @@
 /*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 11:46:16 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/11/10 15:26:44 by dtimofee         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:46:25 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,7 @@ static bool	read_map_file(char *src, t_map *map)
 	}
 	k = 0;
 	while (k <= map->height)
-	{
-		map->map[k] = NULL;
-		k++;
-	}
+		map->map[k++] = NULL;
 	if (!fill_map(fd, map))
 		return (false);
 	close(fd);

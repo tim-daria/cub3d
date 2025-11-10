@@ -6,7 +6,7 @@
 /*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 20:32:24 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/10 15:26:20 by dtimofee         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:45:16 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static char	*join_colors(char **split, int start);
 
 bool	check_and_copy_color(char **split, t_config *config)
 {
-	int	hex;
-	int	r;
-	int	g;
-	int	b;
+	int		hex;
+	int		r;
+	int		g;
+	int		b;
 	char	*color_str;
 
 	color_str = join_colors(split, 1);
@@ -100,4 +100,3 @@ static int	rgb_to_hex(int r, int g, int b)
 {
 	return ((r << 16) | (g << 8) | b);
 }
-
