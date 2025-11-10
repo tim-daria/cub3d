@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtimofee <dtimofee@student.42berlin.de>    #+#  +:+       +#+        */
+/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-10-21 19:04:11 by dtimofee          #+#    #+#             */
-/*   Updated: 2025-10-21 19:04:11 by dtimofee         ###   ########.fr       */
+/*   Created: 2025/10/21 19:04:11 by dtimofee          #+#    #+#             */
+/*   Updated: 2025/11/10 13:20:26 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ static void	draw_rays(t_game *game, double ray_angle)
 	int		i;
 
 	x = 0;
-	while (x < game->map.width)
+	while (x < WIDTH)
 	{
 		i = 0;
-		while (i < 300)
+		while (i < RAY_LENGTH)
 		{
 			ray_x = game->p.pos_x + (i * cos(ray_angle) / TILE_SIZE);
 			ray_y = game->p.pos_y + (i * sin(ray_angle) / TILE_SIZE);
@@ -54,7 +54,7 @@ static void	draw_rays(t_game *game, double ray_angle)
 				(int)(ray_y * TILE_SIZE), LIGHT_GREEN);
 			i++;
 		}
-		ray_angle += (double)FOV * (PI / 180) / game->map.width;
+		ray_angle += (double)FOV * (PI / 180) / WIDTH;
 		x++;
 	}
 }

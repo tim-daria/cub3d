@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cub_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 21:25:58 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/09 20:59:23 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:24:19 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ static bool	check_map_order(int fd, char **line)
 	*line = get_next_line(fd);
 	while (*line != NULL)
 	{
-		// printf("DEBUG: reading line: %s", line);
 		if (count_len(*line) == 0)
 		{
 			free(*line);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 12:16:10 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/11/08 00:51:16 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:26:08 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	move_forward(t_game *game)
 		game->p.pos_x = new_x;
 		game->p.pos_y = new_y;
 	}
-	// printf("DEBUG: player moved to [%f, %f]\n", game->p.pos_x, game->p.pos_y);
 }
 
 void	move_backward(t_game *game)
@@ -54,7 +53,6 @@ void	move_backward(t_game *game)
 		game->p.pos_x = new_x;
 		game->p.pos_y = new_y;
 	}
-	// printf("DEBUG: player moved to [%f, %f]\n", game->p.pos_x, game->p.pos_y);
 }
 
 void	move_left(t_game *game)
@@ -68,10 +66,7 @@ void	move_left(t_game *game)
 	{
 		game->p.pos_x = new_x;
 		game->p.pos_y = new_y;
-		// game->p.angle -= ROT_SPEED;
 	}
-	// printf("DEBUG: player moved to [%f, %f]\n", game->p.pos_x, game->p.pos_y);
-	// printf("DEBUG: player slightly rotated, the angle is %f\n", game->p.angle);
 }
 
 void	move_right(t_game *game)
@@ -85,8 +80,5 @@ void	move_right(t_game *game)
 	{
 		game->p.pos_x = new_x;
 		game->p.pos_y = new_y;
-		// game->p.angle += ROT_SPEED;
 	}
-	// printf("DEBUG: player moved to [%f, %f]\n", game->p.pos_x, game->p.pos_y);
-	// printf("DEBUG: player slightly rotated, the angle is %f\n", game->p.angle);
 }

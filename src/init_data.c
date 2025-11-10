@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 21:02:15 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/10 14:59:06 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:25:27 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static bool	setup_mlx(t_game *game)
 		print_error("Failed to initialize MLX");
 		return (false);
 	}
-	game->mlx_win = mlx_new_window(game->mlx_connection, WIDTH, HEIGHT, "Cub3D");
+	game->mlx_win = mlx_new_window(game->mlx_connection,
+			WIDTH, HEIGHT, "Cub3D");
 	if (!game->mlx_win)
 	{
 		print_error("Failed to create window");

@@ -33,6 +33,7 @@
 # define MOVE_SPEED 0.1
 # define ROT_SPEED 0.01
 # define TILE_SIZE 15
+# define RAY_LENGTH 300
 # define LIGHT_GREEN 0x003333
 # define GREEN 0x00FF00
 # define BLACK 0x888888

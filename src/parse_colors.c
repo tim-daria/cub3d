@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 20:32:24 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/09 20:39:14 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:45:16 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static char	*join_colors(char **split, int start);
 
 bool	check_and_copy_color(char **split, t_config *config)
 {
-	int	hex;
-	int	r;
-	int	g;
-	int	b;
+	int		hex;
+	int		r;
+	int		g;
+	int		b;
 	char	*color_str;
 
 	color_str = join_colors(split, 1);
@@ -98,6 +98,5 @@ static bool	is_valid_num(int n)
 
 static int	rgb_to_hex(int r, int g, int b)
 {
-	return ( (r << 16) | (g << 8) | b);
+	return ((r << 16) | (g << 8) | b);
 }
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_screen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:15:21 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/10/27 14:30:43 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 13:46:09 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,5 @@ bool	draw_screen(t_game *game)
 		return (false);
 	}
 	fill_floor_and_ceiling(game);
-	// draw init view
-	// 	mlx_put_image_to_window(game.mlx_connection, game.mlx_win,
-	// game.img, 0, 0);
 	return (true);
 }

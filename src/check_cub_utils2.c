@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cub_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 14:25:38 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/09 21:02:29 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:24:31 by dtimofee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
