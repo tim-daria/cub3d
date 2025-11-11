@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 10:26:09 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/11/10 18:32:10 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/12 00:26:12 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void		move_forward(t_game *game);
 void		move_backward(t_game *game);
 void		move_left(t_game *game);
 void		move_right(t_game *game);
+// movements_collision.c:
+bool		is_too_close(t_game *game, double x, double y);
 // parse_colors.c:
 bool		check_and_copy_color(char **split, t_config *config);
 // parse_config.c:
