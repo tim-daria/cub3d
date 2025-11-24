@@ -48,7 +48,7 @@ void		setup_hooks(t_game *game);
 bool		parse_config(char *filename, t_game *game);
 void		free_config(t_config *config);
 // init_data.c:
-bool		init_data(t_game *game);
+void		init_data(t_game *game);
 bool		start_game(t_game *game, char *arg);
 // minimap.c:
 void		draw_minimap(t_game *game, char **map);

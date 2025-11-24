@@ -15,7 +15,6 @@
 static bool	save_config(char **split, t_config *config);
 static bool	is_texture(char *line);
 static bool	is_color(char *line);
-// static bool	is_valid_texture_file(char *path);
 
 // extracts texture path or color str and saves values to the struct
 bool	parse_config_line(char *line, t_config *config)
@@ -84,13 +83,3 @@ static bool	is_color(char *line)
 	return (ft_strcmp(line, "F") == 0 || ft_strcmp(line, "C") == 0);
 }
 
-// static bool	is_valid_texture_file(char *path)
-// {
-// 	int	fd;
-
-// 	fd = open_file(path);
-// 	if (fd < 0)
-// 		return (false);
-// 	close(fd);
-// 	return (true);
-// }
