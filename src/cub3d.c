@@ -21,8 +21,7 @@ int	main(int argc, char **argv)
 		printf("❌ Error\n Usage: %s <map.cub>\n", argv[0]);
 		return (1);
 	}
-	if (!init_data(&game))
-		return (1);
+	init_data(&game);
 	if (!start_game(&game, argv[1]))
 		return (1);
 	setup_hooks(&game);

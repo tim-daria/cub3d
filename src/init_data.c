@@ -13,7 +13,7 @@
 #include "cub3d.h"
 
 // Initializes all data structure fields to default values
-bool	init_data(t_game *game)
+void	init_data(t_game *game)
 {
 	game->map.map = NULL;
 	game->map.height = 0;
@@ -37,7 +37,6 @@ bool	init_data(t_game *game)
 	game->key_d = false;
 	game->key_left = false;
 	game->key_right = false;
-	return (true);
 }
 
 static bool	setup_mlx(t_game *game)

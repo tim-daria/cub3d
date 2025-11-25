@@ -22,7 +22,7 @@ bool	is_correct_file(char *filename, char *extention)
 	len = ft_strlen(filename);
 	if (len < 4)
 		return (false);
-	file = ft_substr(filename, ft_strlen(filename) - 4, 4);
+	file = ft_substr(filename, len - 4, 4);
 	if (ft_strncmp(file, extention, 4) != 0)
 	{
 		free(file);
