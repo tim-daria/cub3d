@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 17:46:52 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/10 18:23:58 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/25 15:18:19 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,6 @@ static bool	save_config(char **split, t_config *config)
 		fixed_path = check_and_fix_texture_path(split[1]);
 		if (!fixed_path)
 			return (false);
-		if (!is_correct_file(fixed_path, ".xpm"))
-		{
-			free(fixed_path);
-			return (false);
-		}
 		if (!copy_texture(split[0], fixed_path, config))
 		{
 			free(fixed_path);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 12:16:10 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/11/10 15:26:08 by dtimofee         ###   ########.fr       */
+/*   Updated: 2025/11/12 00:32:32 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static bool	is_valid_pos(t_game *game, double x, double y)
 		|| map_y < 1 || map_y > game->map.height - 1)
 		return (false);
 	if (game->map.map[map_y][map_x] == '1')
+		return (false);
+	if (is_too_close(game, x, y))
 		return (false);
 	return (true);
 }

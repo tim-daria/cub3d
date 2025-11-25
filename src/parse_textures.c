@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 20:22:26 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/10 17:55:19 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/11 23:35:30 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,12 @@ bool	copy_texture(char *id, char *arg, t_config *config)
 bool	load_textures(t_config *config)
 {
 	if (!load_xpm_data(config, &config->textures[NORTH]))
-		return (print_error("Error: Failed to load North texture"));
+		return (print_error("Failed to load North texture"));
 	if (!load_xpm_data(config, &config->textures[SOUTH]))
-		return (print_error("Error: Failed to load South texture"));
+		return (print_error("Failed to load South texture"));
 	if (!load_xpm_data(config, &config->textures[WEST]))
-		return (print_error("Error: Failed to load West texture"));
+		return (print_error("Failed to load West texture"));
 	if (!load_xpm_data(config, &config->textures[EAST]))
-		return (print_error("Error: Failed to load East texture"));
+		return (print_error("Failed to load East texture"));
 	return (true);
 }

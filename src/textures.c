@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:04:59 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/10 15:23:44 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/25 14:00:00 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,15 @@ t_texture	*get_wall_texture(t_game *game, t_ray *ray)
 	if (ray->side == 0)
 	{
 		if (ray->ray_dir_x > 0)
-			return (&game->config.textures[EAST]);
-		else
 			return (&game->config.textures[WEST]);
+		else
+			return (&game->config.textures[EAST]);
 	}
 	else
 	{
 		if (ray->ray_dir_y > 0)
-			return (&game->config.textures[SOUTH]);
-		else
 			return (&game->config.textures[NORTH]);
+		else
+			return (&game->config.textures[SOUTH]);
 	}
 }

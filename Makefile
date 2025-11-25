@@ -56,6 +56,7 @@ SRC_FILES =\
 		draw_screen.c \
 		parse_player.c \
 		movements.c \
+		movements_collision.c \
 		rotations.c \
 		hooks.c \
 		raycasting_loop.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cub_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 21:25:58 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/10 15:24:19 by dtimofee         ###   ########.fr       */
+/*   Updated: 2025/11/25 14:51:32 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ static bool	check_map_order(int fd, char **line)
 	*line = get_next_line(fd);
 	while (*line != NULL)
 	{
+		if (map_found && !is_map_line(*line))
+			return (print_error("Invalid map format"));
 		if (count_len(*line) == 0)
 		{
 			free(*line);
@@ -74,10 +76,6 @@ static bool	check_map_order(int fd, char **line)
 		}
 		if (is_map_line(*line))
 			map_found = 1;
-		else if (map_found && count_len(*line) == 0)
-			return (print_error("Empty line in the map"));
-		else if (map_found && is_config_line(*line))
-			return (print_error("Map must be at the end of the file"));
 		free(*line);
 		*line = get_next_line(fd);
 	}

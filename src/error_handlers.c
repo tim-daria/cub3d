@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handlers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtimofee <dtimofee@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 20:05:06 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/10 15:25:03 by dtimofee         ###   ########.fr       */
+/*   Updated: 2025/11/25 14:11:33 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 //(can be changed to print to STDERR)
 bool	print_error(char *msg)
 {
-	printf("❌ Error\n");
+	ft_putendl_fd("❌ Error", 2);
 	if (msg)
-		printf("%s\n", msg);
+		ft_putendl_fd(msg, 2);
 	return (false);
 }
