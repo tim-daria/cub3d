@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:39:58 by dtimofee          #+#    #+#             */
-/*   Updated: 2025/11/10 15:00:43 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/25 14:10:24 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ int	main(int argc, char **argv)
 	if (!init_data(&game))
 		return (1);
 	if (!start_game(&game, argv[1]))
-	{
-		printf("❌ Failed to initialize game\n");
 		return (1);
-	}
 	setup_hooks(&game);
 	end_program(&game);
 	return (0);

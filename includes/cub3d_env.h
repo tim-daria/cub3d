@@ -6,7 +6,7 @@
 /*   By: tsemenov <tsemenov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:46:41 by tsemenov          #+#    #+#             */
-/*   Updated: 2025/11/25 14:00:26 by tsemenov         ###   ########.fr       */
+/*   Updated: 2025/11/25 15:22:01 by tsemenov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define FOV 60
 # define MOVE_SPEED 0.1
 # define ROT_SPEED 0.02
-# define COLLISION_RADIUS 0.1
+# define COL_RADIUS 0.1
 # define TILE_SIZE 15
 # define RAY_LENGTH 300
 # define LIGHT_GREEN 0x003333

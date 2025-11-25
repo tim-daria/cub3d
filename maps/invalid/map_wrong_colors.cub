@@ -1,11 +1,10 @@
-NO ./textures/a1.xpm
-SO ./textures/a2.xpm
-WE ./textures/a20
-EA ./textures/a4.xpm
-F 220,100,0
+NO ./textures/bw_no.xpm
+SO ./textures/bw_so.xpm
+WE ./textures/bw_we.xpm
+EA ./textures/bw_ea.xpm
 
-C 225,30,0
-
+F 2r20,100,0
+C 102,204,255
 
         1111111111111111111111111
         1000000000110000000000001
