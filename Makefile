@@ -100,7 +100,6 @@ $(NAME): $(MLX_LIB) $(LIBFT) $(OBJ_DIR) $(OBJS)
 	@echo "$(YELLOW)Compiling...$(RESET)"
 	@$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -L$(LIBFT_DIR) -lft -o $(NAME)
 	@echo "$(BOLD)$(GREEN)CUB3D ready ✓$(RESET)"
-	@echo "$(BLUE)To run valgrind do \"make valg MAP=path_to_map\"$(RESET)"
 
 clean:
 	@rm -rf $(OBJ_DIR)
