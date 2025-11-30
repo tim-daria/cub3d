@@ -125,9 +125,4 @@ fclean: clean
 
 re: fclean all
 
-MAP ?= ./maps/map.cub
-
-valg: $(NAME)
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(MAP)
-
-.PHONY: all clean fclean re valg
+.PHONY: all clean fclean re

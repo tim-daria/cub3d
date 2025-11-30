@@ -209,12 +209,6 @@ C 237,67,192
 To check for memory leaks using Valgrind (Linux only):
 
 ```bash
-make valg MAP=./maps/working/map.cub
-```
-
-Or manually:
-
-```bash
 valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./cub3d maps/working/map.cub
 ```
 
